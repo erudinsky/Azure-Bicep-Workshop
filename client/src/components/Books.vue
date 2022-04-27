@@ -127,6 +127,8 @@
 import axios from 'axios';
 import Alert from './Alert.vue';
 
+axios.defaults.baseURL = 'https://abw.azurewebsites.net/';
+
 export default {
   data() {
     return {
