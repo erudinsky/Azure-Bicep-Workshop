@@ -2,7 +2,7 @@ module.exports = {
     devServer: {
       proxy: {
         '/': {
-          target: 'http://localhost:5000',
+          target: 'https://abw.azurewebsites.net',
           ws: true,
           changeOrigin: true
         }
