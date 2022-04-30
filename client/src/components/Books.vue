@@ -18,7 +18,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(book, index) in books" :key="index">
+            <tr v-for="book in books" v-bind:key="book[0]">
               <td>{{ book[1] }}</td>
               <td>{{ book[2] }}</td>
               <td>{{ book[3] }}</td>
@@ -32,13 +32,13 @@
                           type="button"
                           class="btn btn-warning btn-sm"
                           v-b-modal.book-update-modal
-                          @click="editBook(book)">
+                          @click="editBook(book[0])">
                       Update
                   </button>
                   <button
                           type="button"
                           class="btn btn-danger btn-sm"
-                          @click="onDeleteBook(book)">
+                          @click="onDeleteBook(book[0])">
                       Delete
                   </button>
                 </div>
@@ -71,6 +71,16 @@
                           v-model="addBookForm.author"
                           required
                           placeholder="Enter author">
+            </b-form-input>
+          </b-form-group>
+        <b-form-group id="form-pages_num-group"
+                      label="Pages:"
+                      label-for="form-pages_num-input">
+            <b-form-input id="form-pages_num-input"
+                          type="text"
+                          v-model="addBookForm.pages_num"
+                          required
+                          placeholder="Enter number of pages">
             </b-form-input>
           </b-form-group>
         <b-form-group id="form-read-group">
@@ -109,6 +119,16 @@
                           placeholder="Enter author">
             </b-form-input>
           </b-form-group>
+        <b-form-group id="form-pages_num-edit-group"
+                      label="Pages:"
+                      label-for="form-pages_num-edit-input">
+            <b-form-input id="form-pages_num-edit-input"
+                          type="text"
+                          v-model="editForm.pages_num"
+                          required
+                          placeholder="Enter number of pages">
+            </b-form-input>
+          </b-form-group>
         <b-form-group id="form-read-edit-group">
           <b-form-checkbox-group v-model="editForm.read" id="form-checks">
             <b-form-checkbox value="true">Read?</b-form-checkbox>
@@ -127,7 +147,8 @@
 import axios from 'axios';
 import Alert from './Alert.vue';
 
-axios.defaults.baseURL = 'https://abw.azurewebsites.net/';
+axios.defaults.baseURL = 'https://abwvewyoj5t7eslkwebapp.azurewebsites.net';
+// axios.defaults.baseURL = 'http://localhost:5000';
 
 export default {
   data() {
@@ -136,6 +157,7 @@ export default {
       addBookForm: {
         title: '',
         author: '',
+        pages_num: '',
         read: [],
       },
       message: '',
@@ -144,6 +166,7 @@ export default {
         id: '',
         title: '',
         author: '',
+        pages_num: '',
         read: [],
       },
     };
@@ -180,10 +203,12 @@ export default {
     initForm() {
       this.addBookForm.title = '';
       this.addBookForm.author = '';
+      this.addBookForm.pages_num = '';
       this.addBookForm.read = [];
       this.editForm.id = '';
       this.editForm.title = '';
       this.editForm.author = '';
+      this.editForm.pages_num = '';
       this.editForm.read = [];
     },
     onSubmit(evt) {
@@ -194,6 +219,7 @@ export default {
       const payload = {
         title: this.addBookForm.title,
         author: this.addBookForm.author,
+        pages_num: this.addBookForm.pages_num,
         read, // property shorthand
       };
       this.addBook(payload);
@@ -215,6 +241,7 @@ export default {
       const payload = {
         title: this.editForm.title,
         author: this.editForm.author,
+        pages_num: this.editForm.pages_num,
         read,
       };
       this.updateBook(payload, this.editForm.id);
@@ -254,7 +281,7 @@ export default {
         });
     },
     onDeleteBook(book) {
-      this.removeBook(book.id);
+      this.removeBook(book[0]);
     },
   },
   created() {
