@@ -4,7 +4,7 @@ Welcome to Azure Bicep workshop.
 
 Bicep is a domain-specific language (DSL) that uses declarative syntax to deploy Azure resources. In a Bicep file, you define the infrastructure you want to deploy to Azure, and then use that file throughout the development lifecycle to repeatedly deploy your infrastructure. Your resources are deployed in a consistent manner.
 
-![Bicep processing](images/bicep-processing.png)
+![Bicep processing](.attachments/bicep-processing.png)
 
 We are going to deploy a full stack application to Azure in multiple environments reusing Bicep templates.
 
@@ -58,6 +58,19 @@ az account list -o table
 az account set -is <SubscriptionId>
 
 ```
+
+## Workshop
+
+1. [Getting started with Bicep](Workshop/1-Getting-started-with-Bicep.md)
+2. [Set Azure environment](Workshop/2-Set-Azure-environment.md)
+3. [Prepare database](Workshop/3-Prepare-database.md)
+4. [Server side](Workshop/4-Server-side.md)
+5. [Client with vue.js](Workshop/5-Client-with-vuejs.md)
+
+You can also follow this workshop by watching two videos 
+
+* [Bicep Fundamentals](https://www.youtube.com/watch?v=KgUT1LoFZfk)
+* [Deploy a full stack application to Azure using Bicep templates](https://www.youtube.com/watch?v=uOLm15RP5P8)
 
 ## Author
 
