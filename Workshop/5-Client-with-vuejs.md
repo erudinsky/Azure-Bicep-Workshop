@@ -96,6 +96,8 @@ npm run serve # to test application
 
 ```
 
+If everything went well you should be able to see the following.
+
 ![vuejs](../.attachments/client-vuejs.png)
 
 ## Resources
