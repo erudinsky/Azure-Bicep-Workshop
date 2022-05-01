@@ -147,8 +147,7 @@
 import axios from 'axios';
 import Alert from './Alert.vue';
 
-axios.defaults.baseURL = 'https://abwvewyoj5t7eslkwebapp.azurewebsites.net';
-// axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'http://localhost:5000';
 
 export default {
   data() {

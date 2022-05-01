@@ -59,6 +59,14 @@ az account set -is <SubscriptionId>
 
 ```
 
+## Workshop
+
+1. [Getting started with Bicep](Workshop/1-Getting-started-with-Bicep.md)
+2. [Set Azure environment](Workshop/2-Set-Azure-environment.md)
+3. [Prepare database](Workshop/3-Prepare-database.md)
+4. [Server side](Workshop/4-Server-side.md)
+5. [Client with vue.js](Workshop/5-Client-with-vuejs.md)
+
 ## Author
 
 Hi there 👋
