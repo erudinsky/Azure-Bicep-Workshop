@@ -98,3 +98,7 @@ npm run serve # to test application
 
 ![vuejs](../.attachments/client-vuejs.png)
 
+## Resources
+
+* [vuejs getting started](https://v1.vuejs.org/guide/)
+* [Template reference (Static Web)](https://docs.microsoft.com/en-us/azure/templates/microsoft.web/staticsites?tabs=bicep)
