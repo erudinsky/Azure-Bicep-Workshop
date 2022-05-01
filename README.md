@@ -67,6 +67,11 @@ az account set -is <SubscriptionId>
 4. [Server side](Workshop/4-Server-side.md)
 5. [Client with vue.js](Workshop/5-Client-with-vuejs.md)
 
+You can also follow this workshop by watching two videos 
+
+* [Bicep Fundamentals](https://www.youtube.com/watch?v=KgUT1LoFZfk)
+* [Deploy a full stack application to Azure using Bicep templates](https://www.youtube.com/watch?v=uOLm15RP5P8)
+
 ## Author
 
 Hi there 👋
