@@ -124,7 +124,7 @@ Learning objectives:
 * secureString - indicated by modifier in Bicep
 * string
 
-```json
+```
 
 // array
 
