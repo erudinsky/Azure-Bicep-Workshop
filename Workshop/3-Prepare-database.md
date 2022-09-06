@@ -310,7 +310,7 @@ administratorLogin: kv.getSecret('dbuser')
 
 Azure DB for PostgreSQL has been provisioned already as part of the main deployment, let's review the template:
 
-```json
+```bicep
 
 // main.bicep
 
