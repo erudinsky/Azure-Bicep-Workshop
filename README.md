@@ -12,7 +12,7 @@ We are going to deploy a full stack application to Azure in multiple environment
 
 * Infrastructure-as-Code 101
 * ARM and Bicep
-* Full stack app templates
+* Full stack app
 * Authoring, best practices
 * DevOps
 
@@ -46,6 +46,8 @@ az group list -o table
 az delete group -g azure-bicep-worshop-rg
 
 ```
+
+> Selecting location for the resources you need to keep in mind two things: latency ([this](https://www.azurespeed.com/Azure/Latency) website helps to measure it) and [products available by region](https://azure.microsoft.com/en-us/global-infrastructure/services/).
 
 Make sure all 5 steps from the above give no errors. If you have access to multiple Azure tenants and subscriptions, double check your workspace and set proper subscription so you won't get any surprises: 
 

@@ -1,4 +1,5 @@
 sandbox
 .vscode
 .DS_Store
-parameters*
+parameters.init.json
+parameters.json
