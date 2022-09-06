@@ -1,10 +1,50 @@
-// 1. RG
-
 targetScope = 'subscription'
 
 param location string
 param resourceGroupName string
 param tags object
+param tenantId string
+
+// 0. Everything above RG
+
+param subscriptionId string
+param groups object
+
+var roles = [
+  {
+    roleDefinition: json(loadTextContent('./roles/owner.json'))
+    assigneeObjectId: groups.owner
+  }
+  {
+    roleDefinition: json(loadTextContent('./roles/contributor.json'))
+    assigneeObjectId: groups.contributor
+  }
+  {
+    roleDefinition: json(loadTextContent('./roles/reader.json'))
+    assigneeObjectId: groups.reader
+  }
+]
+
+module roleDefinition './modules/roleDefinition.bicep' = [for role in roles: {
+  name: '${role.roleDefinition.name}_deployment'
+  params: {
+    assignableScopes: 'subscriptions/${subscriptionId}'
+    roleDefinition: role.roleDefinition
+  }
+}]
+
+module roleAssignment './modules/roleAssignment.bicep' = [for (role, i) in roles: {
+  name: '${role.assigneeObjectId}-assignment'
+  scope: subscription(subscriptionId)
+  params: {
+    roleDefinitionId: roleDefinition[i].outputs.roleDefinitionId
+    assigneeObjectId: role.assigneeObjectId
+  }
+}]
+
+
+
+// 1. RG
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
@@ -22,7 +62,6 @@ param dbuser string
 param dbpassword string
 @secure()
 param token string
-param tenantId string
 param objectId string
 
 module keyVault 'modules/keyvault.bicep' = {

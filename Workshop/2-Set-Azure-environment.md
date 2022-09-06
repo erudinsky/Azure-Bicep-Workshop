@@ -39,27 +39,38 @@ templates
 │   ├── arc.bicep
 │   ├── keyvault.bicep
 │   ├── postgres.bicep
+│   ├── roleAssignment.bicep
+│   ├── roleDefinition.bicep
 │   ├── staticsite.bicep
 │   └── webapp.bicep
-├── parameters.init.json
-└── parameters.json
+├── parameters.example.json
+├── parameters.init.example.json
+└── roles
+    ├── contributor.json
+    ├── owner.json
+    └── reader.json
 
 # To deploy RG and KV use the following commands:
 
-az deployment sub validate -f templates/main.init.bicep -l eastus2 -resourcePrefix abw
-az deployment sub what-if -f templates/main.init.bicep -l eastus2 -resourcePrefix abw
-az deployment sub create -f templates/main.init.bicep -l eastus2 -resourcePrefix abw
+az deployment sub validate -f templates/main.init.bicep -p templates/parameters.init.example.json -l eastus2 -resourcePrefix abw
+az deployment sub what-if -f templates/main.init.bicep -p templates/parameters.init.example.json -l eastus2 -resourcePrefix abw
+az deployment sub create -f templates/main.init.bicep -p templates/parameters.init.example.json -l eastus2 -resourcePrefix abw
 
 ```
 
 NB! This step also uses module with Azure KeyVault and add a couple of secrets for communications between parts of our application (server <> db).
 
-You'll be prompted to enter `dbuser` and `dbpassword` and `token` from GH account (for static app deployment) and they'll be stored in Azure KeyVault's secrets. We will consume the from our Server Side App.
+You'll be prompted to enter `dbuser` and `dbpassword` and `token` from GH account (for static app deployment) and they'll be stored in Azure KeyVault's secrets. We will consume them from our Server Side App.
 
 At the end of this step you should have the following:
 
+* Three custom role definitions and three role assignments of these roles to subscription scope
 * Resource Group 
 * KeyVault with 2 secrets (dbuser and dbpassword)
+
+Deployment of management groups, policies and RBAC is one of the fundamental part of Azure Landing Zones. You can learn more about it in this project exploring [high-level deployment flow](https://github.com/Azure/ALZ-Bicep/wiki/DeploymentFlow#high-level-deployment-flow). In this workshop we only cover a little bit of policies and RBAC.
+
+![High level deployment flow - Azure Landing Zones w/ Bicep](../.attachments/high-level-deployment-flow.png)
 
 ## Deploy the rest of the resources
 
@@ -74,14 +85,20 @@ templates
 │   ├── arc.bicep
 │   ├── keyvault.bicep
 │   ├── postgres.bicep
+│   ├── roleAssignment.bicep
+│   ├── roleDefinition.bicep
 │   ├── staticsite.bicep
 │   └── webapp.bicep
-├── parameters.init.json
-└── parameters.json
+├── parameters.example.json
+├── parameters.init.example.json
+└── roles
+    ├── contributor.json
+    ├── owner.json
+    └── reader.json
 
 # To deploy the rest of the resources use the following command:
 
-az deployment group create -f templates/main.bicep
+az deployment group create -f templates/main.bicep -p templates/parameters.example.json 
 
 ```
 

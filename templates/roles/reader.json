@@ -1,0 +1,13 @@
+{
+  "name": "ABWreader",
+  "roleName": "ABWReadOnly",
+  "description": "ABW ReadOnly",
+  "permissions": [{
+    "actions": [
+      "*/read"
+    ],
+    "dataActions": [],
+    "notActions": [],
+    "notDataActions": []
+  }]
+}
