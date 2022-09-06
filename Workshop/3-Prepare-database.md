@@ -167,7 +167,7 @@ param dbpassword string
 
 We've have seen `@secure()` decorator for secrets, there are some others
 
-```json
+```
 
 // Description
 
@@ -201,7 +201,7 @@ In Bicep there are two ways working with dependencies:
 
 **Implicit** 
 
-```json
+```
 
 resource postgreSql 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
   name: postgreSqlName
@@ -249,7 +249,7 @@ resource firewallRules 'Microsoft.DBforPostgreSQL/servers/firewallRules@2017-12-
 **Explicit**
 
 
-```json
+```
 
 module keyVault 'modules/keyvault.bicep' = {
   name: 'keyVault'
@@ -290,7 +290,7 @@ module postgreSQL 'modules/postgres.bicep' = {
 
 Examples of functions: 
 
-```json
+```
 
 // Current time / date (formatting available), https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions
 param timeNow string = '${utcNow()}-firewallrule'
