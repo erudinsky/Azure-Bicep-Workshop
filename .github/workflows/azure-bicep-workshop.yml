@@ -19,6 +19,7 @@ jobs:
           #!/bin/bash
 
           az deployment sub validate \
+            --location ${{ env.ResourceGroupLocation }} \
             -f ./templates/main.init.bicep \
             -p ./templates/parameters.init.gh.json \
             -p tenantId=${{ secrets.TENANTID }} \
@@ -27,12 +28,12 @@ jobs:
             groups=${{ secrets.GROUPS }} \
             dbuser=${{ secrets.USER }} \
             dbpassword=${{ secrets.PASSWORD }} \
-            token=${{ secrets.TOKEN }} \
-            --location ${{ env.ResourceGroupLocation }}
+            token=${{ secrets.TOKEN }}
 
             
 
           az deployment sub what-if \
+              --location ${{ env.ResourceGroupLocation }} \
               -f ./templates/main.init.bicep \
               -p ./templates/parameters.init.gh.json \
               -p tenantId=${{ secrets.TENANTID }} \
@@ -46,6 +47,7 @@ jobs:
 
 
           az deployment sub create \
+              --location ${{ env.ResourceGroupLocation }} \
               -f ./templates/main.init.bicep \
               -p ./templates/parameters.init.gh.json \
               -p tenantId=${{ secrets.TENANTID }} \
@@ -57,37 +59,37 @@ jobs:
               token=${{ secrets.TOKEN }} \
               --location ${{ env.ResourceGroupLocation }}
 
-  deploy-all-resources:
-    runs-on: ubuntu-latest
-    environment: dev
-    env:
-      ResourceGroupName: azure-bicep-workshop
-      ResourceGroupLocation: westeurope
-    steps:
-    - uses: actions/checkout@master
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+  # deploy-all-resources:
+  #   runs-on: ubuntu-latest
+  #   environment: dev
+  #   env:
+  #     ResourceGroupName: azure-bicep-workshop
+  #     ResourceGroupLocation: westeurope
+  #   steps:
+  #   - uses: actions/checkout@master
+  #   - uses: azure/login@v1
+  #     with:
+  #       creds: ${{ secrets.AZURE_CREDENTIALS }}
                     
-    - uses: Azure/CLI@v1
-      with:
-        inlineScript: |
-          #!/bin/bash
+  #   - uses: Azure/CLI@v1
+  #     with:
+  #       inlineScript: |
+  #         #!/bin/bash
 
-          az deployment group validate \
-            -g azure-bicep-workshop \
-            -f ./templates/main.bicep \
-            -p ./templates/parameters.gh.json \
-            -p keyVaultName=${{ secrets.KVNAME }}
+  #         az deployment group validate \
+  #           -g azure-bicep-workshop \
+  #           -f ./templates/main.bicep \
+  #           -p ./templates/parameters.gh.json \
+  #           -p keyVaultName=${{ secrets.KVNAME }}
 
-          az deployment group what-if \
-              -g azure-bicep-workshop \
-              -f ./templates/main.bicep \
-              -p ./templates/parameters.gh.json \
-            -p keyVaultName=${{ secrets.KVNAME }}
+  #         az deployment group what-if \
+  #             -g azure-bicep-workshop \
+  #             -f ./templates/main.bicep \
+  #             -p ./templates/parameters.gh.json \
+  #           -p keyVaultName=${{ secrets.KVNAME }}
 
-          az deployment group create \
-              -g azure-bicep-workshop \
-              -f ./templates/main.bicep \
-              -p ./templates/parameters.gh.json \
-              -p keyVaultName=${{ secrets.KVNAME }}
+  #         az deployment group create \
+  #             -g azure-bicep-workshop \
+  #             -f ./templates/main.bicep \
+  #             -p ./templates/parameters.gh.json \
+  #             -p keyVaultName=${{ secrets.KVNAME }}
