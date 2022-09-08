@@ -18,17 +18,42 @@ jobs:
         inlineScript: |
           #!/bin/bash
 
-          az deployment group validate \
+          az deployment sub validate \
             -f ./templates/main.init.bicep \
-            -p ./templates/parameters.init.example.json 
+            -p ./templates/parameters.init.gh.json \
+            -p tenantId=${{ secrets.TENANTID }} \
+            objectId=${{ secrets.OBJECTID }} \
+            subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
+            groups=${{ secrets.GROUPS }} \
+            dbuser=${{ secrets.USER }} \
+            dbpassword=${{ secrets.PASSWORD }} \
+            token=${{ secrets.TOKEN }}
 
-          az deployment group what-if \
-              -f ./templates/main.init.bicep \
-              -p ./templates/parameters.init.example.json 
+            
 
-          az deployment group create \
+          az deployment sub what-if \
               -f ./templates/main.init.bicep \
-              -p ./templates/parameters.init.example.json 
+              -p ./templates/parameters.init.gh.json \
+              -p tenantId=${{ secrets.TENANTID }} \
+              objectId=${{ secrets.OBJECTID }} \
+              subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
+              groups=${{ secrets.GROUPS }} \
+              dbuser=${{ secrets.USER }} \
+              dbpassword=${{ secrets.PASSWORD }} \
+              token=${{ secrets.TOKEN }}
+
+
+          az deployment sub create \
+              -f ./templates/main.init.bicep \
+              -p ./templates/parameters.init.gh.json \
+              -p tenantId=${{ secrets.TENANTID }} \
+              objectId=${{ secrets.OBJECTID }} \
+              subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
+              groups=${{ secrets.GROUPS }} \
+              dbuser=${{ secrets.USER }} \
+              dbpassword=${{ secrets.PASSWORD }} \
+              token=${{ secrets.TOKEN }}
+
   deploy-all-resources:
     runs-on: ubuntu-latest
     environment: dev
@@ -47,13 +72,19 @@ jobs:
           #!/bin/bash
 
           az deployment group validate \
+            -g azure-bicep-workshop \
             -f ./templates/main.bicep \
-            -p ./templates/parameters.example.json 
+            -p ./templates/parameters.gh.json \
+            -p keyVaultName=${{ secrets.KVNAME }}
 
           az deployment group what-if \
+              -g azure-bicep-workshop \
               -f ./templates/main.bicep \
-              -p ./templates/parameters.example.json 
+              -p ./templates/parameters.gh.json \
+            -p keyVaultName=${{ secrets.KVNAME }}
 
           az deployment group create \
+              -g azure-bicep-workshop \
               -f ./templates/main.bicep \
-              -p ./templates/parameters.example.json 
+              -p ./templates/parameters.gh.json \
+              -p keyVaultName=${{ secrets.KVNAME }}
