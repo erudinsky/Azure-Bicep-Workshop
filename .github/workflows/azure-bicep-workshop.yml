@@ -27,7 +27,8 @@ jobs:
             groups=${{ secrets.GROUPS }} \
             dbuser=${{ secrets.USER }} \
             dbpassword=${{ secrets.PASSWORD }} \
-            token=${{ secrets.TOKEN }}
+            token=${{ secrets.TOKEN }} \
+            --location ${{ env.ResourceGroupLocation }}
 
             
 
@@ -40,7 +41,8 @@ jobs:
               groups=${{ secrets.GROUPS }} \
               dbuser=${{ secrets.USER }} \
               dbpassword=${{ secrets.PASSWORD }} \
-              token=${{ secrets.TOKEN }}
+              token=${{ secrets.TOKEN }} \
+              --location ${{ env.ResourceGroupLocation }}
 
 
           az deployment sub create \
@@ -52,7 +54,8 @@ jobs:
               groups=${{ secrets.GROUPS }} \
               dbuser=${{ secrets.USER }} \
               dbpassword=${{ secrets.PASSWORD }} \
-              token=${{ secrets.TOKEN }}
+              token=${{ secrets.TOKEN }} \
+              --location ${{ env.ResourceGroupLocation }}
 
   deploy-all-resources:
     runs-on: ubuntu-latest
