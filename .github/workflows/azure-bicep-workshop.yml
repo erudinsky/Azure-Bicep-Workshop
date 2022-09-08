@@ -4,6 +4,7 @@ name: azure-bicep-workshop
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: dev
     env:
       ResourceGroupName: azure-bicep-workshop
       ResourceGroupLocation: westeurope
