@@ -1,5 +1,5 @@
 on: [push]
-name: AzureARMSample
+name: azure-bicep-workshop
 
 jobs:
   build-and-deploy:
