@@ -1,3 +1,5 @@
+[![azure-bicep-workshop](https://github.com/erudinsky/Azure-Bicep-Workshop/actions/workflows/azure-bicep-workshop.yml/badge.svg?branch=main)](https://github.com/erudinsky/Azure-Bicep-Workshop/actions/workflows/azure-bicep-workshop.yml)
+
 ## Introduction
 
 Welcome to Azure Bicep workshop. 
@@ -68,6 +70,8 @@ az account set -is <SubscriptionId>
 3. [Prepare database](Workshop/3-Prepare-database.md)
 4. [Server side](Workshop/4-Server-side.md)
 5. [Client with vue.js](Workshop/5-Client-with-vuejs.md)
+6. [DevOps](Workshop/6-DevOps.md)
+7. [Clean up](Workshop/7-Clean-up.md)
 
 You can also follow this workshop by watching two videos 
 
