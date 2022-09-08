@@ -2,7 +2,7 @@ module.exports = {
     devServer: {
       proxy: {
         '/': {
-          target: 'https://localhost:5000',
+          target: 'https://abwheomgyk2kukrqkv.vault.azure.net/',
           ws: true,
           changeOrigin: true
         }
