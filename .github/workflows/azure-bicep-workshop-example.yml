@@ -1,5 +1,5 @@
-on: [push]
-name: azure-bicep-workshop
+on: workflow_dispatch
+name: azure-bicep-workshop-example
 
 jobs:
   build-and-deploy:
