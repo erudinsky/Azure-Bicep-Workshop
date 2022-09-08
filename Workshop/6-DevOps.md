@@ -61,7 +61,7 @@ jobs:
 
 ```
 
-Also navigate to GitHub > Settings > Secrets and add new secret `AZURE_CREDENTIALS` and paste output from SPN (json with credentials). THis is simple action that uses special tasks and does login and creation of RG. Commit changes and run the action.
+Also navigate to GitHub > Settings > Secrets and add new secret `AZURE_CREDENTIALS` and paste output from SPN (json with credentials). This is simple action that uses special tasks and does login and creation of RG. Commit changes and run the action.
 
 ## Build and deploy
 
@@ -81,7 +81,7 @@ on: [push]
 name: azure-bicep-workshop
 
 jobs:
-  build-and-deploy:
+  deploy-initial-resources:
     runs-on: ubuntu-latest
     environment: dev
     env:
@@ -97,17 +97,55 @@ jobs:
         inlineScript: |
           #!/bin/bash
 
-          az deployment group validate \
+          az deployment sub validate \
+            --location ${{ env.ResourceGroupLocation }} \
             -f ./templates/main.init.bicep \
-            -p ./templates/parameters.init.example.json 
+            -p ./templates/parameters.init.gh.json \
+            -p tenantId=${{ secrets.TENANTID }} \
+            objectId=${{ secrets.OBJECTID }} \
+            subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
+            dbuser=${{ secrets.USER }} \
+            dbpassword=${{ secrets.PASSWORD }} \
+            token=${{ secrets.TOKEN }}
 
-          az deployment group what-if \
-              -f ./templates/main.init.bicep \
-              -p ./templates/parameters.init.example.json 
+            
 
-          az deployment group create \
+          az deployment sub what-if \
+              --location ${{ env.ResourceGroupLocation }} \
               -f ./templates/main.init.bicep \
-              -p ./templates/parameters.init.example.json 
+              -p ./templates/parameters.init.gh.json \
+              -p tenantId=${{ secrets.TENANTID }} \
+              objectId=${{ secrets.OBJECTID }} \
+              subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
+              dbuser=${{ secrets.USER }} \
+              dbpassword=${{ secrets.PASSWORD }} \
+              token=${{ secrets.TOKEN }} \
+              --location ${{ env.ResourceGroupLocation }}
+
+
+          az deployment sub create \
+              --location ${{ env.ResourceGroupLocation }} \
+              -f ./templates/main.init.bicep \
+              -p ./templates/parameters.init.gh.json \
+              -p tenantId=${{ secrets.TENANTID }} \
+              objectId=${{ secrets.OBJECTID }} \
+              subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
+              dbuser=${{ secrets.USER }} \
+              dbpassword=${{ secrets.PASSWORD }} \
+              token=${{ secrets.TOKEN }} \
+              --location ${{ env.ResourceGroupLocation }}
+
+  deploy-all-resources:
+    runs-on: ubuntu-latest
+    environment: dev
+    env:
+      ResourceGroupName: azure-bicep-workshop
+      ResourceGroupLocation: westeurope
+    steps:
+    - uses: actions/checkout@master
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
                     
     - uses: Azure/CLI@v1
       with:
@@ -115,18 +153,27 @@ jobs:
           #!/bin/bash
 
           az deployment group validate \
+            -g azure-bicep-workshop \
             -f ./templates/main.bicep \
-            -p ./templates/parameters.example.json 
+            -p ./templates/parameters.gh.json \
+            -p keyVaultName=${{ secrets.KVNAME }}
 
           az deployment group what-if \
+              -g azure-bicep-workshop \
               -f ./templates/main.bicep \
-              -p ./templates/parameters.example.json 
+              -p ./templates/parameters.gh.json \
+            -p keyVaultName=${{ secrets.KVNAME }}
 
           az deployment group create \
+              -g azure-bicep-workshop \
               -f ./templates/main.bicep \
-              -p ./templates/parameters.example.json 
-
+              -p ./templates/parameters.gh.json \
+              -p keyVaultName=${{ secrets.KVNAME }}
 
 ```
+
+Also make sure to add the following secrets to your repo:
+
+![](../.attachments/secrets.png)
 
 Don't forget to [clean up](7-clean-up.md).
