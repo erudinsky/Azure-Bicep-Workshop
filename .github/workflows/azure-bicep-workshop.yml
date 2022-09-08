@@ -13,16 +13,36 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: ARM-TTK
-      # You may pin to the exact commit or the version.
-      # uses: venura9/arm-ttk@39fe93a1875dfe86afcbd361a68466226f20aee4
-      uses: venura9/arm-ttk@1.0
+    - uses: Azure/CLI@v1
       with:
-        # Path to run the tests on
-        path: /
-        # Run the test on a specific file on the path defined
-        file: # optional
-        # Test(s) to run, comma separated
-        tests: # optional
-        # Test(s) to be excluded, comma separated
-        skip: # optional
+        inlineScript: |
+          #!/bin/bash
+
+          az deployment group validate \
+            -f ./templates/main.init.bicep \
+            -p ./templates/parameters.init.example.json 
+
+          az deployment group what-if \
+              -f ./templates/main.init.bicep \
+              -p ./templates/parameters.init.example.json 
+
+          az deployment group create \
+              -f ./templates/main.init.bicep \
+              -p ./templates/parameters.init.example.json 
+                    
+    - uses: Azure/CLI@v1
+      with:
+        inlineScript: |
+          #!/bin/bash
+
+          az deployment group validate \
+            -f ./templates/main.bicep \
+            -p ./templates/parameters.example.json 
+
+          az deployment group what-if \
+              -f ./templates/main.bicep \
+              -p ./templates/parameters.example.json 
+
+          az deployment group create \
+              -f ./templates/main.bicep \
+              -p ./templates/parameters.example.json 
