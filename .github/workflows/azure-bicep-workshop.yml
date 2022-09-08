@@ -2,7 +2,7 @@ on: [push]
 name: azure-bicep-workshop
 
 jobs:
-  build-and-deploy:
+  deploy-initial-resources:
     runs-on: ubuntu-latest
     environment: dev
     env:
@@ -29,6 +29,17 @@ jobs:
           az deployment group create \
               -f ./templates/main.init.bicep \
               -p ./templates/parameters.init.example.json 
+  deploy-all-resources:
+    runs-on: ubuntu-latest
+    environment: dev
+    env:
+      ResourceGroupName: azure-bicep-workshop
+      ResourceGroupLocation: westeurope
+    steps:
+    - uses: actions/checkout@master
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
                     
     - uses: Azure/CLI@v1
       with:
