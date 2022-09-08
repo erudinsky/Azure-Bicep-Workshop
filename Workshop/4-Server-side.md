@@ -202,6 +202,14 @@ There are two types of managed identities:
 * System-assigned. Some Azure services allow you to enable a managed identity directly on a service instance. When you enable a system-assigned managed identity, an identity is created in Azure AD. The identity is tied to the lifecycle of that service instance. When the resource is deleted, Azure automatically deletes the identity for you. By design, only that Azure resource can use this identity to request tokens from Azure AD.
 * User-assigned. You may also create a managed identity as a standalone Azure resource. You can create a user-assigned managed identity and assign it to one or more instances of an Azure service. For user-assigned managed identities, the identity is managed separately from the resources that use it.
 
+## Working with API
+
+Now that we have API deployed, let's play with it. Check `/postman` folder and get exported collection.
+
+![Postman collection](/.attachments/postman.png)
+
+Make sure to change baseURL in variables (this is FQDN of your App Service). 
+
 ## Resources
 
 * [Builtin roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles)

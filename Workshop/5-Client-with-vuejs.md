@@ -2,7 +2,7 @@
 
 To host our client's part (vue.js) we want to use [Static Web Apps](https://azure.microsoft.com/en-us/services/app-service/static/#overview). Static Site Web Application resource has been provisioned as part of the main deployment, let's review it's template.
 
-```json 
+```bicep
 
 // 7. StaticSite
 
@@ -104,3 +104,5 @@ If everything went well you should be able to see the following.
 
 * [vuejs getting started](https://v1.vuejs.org/guide/)
 * [Template reference (Static Web)](https://docs.microsoft.com/en-us/azure/templates/microsoft.web/staticsites?tabs=bicep)
+
+Move to the next [task - DevOps](6-DevOps.md).

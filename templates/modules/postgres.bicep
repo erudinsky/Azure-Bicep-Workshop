@@ -25,6 +25,7 @@ resource postgreSql 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
   properties: {
     infrastructureEncryption: 'Disabled'
     sslEnforcement: 'Enabled'
+    minimalTlsVersion: 'TLS1_2'
     publicNetworkAccess: 'Enabled'
     storageProfile: {
       backupRetentionDays: 7

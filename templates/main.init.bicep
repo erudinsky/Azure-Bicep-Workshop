@@ -25,24 +25,14 @@ var roles = [
   }
 ]
 
-module roleDefinition './modules/roleDefinition.bicep' = [for role in roles: {
+module roleDefinition './modules/roles.bicep' = [for role in roles: {
   name: '${role.roleDefinition.name}_deployment'
   params: {
     assignableScopes: 'subscriptions/${subscriptionId}'
     roleDefinition: role.roleDefinition
-  }
-}]
-
-module roleAssignment './modules/roleAssignment.bicep' = [for (role, i) in roles: {
-  name: '${role.assigneeObjectId}-assignment'
-  scope: subscription(subscriptionId)
-  params: {
-    roleDefinitionId: roleDefinition[i].outputs.roleDefinitionId
     assigneeObjectId: role.assigneeObjectId
   }
 }]
-
-
 
 // 1. RG
 

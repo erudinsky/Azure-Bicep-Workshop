@@ -148,7 +148,7 @@ param tags object = {
   costCenter: '12345'
   environment: 'dev'
   purpose: 'workshop'
-  project: 'xtechnology.dev'
+  project: 'azure-bicep-workshop'
 }
 
 // string
@@ -400,7 +400,7 @@ resource firewallRules 'Microsoft.DBforPostgreSQL/servers/firewallRules@2017-12-
 
 To get all available resources and it's paramenters along with API verions, keep this page at hand: https://docs.microsoft.com/en-us/azure/templates/
 
-`firewallRulesList` is an array with allowed IP (to fetch my ip I used `curl icanhazip.com`).
+`firewallRulesList` is an array with allowed IP (to fetch my ip I used `curl icanhazip.com`). "Allow access to Azure services" works unexpectedly, so I used 0.0.0.0/0 (literally all internet) for the workshop. See this [stackoverflow thread](https://stackoverflow.com/questions/72433407/is-there-a-way-to-set-allow-access-to-azure-services-in-microsoft-dbforpostgre).
 
 ```bash
 
@@ -423,8 +423,8 @@ To get all available resources and it's paramenters along with API verions, keep
 psql sslmode=require -h <host> -U <user> --password <password> -d postgres
 
 \l
-create database mydb;
-\c mydb
+create database abw_db;
+\c abw_db
 \l
 \q
 
@@ -478,7 +478,7 @@ abw_db=#
 
 PostgreSQL for production environment is complete.
 
-## Back and Restore
+## Backup and Restore
 
 While in Azure's environment you can configure automatic backup and restore your DB it worth to mention the following steps for manual backup / restore operations
 

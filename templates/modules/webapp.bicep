@@ -57,7 +57,7 @@ resource webApplication 'Microsoft.Web/sites@2021-03-01' = {
         }
         {
           name: 'POSTGRES_SSLMODE'
-          value: 'prefer'
+          value: 'require'
         }
       ]
       acrUseManagedIdentityCreds: true

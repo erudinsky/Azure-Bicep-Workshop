@@ -26,7 +26,54 @@ az group list -o table
 
 ## Deploying resource group and KeyVault with Bicep
 
-Let's deploy resource group and some init resources with Bicep to `subscription` targetScope
+Let's deploy resource group and some init resources (KV and custom roles) with Bicep to `subscription` targetScope. Review parameters for this deployment: 
+
+```json
+
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceGroupName": {
+            "value": "azure-bicep-workshop"
+        },
+        "tags": {
+            "value": {
+                "purpose": "Azure Bicep Workshop",
+                "environment": "dev"
+            }
+        },
+        "tenantId": {
+            "value": "<your-tenantId>"
+        },
+        "objectId": {
+            "value": "<your-objectId>"
+        },
+        "subscriptionId": {
+            "value": "<your-subscrptionId>"
+        },
+        "location": {
+            "value": "<your-region>"
+        },
+        "groups": {
+            "value": {
+                "owner": "<objectId-of-owner-group>",
+                "contributor": "<objectId-of-contributor-group>",
+                "reader": "<objectId-of-reader-group>"
+            }
+        }
+    }
+}
+
+```
+
+You'll need: 
+
+1. `tenantId` - this is used for access policies in KV
+2. `objectId` - this is used for access policies in KV (use your personal identity's objectID to allow your-self manage KV via portal etc)
+3. `subscriptionId` - target subscription ID for deployment
+4. `location` - region for RG and other resources
+5. `groups` - create AAD groups manually and name them *owner*, *contributor* and *reader* and get the objectIds of the groups. Feel free to use portal or CLI.
 
 ```bash
 
@@ -39,8 +86,7 @@ templates
 │   ├── arc.bicep
 │   ├── keyvault.bicep
 │   ├── postgres.bicep
-│   ├── roleAssignment.bicep
-│   ├── roleDefinition.bicep
+│   ├── roles.bicep
 │   ├── staticsite.bicep
 │   └── webapp.bicep
 ├── parameters.example.json
@@ -52,9 +98,23 @@ templates
 
 # To deploy RG and KV use the following commands:
 
-az deployment sub validate -f templates/main.init.bicep -p templates/parameters.init.example.json -l eastus2 -resourcePrefix abw
-az deployment sub what-if -f templates/main.init.bicep -p templates/parameters.init.example.json -l eastus2 -resourcePrefix abw
-az deployment sub create -f templates/main.init.bicep -p templates/parameters.init.example.json -l eastus2 -resourcePrefix abw
+az deployment sub validate \
+    -f templates/main.init.bicep \
+    -p templates/parameters.init.example.json \
+    -l eastus2 \
+    -resourcePrefix abw
+
+az deployment sub what-if \
+    -f templates/main.init.bicep \
+    -p templates/parameters.init.example.json \
+    -l eastus2 \
+    -resourcePrefix abw
+
+az deployment sub create \
+    -f templates/main.init.bicep \
+    -p templates/parameters.init.example.json \
+    -l eastus2 \
+    -resourcePrefix abw
 
 ```
 
@@ -68,11 +128,61 @@ At the end of this step you should have the following:
 * Resource Group 
 * KeyVault with 2 secrets (dbuser and dbpassword)
 
+Since we have deployed custom roles and assignment them we have Access control changes as well:
+
+![Custom roles](/.attachments/custom-roles.png)
+![Custom roles assignments](../.attachments/custom-roles-assignments.png)
+
 Deployment of management groups, policies and RBAC is one of the fundamental part of Azure Landing Zones. You can learn more about it in this project exploring [high-level deployment flow](https://github.com/Azure/ALZ-Bicep/wiki/DeploymentFlow#high-level-deployment-flow). In this workshop we only cover a little bit of policies and RBAC.
 
 ![High level deployment flow - Azure Landing Zones w/ Bicep](../.attachments/high-level-deployment-flow.png)
 
 ## Deploy the rest of the resources
+
+First review parameters for this deployment: 
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourcePrefix": {
+            "value": "abw"
+        },
+        "location": {
+            "value": "westeurope"
+        },
+        "tags": {
+            "value": {
+                "purpose": "Azure Bicep Workshop",
+                "environment": "dev"
+            }
+        },
+        "acrSku": {
+            "value": "Basic"
+        },
+        "firewallRulesList": {
+            "value": [{
+                "name": "myip",
+                "endIpAddress": "<add_your_IP>",
+                "startIpAddress": "<add_your_IP>"
+            }]
+        },
+        "capacity": {
+            "value": 1
+        },
+        "repositoryUrl": {
+            "value": "https://github.com/erudinsky/Azure-Bicep-Workshop"
+        },
+        "branch": {
+            "value": "main"
+        }
+    }
+}
+```
+
+1. Set `endIpAddress` and `startIpAddress` in `firewallRulesList` with the values of your public IP. You can use any public service if your IP is dynamic and not known or you can also do `curl icanhazip.com` to return the IP via terminal.
+2. `repositoryUrl` and `branch` both will be used for static site later. 
 
 ```bash 
 
@@ -85,8 +195,7 @@ templates
 │   ├── arc.bicep
 │   ├── keyvault.bicep
 │   ├── postgres.bicep
-│   ├── roleAssignment.bicep
-│   ├── roleDefinition.bicep
+│   ├── roles.bicep
 │   ├── staticsite.bicep
 │   └── webapp.bicep
 ├── parameters.example.json
@@ -98,7 +207,17 @@ templates
 
 # To deploy the rest of the resources use the following command:
 
-az deployment group create -f templates/main.bicep -p templates/parameters.example.json 
+az deployment group validate \
+    -f templates/main.bicep \
+    -p templates/parameters.example.json 
+
+az deployment group what-if \
+    -f templates/main.bicep \
+    -p templates/parameters.example.json 
+
+az deployment group create \
+    -f templates/main.bicep \
+    -p templates/parameters.example.json 
 
 ```
 

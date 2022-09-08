@@ -22,6 +22,11 @@
                 "name": "myip",
                 "endIpAddress": "<add_your_IP>",
                 "startIpAddress": "<add_your_IP>"
+            },
+            {
+                "name": "azure_services",
+                "endIpAddress": "0.0.0.0",
+                "startIpAddress": "0.0.0.0"
             }]
         },
         "capacity": {

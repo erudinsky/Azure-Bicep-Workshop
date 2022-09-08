@@ -3,6 +3,8 @@ targetScope = 'subscription'
 param roleDefinition object
 param assignableScopes string
 param type string = 'customRole'
+param assigneeObjectId string
+
 
 resource roleDefinitionResource 'Microsoft.Authorization/roleDefinitions@2022-04-01' = {
   name: guid(roleDefinition.name)
@@ -17,5 +19,13 @@ resource roleDefinitionResource 'Microsoft.Authorization/roleDefinitions@2022-04
   }
 }
 
-output roleDefinitionId string = roleDefinitionResource.id
+resource roleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(roleDefinitionResource.id, assigneeObjectId)
+  properties: {
+    roleDefinitionId: roleDefinitionResource.id
+    principalId: assigneeObjectId
+  }
+}
 
+output roleDefinitionId string = roleDefinitionResource.id
+output roleAssignment string = roleAssignment.id

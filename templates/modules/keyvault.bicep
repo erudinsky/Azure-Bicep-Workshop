@@ -2,6 +2,7 @@ param keyVaultName string
 param location string
 param tags object
 param dbuser string
+@secure()
 param dbpassword string
 param token string
 param tenantId string
