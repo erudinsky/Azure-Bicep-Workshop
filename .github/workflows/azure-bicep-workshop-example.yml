@@ -1,8 +1,9 @@
 on: workflow_dispatch
+
 name: azure-bicep-workshop-example
 
 jobs:
-  build-and-deploy:
+  azure-bicep-workshop-example:
     runs-on: ubuntu-latest
     environment: dev
     env:

@@ -1,6 +1,4 @@
-#Azure #Bicep #Infrastructure-as-Code #Workshop #FullStackApplication
-
-[![azure-bicep-workshop](https://github.com/erudinsky/Azure-Bicep-Workshop/actions/workflows/azure-bicep-workshop.yml/badge.svg?branch=main)](https://github.com/erudinsky/Azure-Bicep-Workshop/actions/workflows/azure-bicep-workshop.yml)
+[![azure-bicep-workshop-example](https://github.com/erudinsky/Azure-Bicep-Workshop/actions/workflows/azure-bicep-workshop-example.yml/badge.svg)](https://github.com/erudinsky/Azure-Bicep-Workshop/actions/workflows/azure-bicep-workshop-example.yml)
 
 ## Introduction
 
