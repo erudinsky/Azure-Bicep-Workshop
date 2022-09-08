@@ -25,7 +25,6 @@ jobs:
             -p tenantId=${{ secrets.TENANTID }} \
             objectId=${{ secrets.OBJECTID }} \
             subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
-            groups=${{ secrets.GROUPS }} \
             dbuser=${{ secrets.USER }} \
             dbpassword=${{ secrets.PASSWORD }} \
             token=${{ secrets.TOKEN }}
@@ -39,7 +38,6 @@ jobs:
               -p tenantId=${{ secrets.TENANTID }} \
               objectId=${{ secrets.OBJECTID }} \
               subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
-              groups=${{ secrets.GROUPS }} \
               dbuser=${{ secrets.USER }} \
               dbpassword=${{ secrets.PASSWORD }} \
               token=${{ secrets.TOKEN }} \
@@ -53,7 +51,6 @@ jobs:
               -p tenantId=${{ secrets.TENANTID }} \
               objectId=${{ secrets.OBJECTID }} \
               subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
-              groups=${{ secrets.GROUPS }} \
               dbuser=${{ secrets.USER }} \
               dbpassword=${{ secrets.PASSWORD }} \
               token=${{ secrets.TOKEN }} \
