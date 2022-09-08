@@ -56,37 +56,37 @@ jobs:
               token=${{ secrets.TOKEN }} \
               --location ${{ env.ResourceGroupLocation }}
 
-  # deploy-all-resources:
-  #   runs-on: ubuntu-latest
-  #   environment: dev
-  #   env:
-  #     ResourceGroupName: azure-bicep-workshop
-  #     ResourceGroupLocation: westeurope
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: azure/login@v1
-  #     with:
-  #       creds: ${{ secrets.AZURE_CREDENTIALS }}
+  deploy-all-resources:
+    runs-on: ubuntu-latest
+    environment: dev
+    env:
+      ResourceGroupName: azure-bicep-workshop
+      ResourceGroupLocation: westeurope
+    steps:
+    - uses: actions/checkout@master
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
                     
-  #   - uses: Azure/CLI@v1
-  #     with:
-  #       inlineScript: |
-  #         #!/bin/bash
+    - uses: Azure/CLI@v1
+      with:
+        inlineScript: |
+          #!/bin/bash
 
-  #         az deployment group validate \
-  #           -g azure-bicep-workshop \
-  #           -f ./templates/main.bicep \
-  #           -p ./templates/parameters.gh.json \
-  #           -p keyVaultName=${{ secrets.KVNAME }}
+          az deployment group validate \
+            -g azure-bicep-workshop \
+            -f ./templates/main.bicep \
+            -p ./templates/parameters.gh.json \
+            -p keyVaultName=${{ secrets.KVNAME }}
 
-  #         az deployment group what-if \
-  #             -g azure-bicep-workshop \
-  #             -f ./templates/main.bicep \
-  #             -p ./templates/parameters.gh.json \
-  #           -p keyVaultName=${{ secrets.KVNAME }}
+          az deployment group what-if \
+              -g azure-bicep-workshop \
+              -f ./templates/main.bicep \
+              -p ./templates/parameters.gh.json \
+            -p keyVaultName=${{ secrets.KVNAME }}
 
-  #         az deployment group create \
-  #             -g azure-bicep-workshop \
-  #             -f ./templates/main.bicep \
-  #             -p ./templates/parameters.gh.json \
-  #             -p keyVaultName=${{ secrets.KVNAME }}
+          az deployment group create \
+              -g azure-bicep-workshop \
+              -f ./templates/main.bicep \
+              -p ./templates/parameters.gh.json \
+              -p keyVaultName=${{ secrets.KVNAME }}
