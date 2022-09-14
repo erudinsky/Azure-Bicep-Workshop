@@ -16,7 +16,7 @@
           "strongType": "location",
           "displayName": "Allowed locations"
         },
-        "defaultValue": ["swedencentral", "westeurope"]
+        "defaultValue": ["swedencentral", "westeurope", "eastasia"]
       }
     },
     "policyRule": {

@@ -20,8 +20,8 @@
         "firewallRulesList": {
             "value": [{
                 "name": "myip",
-                "endIpAddress": "62.195.110.79",
-                "startIpAddress": "62.195.110.79"
+                "endIpAddress": "myip",
+                "startIpAddress": "myip"
             },
             {
                 "name": "azure_services",
