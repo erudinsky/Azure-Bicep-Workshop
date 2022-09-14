@@ -176,4 +176,4 @@ Also make sure to add the following secrets to your repo:
 
 ![](../.attachments/secrets.png)
 
-Don't forget to [clean up](7-clean-up.md).
+Don't forget to [clean up](7-Clean-up.md).
