@@ -247,4 +247,8 @@ This step will deploy the following resources:
 
 ![Azure Bicep Resources](../.attachments/bicep-resources-visualization.png)
 
+And the view from the portal: 
+
+![Azure Portal - resources created](../.attachments/azure-portal-resources.png)
+
 Hope you can see the above then move to the next [task - prepare database](3-Prepare-database.md).
