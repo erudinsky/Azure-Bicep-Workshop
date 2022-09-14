@@ -2,7 +2,7 @@
 
 [Bicep](https://github.com/Azure/bicep) is an open source (MIT) domain-specific language to define [Infrastructure as Code (IaC) ](https://docs.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code)in **Azure**.
 
-![](/.attachments/bicep-processing.png)
+![](/.attachments/arm.png)
 
 Advantages of Bicep:
 

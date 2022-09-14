@@ -24,9 +24,9 @@ az group list -o table
 
 ```
 
-## Deploying resource group and KeyVault with Bicep
+## Deploying custom roles, policies and key vault (with rg)
 
-Let's deploy resource group and some init resources (KV and custom roles) with Bicep to `subscription` targetScope. Review parameters for this deployment: 
+Let's deploy resource group and some init resources (KV, policies and custom roles) with Bicep to `subscription` targetScope. Review parameters for this deployment: 
 
 ```json
 
@@ -85,18 +85,22 @@ templates
 ├── modules
 │   ├── arc.bicep
 │   ├── keyvault.bicep
+│   ├── policies.bicep
 │   ├── postgres.bicep
 │   ├── roles.bicep
 │   ├── staticsite.bicep
 │   └── webapp.bicep
 ├── parameters.example.json
 ├── parameters.init.example.json
+├── policies
+│   ├── a_tag_policy.json
+│   └── allowed_location.json
 └── roles
     ├── contributor.json
     ├── owner.json
     └── reader.json
 
-# To deploy RG and KV use the following commands:
+# To deploy roles, policies, RG and KV use the following commands:
 
 az deployment sub validate \
     -f templates/main.init.bicep \
@@ -125,13 +129,22 @@ You'll be prompted to enter `dbuser` and `dbpassword` and `token` from GH accoun
 At the end of this step you should have the following:
 
 * Three custom role definitions and three role assignments of these roles to subscription scope
+* Two custom policies (audit on lacking a tag and audit on allowed locations for resources)
 * Resource Group 
-* KeyVault with 2 secrets (dbuser and dbpassword)
+* KeyVault with 3 secrets (dbuser, dbpassword and token)
 
-Since we have deployed custom roles and assignment them we have Access control changes as well:
+This should be deployed:
+
+![Init deploy visualization](../.attachments/bicep-init-visualization.png)
+
+Since we have deployed custom roles and assigned them we have Access control (IAM) section changed as well:
 
 ![Custom roles](/.attachments/custom-roles.png)
 ![Custom roles assignments](../.attachments/custom-roles-assignments.png)
+
+Review policies as well. We should now have two policy definitions and assignments created from custom json file. Based on the screenshot below I have everything compliant according to my *allowed_location.json* policy, but there are some incompliant resources according to *a_tag_policy.json* policy (it complains when there is no tag on resource). What is your situation? 
+
+![Compliant resources](../.attachments/policy-compliance.png)
 
 Deployment of management groups, policies and RBAC is one of the fundamental part of Azure Landing Zones. You can learn more about it in this project exploring [high-level deployment flow](https://github.com/Azure/ALZ-Bicep/wiki/DeploymentFlow#high-level-deployment-flow). In this workshop we only cover a little bit of policies and RBAC.
 
@@ -187,19 +200,22 @@ First review parameters for this deployment:
 ```bash 
 
 tree templates # This is the folder with all templates used in with Workshop
-
 templates
 ├── main.bicep
 ├── main.init.bicep
 ├── modules
 │   ├── arc.bicep
 │   ├── keyvault.bicep
+│   ├── policies.bicep
 │   ├── postgres.bicep
 │   ├── roles.bicep
 │   ├── staticsite.bicep
 │   └── webapp.bicep
 ├── parameters.example.json
 ├── parameters.init.example.json
+├── policies
+│   ├── a_tag_policy.json
+│   └── allowed_location.json
 └── roles
     ├── contributor.json
     ├── owner.json
@@ -223,12 +239,12 @@ az deployment group create \
 
 This step will deploy the following resources: 
 
-* PSQL
-* Web App and Web App Plan
-* Static App
+* PSQL (FlexibleServer)
+* Web App and Service Plan
+* Static site
 * Managed Identity
 * Azure Container Registry
 
-![Azure Bicep Resources](../.attachments/azure-bicep-workshop-resources.png)
+![Azure Bicep Resources](../.attachments/bicep-resources-visualization.png)
 
 Hope you can see the above then move to the next [task - prepare database](3-Prepare-database.md).

@@ -8,7 +8,7 @@ param token string
 param tenantId string
 param objectId string
 
-resource keyVault 'Microsoft.KeyVault/vaults@2019-09-01' = {
+resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
   name: keyVaultName
   location: location
   tags: tags
@@ -35,7 +35,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2019-09-01' = {
   }
 }
 
-resource user 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+resource user 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
   name: 'dbuser'
   parent: keyVault
   properties: {
@@ -48,7 +48,7 @@ resource user 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
   }
 }
 
-resource password 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+resource password 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
   name: 'dbpassword'
   parent: keyVault
   properties: {
@@ -61,7 +61,7 @@ resource password 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
   }
 }
 
-resource ghtoken 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+resource ghtoken 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
   name: 'token'
   parent: keyVault
   properties: {

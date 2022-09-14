@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "displayName": "A tag",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "A tag should be given to a resource!",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Custom"
+    },
+    "parameters": {
+    },
+    "policyRule": {
+      "if": {
+        "field": "tags",
+        "exists": "false"
+      },
+      "then": {
+        "effect": "audit"
+      }
+    }
+  }
+}
