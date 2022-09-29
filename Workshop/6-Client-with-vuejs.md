@@ -94,3 +94,10 @@ In GitHub in [Lab 4](4-Prepare-database.md) we deployed Static App that created 
 * [Git howto](https://githowto.com/)
 
 Move to the next task [DevOps](7-DevOps.md).
+
+## Summary
+
+In this lab we learnt how to configure and change our client side application.
+
+
+Move to the [Server side](5-Server-side.md).
