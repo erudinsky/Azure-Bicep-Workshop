@@ -108,6 +108,15 @@ Try calling with postman (make sure bearerToken has been generated and passed al
 
 ## Application reference
 
+Soon you'll start with the lab and build infrastructure in Azure using templates. 
+
+- Roles and policies;
+- KeyVault for secrets;
+- Container registry for backend image;
+- PostgreSQL as database;
+- Web app and service plan for backend;
+- Static web site for vuejs (client)
+  
 ![Full Stack Application in Azure with Bicep](/.attachments/full-stack-with-bicep.png)
 
 [![Deploy to Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/)
