@@ -1,4 +1,4 @@
-## Introduction
+## Lab 4 - PSQL configuration and the rest of infra deployment
 
 This is the fourth hands-on lab of this workshop and in includes several modules. In this module we will look into database. 
 

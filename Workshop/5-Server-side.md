@@ -1,4 +1,6 @@
-## Prerequisited
+## Lab 5 - Server Side configuration
+
+This is the 5th hands-on lab of this workshop. In this module we will look into server side part.
 
 Main dependencies:
 
