@@ -6,8 +6,6 @@ Welcome to Azure Bicep workshop.
 
 Bicep is a domain-specific language (DSL) that uses declarative syntax to deploy Azure resources. In a Bicep file, you define the infrastructure you want to deploy to Azure, and then use that file throughout the development lifecycle to repeatedly deploy your infrastructure. Your resources are deployed in a consistent manner.
 
-![Full Stack Application in Azure with Bicep](/.attachments/full-stack-with-bicep.png)
-
 We are going to deploy a full stack application to Azure in multiple environments reusing Bicep templates.
 
 **Learning objectives:**
@@ -65,6 +63,12 @@ az account set -is <SubscriptionId>
 
 ## Workshop
 
+We are going to deploy an infrastructure in Azure for full stack application using Bicep:
+
+![Full Stack Application in Azure with Bicep](/.attachments/full-stack-with-bicep.png)
+
+You can follow the workshop by checking the following links:
+
 0. [Getting started with Bicep](Workshop/0-Getting-started-with-Bicep.md)
 1. [RBAC as code](Workshop/1-RBAC-as-code.md)
 2. [Policy as code](Workshop/2-Policy-as-code.md)
@@ -75,7 +79,7 @@ az account set -is <SubscriptionId>
 7. [DevOps](Workshop/7-DevOps.md)
 8. [Clean up](Workshop/8-Clean-up.md)
 
-You can also follow this workshop by watching two videos 
+You can also follow this workshop by watching two videos:
 
 * [Bicep Fundamentals](https://www.youtube.com/watch?v=KgUT1LoFZfk)
 * [Deploy a full stack application to Azure using Bicep templates](https://www.youtube.com/watch?v=uOLm15RP5P8)
@@ -86,4 +90,6 @@ Hi there 👋
 
 I’m Evgeny Rudinsky, an Cloud Architect based in The Netherlands and author of this workshop. These days most of my work I do with Microsoft Azure and I’m certified Azure Solution Architect Expert, DevOps Engineer Expert, Azure Security Engineer, Azure Administrator Associate, Azure Developer Associate and Identity and Access Administrator Associate.
 
-Follow me on [@evgenyrudinsky](https://twitter.com/evgenyrudinsky) and check [my blog](https://erudinsky.com/) if interested in Cloud Native, Automation and DevSecOps.
+Follow me on [@evgenyrudinsky](https://twitter.com/evgenyrudinsky) and check [my blog](https://erudinsky.com/) if interested in DevOps, cloud native and application security.
+
+Good luck! 🍀
