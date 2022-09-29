@@ -131,4 +131,4 @@ Check high-level reference architecture:
 * [Bicep playground](https://aka.ms/bicepdemo)
 * Resource explorer in Azure Portal
 
-Move to the next [step - RBAC as code](1-RBAC-as-code.md).
+Move to the next step - [RBAC as code](1-RBAC-as-code.md).
