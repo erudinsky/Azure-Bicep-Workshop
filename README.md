@@ -61,6 +61,16 @@ az account set -is <SubscriptionId>
 
 ```
 
+## Repository
+
+Make sure that you have GitHub account! If you don't please follow [this link](https://github.com/join) to create one. It should take less than a minutes to register. 
+
+Once you have account you need this content. The easiest way to work with it is to fork [this repo](https://github.com/erudinsky/Azure-Bicep-Workshop).
+
+![GitHub fork](.attachments/github-fork.png)
+
+Forked repository can be cloned to your local machine for further changes. You can also propose pull request to the origin repo 🙏
+
 ## Workshop
 
 We are going to deploy an infrastructure in Azure for full stack application using Bicep:

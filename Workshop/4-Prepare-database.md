@@ -1,8 +1,16 @@
-## Deploy the rest of the resources
+## Introduction
 
-First review parameters for this deployment: 
+This is the fourth hands-on lab of this workshop. And in includes several modules. In this module we will look into database. 
 
+## Task 4.1: Review parameters for DB
+
+Open up parameters file in `./Labs/4-full-stack` folder:
+
+
+
+ 
 ```json
+
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
@@ -11,7 +19,7 @@ First review parameters for this deployment:
             "value": "abw"
         },
         "location": {
-            "value": "westeurope"
+            "value": "eastasia"
         },
         "tags": {
             "value": {
@@ -25,8 +33,13 @@ First review parameters for this deployment:
         "firewallRulesList": {
             "value": [{
                 "name": "myip",
-                "endIpAddress": "<add_your_IP>",
-                "startIpAddress": "<add_your_IP>"
+                "endIpAddress": "109.37.142.199",
+                "startIpAddress": "109.37.142.199"
+            },
+            {
+                "name": "azure_services",
+                "endIpAddress": "0.0.0.0",
+                "startIpAddress": "0.0.0.0"
             }]
         },
         "capacity": {
@@ -40,6 +53,7 @@ First review parameters for this deployment:
         }
     }
 }
+
 ```
 
 1. Set `endIpAddress` and `startIpAddress` in `firewallRulesList` with the values of your public IP. You can use any public service if your IP is dynamic and not known or you can also do `curl icanhazip.com` to return the IP via terminal.
