@@ -89,6 +89,35 @@ You can follow the workshop by checking the following links:
 7. [DevOps](Workshop/7-DevOps.md)
 8. [Clean up](Workshop/8-Clean-up.md)
 
+Repo structure (pretty much self-explanatory)
+
+```bash
+
+.
+├── Labs
+│   ├── 1-rbac
+│   ├── 2-policies
+│   ├── 3-keyvault
+│   ├── 4-full-stack
+│   ├── 5-server
+│   ├── 6-client
+│   ├── db
+│   ├── modules
+│   └── postman
+├── README.md <========= this file
+└── Workshop
+    ├── 0-Getting-started-with-Bicep.md
+    ├── 1-RBAC-as-code.md
+    ├── 2-Policy-as-code.md
+    ├── 3-Secrets.md
+    ├── 4-Prepare-database.md
+    ├── 5-Server-side.md
+    ├── 6-Client-with-vuejs.md
+    ├── 7-DevOps.md
+    └── 8-Clean-up.md
+
+```
+
 You can also follow this workshop by watching two videos:
 
 * [Bicep Fundamentals](https://www.youtube.com/watch?v=KgUT1LoFZfk)
