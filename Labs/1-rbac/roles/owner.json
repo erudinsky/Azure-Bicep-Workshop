@@ -1,0 +1,13 @@
+{
+  "name": "ABWowner",
+  "roleName": "ABWOwner",
+  "description": "ABW Owner",
+  "permissions": [{
+    "actions": [
+      "*"
+    ],
+    "dataActions": [],
+    "notActions": [],
+    "notDataActions": []
+  }]
+}

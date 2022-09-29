@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceGroupName": {
+            "value": "azure-bicep-workshop"
+        },
+        "tags": {
+            "value": {
+                "purpose": "Azure Bicep Workshop",
+                "environment": "dev"
+            }
+        },
+        "location": {
+            "value": "swedencentral"
+        },
+        "groups": {
+            "value": {
+                "owner": "65bef1e4-aab9-4f17-bc72-5a69d9688b15",
+                "contributor": "270d7412-0d25-46b2-91ef-693039f7cb62",
+                "reader": "da26c060-70a4-4ff6-b800-6e2a813164e6"
+            }
+        }
+    }
+}

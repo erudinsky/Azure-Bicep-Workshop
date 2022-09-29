@@ -1,0 +1,16 @@
+{
+  "name": "ABWcontributor",
+  "roleName": "ABWContributor",
+  "description": "ABW Contributor",
+  "permissions": [{
+    "actions": [
+      "*"
+    ],
+    "dataActions": [],
+    "notActions": [
+      "Microsoft.Authorization/*/Delete",
+      "Microsoft.Authorization/*/Write"
+    ],
+    "notDataActions": []
+  }]
+}
