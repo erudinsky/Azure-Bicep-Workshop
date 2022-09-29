@@ -7,7 +7,7 @@ This is the second hands-on lab of this workshop. In this lab we will do the fol
 
 In a large Azure environment such approach helps to keep properly control on policies and manage them at-scale.
 
-## Task 1: create and assign policies to subscription scope
+## Task 2.1: create and assign policies to subscription scope
 
 Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/2-policies`. This folder contains main template that has references to module `policies.bicep` and custom policy definitions in folder `policies` as well as `parameters.json` files to define required parameters:
 
@@ -53,8 +53,14 @@ Review bicep module `./modules/policies.bicep` to learn about policy definition 
 
 Learn about [subscription target scope](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli), [loops](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/loops), also expolore other target scope that might be possible to use for this type of resources (for example management group target scope).
 
-## Summary
+## Task 2.2: Find incompliant resources
 
-In this lab we learnt how to create policy and assign it to a specific scope. Now you can check Compliance page to find incompliant resources in your environment:
+Now you can check Compliance page to find incompliant resources in your environment. Find out all resources that are not compliant two the new policies (no single tag on resource, deployed not in `swedencentral`, `westeurope`, `eastasia` locations).
 
 ![Policy Compliance](../.attachments/policy-compliance.png)
+
+## Summary
+
+In this lab we learnt how to create policy and assign it to a specific scope. You also learnt how to use policies for audit.
+
+Move to [Lab 3 - Secrets](3-Secrets.md)
