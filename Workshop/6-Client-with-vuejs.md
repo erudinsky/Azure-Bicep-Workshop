@@ -33,13 +33,15 @@ resource staticSite 'Microsoft.Web/staticSites@2021-03-01' = {
     enterpriseGradeCdnStatus: 'Disabled'
     repositoryToken: repositoryToken
     buildProperties: {
-      appLocation: 'client'
+      appLocation: 'Lab/6-client'
       appArtifactLocation: 'dist'
     }
   }
 }
 
 ```
+
+> NB! `appLocation` in the template above is the absolute path in the repo.
 
 `staticSites` is a special type of resource that provisions service to run [static site](https://erudinsky.com/2022/01/07/static-web-site-on-azure-with-azure-devops-and-bicep/). To learn more about Static Site resource and it's available parameters visit [template reference](https://docs.microsoft.com/en-us/azure/templates/microsoft.web/staticsites?tabs=bicep).
 
@@ -89,5 +91,6 @@ In GitHub in [Lab 4](4-Prepare-database.md) we deployed Static App that created 
 
 * [vuejs getting started](https://v1.vuejs.org/guide/)
 * [Template reference (Static Web)](https://docs.microsoft.com/en-us/azure/templates/microsoft.web/staticsites?tabs=bicep)
+* [Git howto](https://githowto.com/)
 
-Move to the next [task - DevOps](6-DevOps.md).
+Move to the next task [DevOps](7-DevOps.md).
