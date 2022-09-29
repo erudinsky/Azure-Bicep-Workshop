@@ -159,7 +159,7 @@ Let's review the module `postgres.bicep` in modules folder. In contains `Microso
 
 Bicep's provider/resource has the following structure:
 
-![Bicep first line](../.attachments/bicep-first-line.png)
+![Bicep first line](../.attachments/4-bicep-first-line.png)
 
 To get all available resources and it's paramenters along with API verions, keep this page at hand: https://docs.microsoft.com/en-us/azure/templates/
 
