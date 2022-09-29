@@ -1,4 +1,4 @@
-## Introduction 
+## Lab 1
 
 > NB! This lab requires your identity to have directory role assigned (to keep it simple you'd need [Global Administrator](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference#global-administrator) role) as you need to create AAD groups and add members to it. If you want to follow [least privileged](https://learn.microsoft.com/en-us/azure/active-directory/roles/delegate-by-task) principal then make sure you have at least [User Administrator](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference#user-administrator) and [Groups Administrator](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference#groups-administrator). If you use company's tenant with limited access (no roles) you can skip this lab. Alternatively you can create and use personal tenant for experiment with this lab.
 
@@ -10,13 +10,13 @@ This is the first hands-on lab of this workshop. In this lab we will do the foll
 
 In a large Azure environment such approach helps to keep properly control on custom role's permissions and manage them at-scale.
 
-## Task 1: create security groups in Azure Active Directory
+## Task 1.1: create security groups in Azure Active Directory
 
 Using web browser, login to Azure Portal and find Azure Active Directory. Navigate to Manage > Groups. Create three groups with the names: `ABWOwner`, `ABWContributor`, `ABWReader`. Copy object Id of each group, we will use them for assignment later in our template.
 
 ![Azure AD groups objectId](../.attachments/aad-groups-objectid.png)
 
-## Task 2: create and assign custom roles to security groups
+## Task 1.2: create and assign custom roles to security groups
 
 Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/1-rbac`. This folder contains main template that has references to module `roles.bicep` and custom role definitions `roles` with three json roles. There is also `parameters.json` file that should be used to specify all required parameters.
 
@@ -95,4 +95,4 @@ Learn about [subscription target scope](https://learn.microsoft.com/en-us/azure/
 
 In chapter we learnt how to provision custom role and assign it to security group. In order to test you can create / invite user to one of the three groups, login with the new user and see what it is able to do and what not (based on membership in group).
 
-Move to the next lab
+Move to [Lab 2 - Policy as code](2-Policy-as-code.md)
