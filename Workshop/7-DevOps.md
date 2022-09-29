@@ -1,8 +1,12 @@
-## Introduction
+## Lab 7 - DevOps
 
-![GitHub DevOps](../.attachments/lifecycle.png)
+In this lab we will look into DevOps.
+
+![GitHub DevOps](../.attachments/7-lifecycle.png)
 
 > [What is DevOps?](https://resources.github.com/devops/)
+
+## Task 7.1: Create service principal
 
 Up until now we were using personal account for deployment. Let's first generate [Service Principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object) and build our automation.
 
@@ -30,6 +34,8 @@ az ad sp create-for-rbac --name AzureBicepWorkshopSPN --role owner --scopes /sub
 }
 
 ```
+
+## Lab 7.2: Create workflow
 
 For our automation we will use GitHub. Navigate to your forked repository and start configuration, go ahead and add the following file and paste the following content `.github/workflows/azure-bicep-workshop.yml`:
 
@@ -62,8 +68,6 @@ jobs:
 ```
 
 Also navigate to GitHub > Settings > Secrets and add new secret `AZURE_CREDENTIALS` and paste output from SPN (json with credentials). This is simple action that uses special tasks and does login and creation of RG. Commit changes and run the action.
-
-## Build and deploy
 
 A typical cycle for IAC templates would be the following:
 
@@ -174,6 +178,6 @@ jobs:
 
 Also make sure to add the following secrets to your repo:
 
-![](../.attachments/secrets.png)
+![](../.attachments/7-secrets.png)
 
-Don't forget to [clean up](7-Clean-up.md).
+Next lab - [clean up](8-Clean-up.md).

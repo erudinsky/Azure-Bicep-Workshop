@@ -81,7 +81,11 @@ npm run serve # to test application
 
 Make sure to change baseURL in the files marked above with `this needs change`. Use your backend URL (the same the we used with postman in [Lab 5](5-Server-side.md). You can also test client app locally first and if everything works (check your client app via browser to see similar as below image) commit changes and push to git.
 
-If everything went well you should be able to see the following.
+If everything went well you should be able to see the following. To test application find our the url of your app via the portal: 
+
+![Client's URL](../.attachments/6-client-url.png)
+
+and test.. 
 
 ![vuejs](../.attachments/6-client-vuejs.png)
 
@@ -93,11 +97,8 @@ In GitHub in [Lab 4](4-Prepare-database.md) we deployed Static App that created 
 * [Template reference (Static Web)](https://docs.microsoft.com/en-us/azure/templates/microsoft.web/staticsites?tabs=bicep)
 * [Git howto](https://githowto.com/)
 
-Move to the next task [DevOps](7-DevOps.md).
-
 ## Summary
 
 In this lab we learnt how to configure and change our client side application.
 
-
-Move to the [Server side](5-Server-side.md).
+Move to the next task [DevOps](7-DevOps.md).
