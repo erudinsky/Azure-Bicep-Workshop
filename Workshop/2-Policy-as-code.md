@@ -55,7 +55,7 @@ Learn about [subscription target scope](https://learn.microsoft.com/en-us/azure/
 
 ## Task 2.2: Find incompliant resources
 
-Now you can check Compliance page to find incompliant resources in your environment. Find out all resources that are not compliant two the new policies (no single tag on resource, deployed not in `swedencentral`, `westeurope`, `eastasia` locations).
+Now you can check Compliance page to find incompliant resources in your environment. Find out all resources that are not compliant to the new policies (no single tag on resource, deployed not in `swedencentral`, `westeurope`, `eastasia` locations).
 
 ![Policy Compliance](../.attachments/policy-compliance.png)
 
