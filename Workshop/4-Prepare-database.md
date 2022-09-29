@@ -2,13 +2,10 @@
 
 This is the fourth hands-on lab of this workshop. And in includes several modules. In this module we will look into database. 
 
-## Task 4.1: Review parameters for DB
+## Task 4.1: Review and change parameters for DB
 
 Open up parameters file in `./Labs/4-full-stack` folder:
 
-
-
- 
 ```json
 
 {
@@ -33,8 +30,8 @@ Open up parameters file in `./Labs/4-full-stack` folder:
         "firewallRulesList": {
             "value": [{
                 "name": "myip",
-                "endIpAddress": "109.37.142.199",
-                "startIpAddress": "109.37.142.199"
+                "endIpAddress": "0.0.0.0",
+                "startIpAddress": "0.0.0.0"
             },
             {
                 "name": "azure_services",
@@ -57,63 +54,22 @@ Open up parameters file in `./Labs/4-full-stack` folder:
 ```
 
 1. Set `endIpAddress` and `startIpAddress` in `firewallRulesList` with the values of your public IP. You can use any public service if your IP is dynamic and not known or you can also do `curl icanhazip.com` to return the IP via terminal.
-2. `repositoryUrl` and `branch` both will be used for static site later. 
+2. `repositoryUrl` and `branch` both will be used for static site later. Repository's URL is the one that you forked!
+3. Since Static Site service available in limited number of regions (2022, September), we use `eastasia`.
 
 ```bash 
 
-tree templates # This is the folder with all templates used in with Workshop
-templates
-├── main.bicep
-├── main.init.bicep
-├── modules
-│   ├── arc.bicep
-│   ├── keyvault.bicep
-│   ├── policies.bicep
-│   ├── postgres.bicep
-│   ├── roles.bicep
-│   ├── staticsite.bicep
-│   └── webapp.bicep
-├── parameters.example.json
-├── parameters.init.example.json
-├── policies
-│   ├── a_tag_policy.json
-│   └── allowed_location.json
-└── roles
-    ├── contributor.json
-    ├── owner.json
-    └── reader.json
-
-# To deploy the rest of the resources use the following command:
-
-az deployment group validate \
-    -f templates/main.bicep \
-    -p templates/parameters.example.json 
-
-az deployment group what-if \
-    -f templates/main.bicep \
-    -p templates/parameters.example.json 
-
-az deployment group create \
-    -f templates/main.bicep \
-    -p templates/parameters.example.json 
+.
+├── 4-full-stack
+│   ├── main.bicep
+│   └── parameters.json
+└── modules
+    ├── arc.bicep
+    ├── postgres.bicep
+    ├── staticsite.bicep
+    └── webapp.bicep
 
 ```
-
-This step will deploy the following resources: 
-
-* PSQL (FlexibleServer)
-* Web App and Service Plan
-* Static site
-* Managed Identity
-* Azure Container Registry
-
-![Azure Bicep Resources](../.attachments/bicep-resources-visualization.png)
-
-And the view from the portal: 
-
-![Azure Portal - resources created](../.attachments/azure-portal-resources.png)
-
-Hope you can see the above then move to the next [task - prepare database](3-Prepare-database.md).
 
 ## PosgreSQL for development
 
