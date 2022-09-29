@@ -23,7 +23,7 @@ resource staticSite 'Microsoft.Web/staticSites@2021-03-01' = {
     enterpriseGradeCdnStatus: 'Disabled'
     repositoryToken: repositoryToken
     buildProperties: {
-      appLocation: 'client'
+      appLocation: '/Labs/6-client'
       appArtifactLocation: 'dist'
     }
   }
