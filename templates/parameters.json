@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "resourcePrefix": {
-            "value": "abwer"
+            "value": "abw"
         },
         "location": {
-            "value": "westeurope"
+            "value": "eastasia"
         },
         "tags": {
             "value": {
@@ -20,8 +20,8 @@
         "firewallRulesList": {
             "value": [{
                 "name": "myip",
-                "endIpAddress": "109.38.141.135",
-                "startIpAddress": "109.38.141.135"
+                "endIpAddress": "109.37.142.199",
+                "startIpAddress": "109.37.142.199"
             },
             {
                 "name": "azure_services",
