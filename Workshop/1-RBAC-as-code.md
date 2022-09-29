@@ -14,7 +14,7 @@ In a large Azure environment such approach helps to keep properly control on cus
 
 Using web browser, login to Azure Portal and find Azure Active Directory. Navigate to Manage > Groups. Create three groups with the names: `ABWOwner`, `ABWContributor`, `ABWReader`. Copy object Id of each group, we will use them for assignment later in our template.
 
-![Azure AD groups objectId](../.attachments/aad-groups-objectid.png)
+![Azure AD groups objectId](../.attachments/1-aad-groups-objectid.png)
 
 ## Task 1.2: reate and assign custom roles to security groups
 
@@ -83,8 +83,8 @@ az deployment sub create -f main.bicep -p parameters.json -n ABWRBACDeployment
 
 The result of the last command should provision the actual resources. Validate them via Azure Portal:
 
-![RBAC - IAM roles](../.attachments/rbac-iam-roles.png)
-![RBAC - IAM role assignments](../.attachments/rbac-iam-role-assignment.png)
+![RBAC - IAM roles](../.attachments/1-rbac-iam-roles.png)
+![RBAC - IAM role assignments](../.attachments/1-rbac-iam-role-assignment.png)
 
 Review bicep module `./modules/roles.bicep` to learn about role definition and role assignment resources. 
 
