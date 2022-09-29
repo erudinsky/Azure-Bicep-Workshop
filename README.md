@@ -65,13 +65,15 @@ az account set -is <SubscriptionId>
 
 ## Workshop
 
-1. [Getting started with Bicep](Workshop/1-Getting-started-with-Bicep.md)
-2. [Set Azure environment](Workshop/2-Set-Azure-environment.md)
-3. [Prepare database](Workshop/3-Prepare-database.md)
-4. [Server side](Workshop/4-Server-side.md)
-5. [Client with vue.js](Workshop/5-Client-with-vuejs.md)
-6. [DevOps](Workshop/6-DevOps.md)
-7. [Clean up](Workshop/7-Clean-up.md)
+0. [Getting started with Bicep](Workshop/0-Getting-started-with-Bicep.md)
+1. [RBAC as code](Workshop/1-RBAC-as-code.md)
+2. [Policy as code](Workshop/2-Policy-as-code.md)
+3. [Secrets](Workshop/3-Secrets.md)
+4. [Prepare database](Workshop/4-Prepare-database.md)
+5. [Server side](Workshop/5-Server-side.md)
+6. [Client with vue.js](Workshop/6-Client-with-vuejs.md)
+7. [DevOps](Workshop/7-DevOps.md)
+8. [Clean up](Workshop/8-Clean-up.md)
 
 You can also follow this workshop by watching two videos 
 
