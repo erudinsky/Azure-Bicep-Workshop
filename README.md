@@ -1,12 +1,10 @@
-[![azure-bicep-workshop-example](https://github.com/erudinsky/Azure-Bicep-Workshop/actions/workflows/azure-bicep-workshop-example.yml/badge.svg)](https://github.com/erudinsky/Azure-Bicep-Workshop/actions/workflows/azure-bicep-workshop-example.yml)
+[![azure-bicep-workshop](https://github.com/erudinsky/Azure-Bicep-Workshop/actions/workflows/azure-bicep-workshop.yml/badge.svg?branch=main&event=push)](https://github.com/erudinsky/Azure-Bicep-Workshop/actions/workflows/azure-bicep-workshop.yml)
 
 ## Introduction
 
 Welcome to Azure Bicep workshop. 
 
 Bicep is a domain-specific language (DSL) that uses declarative syntax to deploy Azure resources. In a Bicep file, you define the infrastructure you want to deploy to Azure, and then use that file throughout the development lifecycle to repeatedly deploy your infrastructure. Your resources are deployed in a consistent manner.
-
-![ARM processing](.attachments/arm.png)
 
 We are going to deploy a full stack application to Azure in multiple environments reusing Bicep templates.
 
@@ -63,17 +61,35 @@ az account set -is <SubscriptionId>
 
 ```
 
+## Repository
+
+Make sure that you have GitHub account! If you don't please follow [this link](https://github.com/join) to create one. It should take less than a minutes to register. 
+
+Once you have account you need this content. The easiest way to work with it is to fork [this repo](https://github.com/erudinsky/Azure-Bicep-Workshop).
+
+![GitHub fork](.attachments/github-fork.png)
+
+Forked repository can be cloned to your local machine for further changes. You can also propose pull request to the origin repo 🙏
+
 ## Workshop
 
-1. [Getting started with Bicep](Workshop/1-Getting-started-with-Bicep.md)
-2. [Set Azure environment](Workshop/2-Set-Azure-environment.md)
-3. [Prepare database](Workshop/3-Prepare-database.md)
-4. [Server side](Workshop/4-Server-side.md)
-5. [Client with vue.js](Workshop/5-Client-with-vuejs.md)
-6. [DevOps](Workshop/6-DevOps.md)
-7. [Clean up](Workshop/7-Clean-up.md)
+We are going to deploy an infrastructure in Azure for full stack application using Bicep:
 
-You can also follow this workshop by watching two videos 
+![Full Stack Application in Azure with Bicep](/.attachments/full-stack-with-bicep.png)
+
+You can follow the workshop by checking the following links:
+
+0. [Getting started with Bicep](Workshop/0-Getting-started-with-Bicep.md)
+1. [RBAC as code](Workshop/1-RBAC-as-code.md)
+2. [Policy as code](Workshop/2-Policy-as-code.md)
+3. [Secrets](Workshop/3-Secrets.md)
+4. [Prepare database](Workshop/4-Prepare-database.md)
+5. [Server side](Workshop/5-Server-side.md)
+6. [Client with vue.js](Workshop/6-Client-with-vuejs.md)
+7. [DevOps](Workshop/7-DevOps.md)
+8. [Clean up](Workshop/8-Clean-up.md)
+
+You can also follow this workshop by watching two videos:
 
 * [Bicep Fundamentals](https://www.youtube.com/watch?v=KgUT1LoFZfk)
 * [Deploy a full stack application to Azure using Bicep templates](https://www.youtube.com/watch?v=uOLm15RP5P8)
@@ -84,4 +100,6 @@ Hi there 👋
 
 I’m Evgeny Rudinsky, an Cloud Architect based in The Netherlands and author of this workshop. These days most of my work I do with Microsoft Azure and I’m certified Azure Solution Architect Expert, DevOps Engineer Expert, Azure Security Engineer, Azure Administrator Associate, Azure Developer Associate and Identity and Access Administrator Associate.
 
-Follow me on [@evgenyrudinsky](https://twitter.com/evgenyrudinsky) and check [my blog](https://erudinsky.com/) if interested in Cloud Native, Automation and DevSecOps.
+Follow me on [@evgenyrudinsky](https://twitter.com/evgenyrudinsky) and check [my blog](https://erudinsky.com/) if interested in DevOps, cloud native and application security.
+
+Good luck! 🍀

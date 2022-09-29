@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourcePrefix": {
+            "value": "abw"
+        },
+        "location": {
+            "value": "eastasia"
+        },
+        "tags": {
+            "value": {
+                "purpose": "Azure Bicep Workshop",
+                "environment": "dev"
+            }
+        },
+        "acrSku": {
+            "value": "Basic"
+        },
+        "firewallRulesList": {
+            "value": [{
+                "name": "myip",
+                "endIpAddress": "0.0.0.0",
+                "startIpAddress": "0.0.0.0"
+            },
+            {
+                "name": "azure_services",
+                "endIpAddress": "0.0.0.0",
+                "startIpAddress": "0.0.0.0"
+            }]
+        },
+        "capacity": {
+            "value": 1
+        },
+        "repositoryUrl": {
+            "value": "https://github.com/<github_user>/Azure-Bicep-Workshop"
+        },
+        "branch": {
+            "value": "main"
+        }
+    }
+}
