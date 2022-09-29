@@ -1,4 +1,4 @@
-## Lab 1
+## Lab 1 - RBAC as code (optionally)
 
 > NB! This lab requires your identity to have directory role assigned (to keep it simple you'd need [Global Administrator](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference#global-administrator) role) as you need to create AAD groups and add members to it. If you want to follow [least privileged](https://learn.microsoft.com/en-us/azure/active-directory/roles/delegate-by-task) principal then make sure you have at least [User Administrator](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference#user-administrator) and [Groups Administrator](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference#groups-administrator). If you use company's tenant with limited access (no roles) you can skip this lab. Alternatively you can create and use personal tenant for experiment with this lab.
 
