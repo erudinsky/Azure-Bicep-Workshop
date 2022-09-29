@@ -1,77 +1,10 @@
 ## Introduction
 
-This is the fourth hands-on lab of this workshop. And in includes several modules. In this module we will look into database. 
+This is the fourth hands-on lab of this workshop and in includes several modules. In this module we will look into database. 
 
-## Task 4.1: Review and change parameters for DB
+## Task 4.1: PosgreSQL for development (optionally)
 
-Open up parameters file in `./Labs/4-full-stack` folder:
-
-```json
-
-{
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "resourcePrefix": {
-            "value": "abw"
-        },
-        "location": {
-            "value": "eastasia"
-        },
-        "tags": {
-            "value": {
-                "purpose": "Azure Bicep Workshop",
-                "environment": "dev"
-            }
-        },
-        "acrSku": {
-            "value": "Basic"
-        },
-        "firewallRulesList": {
-            "value": [{
-                "name": "myip",
-                "endIpAddress": "0.0.0.0",
-                "startIpAddress": "0.0.0.0"
-            },
-            {
-                "name": "azure_services",
-                "endIpAddress": "0.0.0.0",
-                "startIpAddress": "0.0.0.0"
-            }]
-        },
-        "capacity": {
-            "value": 1
-        },
-        "repositoryUrl": {
-            "value": "https://github.com/erudinsky/Azure-Bicep-Workshop"
-        },
-        "branch": {
-            "value": "main"
-        }
-    }
-}
-
-```
-
-1. Set `endIpAddress` and `startIpAddress` in `firewallRulesList` with the values of your public IP. You can use any public service if your IP is dynamic and not known or you can also do `curl icanhazip.com` to return the IP via terminal.
-2. `repositoryUrl` and `branch` both will be used for static site later. Repository's URL is the one that you forked!
-3. Since Static Site service available in limited number of regions (2022, September), we use `eastasia`.
-
-```bash 
-
-.
-├── 4-full-stack
-│   ├── main.bicep
-│   └── parameters.json
-└── modules
-    ├── arc.bicep
-    ├── postgres.bicep
-    ├── staticsite.bicep
-    └── webapp.bicep
-
-```
-
-## PosgreSQL for development
+The intention of this task is to learn how to work with SQL (postgres) running it on local machine. If you are familiar with PSQL and how to: create user, database and seed data, feel free to skip and move to Task 4.2.
 
 Main dependencies:
 
@@ -143,34 +76,76 @@ abw_db=#
 
 PostgreSQL for development environment is complete.
 
-You can also consider docker-compose with web-based GUI adminer tool for the same purposes.
 
-```yaml
-# Use postgres/example user/password credentials
-version: '3.1'
+## Task 4.2: Review and change parameters for DB
 
-services:
+Open up parameters file in `./Labs/4-full-stack` folder:
 
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: secret
-    ports:
-      - 5432:5432
+```json
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourcePrefix": {
+            "value": "abw"
+        },
+        "location": {
+            "value": "eastasia"
+        },
+        "tags": {
+            "value": {
+                "purpose": "Azure Bicep Workshop",
+                "environment": "dev"
+            }
+        },
+        "acrSku": {
+            "value": "Basic"
+        },
+        "firewallRulesList": {
+            "value": [{
+                "name": "myip",
+                "endIpAddress": "0.0.0.0",
+                "startIpAddress": "0.0.0.0"
+            },
+            {
+                "name": "azure_services",
+                "endIpAddress": "0.0.0.0",
+                "startIpAddress": "0.0.0.0"
+            }]
+        },
+        "capacity": {
+            "value": 1
+        },
+        "repositoryUrl": {
+            "value": "https://github.com/erudinsky/Azure-Bicep-Workshop"
+        },
+        "branch": {
+            "value": "main"
+        }
+    }
+}
+
 ```
 
-It also has nice web-based client for management: 
+1. Set `endIpAddress` and `startIpAddress` in `firewallRulesList` with the values of your public IP. You can use any public service if your IP is dynamic and not known or you can also do `curl icanhazip.com` to return the IP via terminal (or search in bing/google "my ip").
+2. `repositoryUrl` and `branch` both will be used for static site later. Repository's URL is the one that you forked!
+3. Since Static Site service available in limited number of regions (2022, September), we use `eastasia`.
 
-![](../.attachments/postgres-dev-environment.png)
+```bash 
 
-## PosgreSQL for production
+.
+├── 4-full-stack
+│   ├── main.bicep
+│   └── parameters.json
+└── modules
+    └── postgres.bicep
+
+```
+
+## Task 4.3: PosgreSQL for production
+
+The intention of this task is to provision infrastructure for PostgreSQL using Bicep template.
 
 Main dependencies:
 
@@ -180,320 +155,98 @@ Main dependencies:
 
 For production environment we want to use [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/), it's fully managed and scalable PostgreSQL.
 
-Learning objectives: 
+Let's review the module `postgres.bicep` in modules folder. In contains `Microsoft.DBforPostgreSQL/servers` and `Microsoft.DBforPostgreSQL/servers/firewallRules` as it's [child](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/child-resource-name-type). We also use [getSecret](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions-resource#getsecret) function to query Key Vault directly from bicep to get values of our dbuser and password.
 
-- [ ] Data types
-- [ ] Loops (for)
-- [ ] Modules
-- [ ] Resource dependencies 
-
-### Data types
-
-* array
-* bool
-* int
-* object
-* secureObject - indicated by modifier in Bicep
-* secureString - indicated by modifier in Bicep
-* string
-
-```bicep
-
-// array
-
-param firewallRulesList array = [
-  {
-    name: 'myip'
-    endIpAddress: '<myip>'
-    startIpAddress: '<myip>'
-  }
-]
-
-// bool
-param backup bool = true
-
-// int
-param capacity int = 1
-
-// object
-param tags object = {
-  owner: 'evgeny@weekendsprints.nl'
-  costCenter: '12345'
-  environment: 'dev'
-  purpose: 'workshop'
-  project: 'azure-bicep-workshop'
-}
-
-// string
-param resourcePrefix string = 'abw'
-
-// secured param (with decorator)
-
-@secure()
-param dbuser string
-@secure()
-param dbpassword string
-
-```
-
-### Decorators
-
-We've have seen `@secure()` decorator for secrets, there are some others
-
-```bicep
-
-// Description
-
-@description('This is resource prefix for all created resources')
-param resourcePrefix string = 'foobar'
-
-// Allowed values
-
-@allowed([
-  'Standard_LRS'
-  'Standard_GRS'
-  'Standard_ZRS'
-  'Premium_LRS'
-])
-param storageSKU string = 'Standard_LRS'
-
-// Others
-
-@maxLength()
-@minLength()
-@metadata()
-
-```
-
-### Resource dependencies
-
-In Bicep there are two ways working with dependencies: 
-
-* implicit dependency (resources reference or parent/child)
-* explicit dependency (dependsOn)
-
-**Implicit** 
-
-```bicep
-
-resource postgreSql 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
-  name: postgreSqlName
-  location: locationpsql
-  tags: tags
-  sku: {
-    capacity: 1
-    family: 'Gen5'
-    name: 'B_Gen5_1'
-    size: '12288'
-    tier: 'Basic'
-  }
-  identity: {
-    type: 'SystemAssigned'
-  }
-  properties: {
-    infrastructureEncryption: 'Disabled'
-    sslEnforcement: 'Enabled'
-    publicNetworkAccess: 'Enabled'
-    storageProfile: {
-      backupRetentionDays: 7
-      geoRedundantBackup: 'Disabled'
-      storageAutogrow: 'Enabled'
-      storageMB: 5120
-    }
-    version: '11'
-    createMode: 'Default'
-    administratorLogin: administratorLogin
-    administratorLoginPassword: administratorLoginPassword
-  }
-}
-
-resource firewallRules 'Microsoft.DBforPostgreSQL/servers/firewallRules@2017-12-01' = [for firewallRule in firewallRulesList:  {
-  name: firewallRule.name
-  parent: postgreSql
-  properties: {
-    endIpAddress: firewallRule.endIpAddress
-    startIpAddress: firewallRule.startIpAddress
-  }
-}]
-
-
-```
-
-**Explicit**
-
-
-```bicep
-
-module keyVault 'modules/keyvault.bicep' = {
-  name: 'keyVault'
-  params: {
-    keyVaultName: keyVaultName
-    location: location
-    tags: tags
-    dbuser: dbuser
-    dbpassword: dbpassword
-  }
-}
-
-resource kv 'Microsoft.KeyVault/vaults@2019-09-01' existing = {
-  name: keyVaultName
-  scope: resourceGroup(subscriptionId, resourceGroup().name)
-}
-
-module postgreSQL 'modules/postgres.bicep' = {
-  name: 'postgreSQL'
-  dependsOn: [
-    keyVault
-    kv
-  ]
-  params: {
-    locationpsql: locationpsql
-    postgreSqlName: postgreSqlName
-    tags: tags
-    firewallRulesList: firewallRulesList
-    administratorLogin: kv.getSecret('dbuser')
-    administratorLoginPassword: kv.getSecret('dbpassword')
-  }
-}
-
-
-```
-
-### Functions
-
-Examples of functions: 
-
-```bicep
-
-// Current time / date (formatting available), https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions
-param timeNow string = '${utcNow()}-firewallrule'
-
-// Uniq string (13) for resource name generator
-param acrName string = '${resourcePrefix}${uniqueString(location)}acr'
-
-// Inherit location from RG
-param location string = resourceGroup().location
-
-// getSecret from KV
-administratorLogin: kv.getSecret('dbuser')
-
-```
-
-### Provision of Azure PostgreSQL using Bicep
-
-Azure DB for PostgreSQL has been provisioned already as part of the main deployment, let's review the template:
-
-```bicep
-
-// main.bicep
-
-param postgreSqlName string = '${resourcePrefix}${uniqueString(location)}psql'
-param firewallRulesList array = [
-  {
-    name: 'myip'
-    endIpAddress: 'my_ip'
-    startIpAddress: 'my_ip'
-  }
-]
-param capacity int = 1
-
-
-module postgreSQL 'modules/postgres.bicep' = {
-  name: 'postgreSQL'
-  dependsOn: [
-    keyVault
-    kv
-  ]
-  params: {
-    locationpsql: locationpsql
-    capacity: capacity
-    postgreSqlName: postgreSqlName
-    tags: tags
-    firewallRulesList: firewallRulesList
-    administratorLogin: kv.getSecret('dbuser')
-    administratorLoginPassword: kv.getSecret('dbpassword')
-  }
-}
-
-// modules/postres.bicep
-
-param postgreSqlName string
-param locationpsql string
-param tags object
-param firewallRulesList array
-@secure()
-param administratorLogin string
-@secure()
-param administratorLoginPassword string
-param capacity int
-
-resource postgreSql 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
-  name: postgreSqlName
-  location: locationpsql
-  tags: tags
-  sku: {
-    capacity: capacity
-    family: 'Gen5'
-    name: 'B_Gen5_1'
-    size: '12288'
-    tier: 'Basic'
-  }
-  identity: {
-    type: 'SystemAssigned'
-  }
-  properties: {
-    infrastructureEncryption: 'Disabled'
-    sslEnforcement: 'Enabled'
-    publicNetworkAccess: 'Enabled'
-    storageProfile: {
-      backupRetentionDays: 7
-      geoRedundantBackup: 'Disabled'
-      storageAutogrow: 'Enabled'
-      storageMB: 5120
-    }
-    version: '11'
-    createMode: 'Default'
-    administratorLogin: administratorLogin
-    administratorLoginPassword: administratorLoginPassword
-  }
-}
-
-resource firewallRules 'Microsoft.DBforPostgreSQL/servers/firewallRules@2017-12-01' = [for firewallRule in firewallRulesList:  {
-  name: firewallRule.name
-  parent: postgreSql
-  properties: {
-    endIpAddress: firewallRule.endIpAddress
-    startIpAddress: firewallRule.startIpAddress
-  }
-}]
-
-```
+Bicep's provider/resource has the following structure:
 
 ![Bicep first line](../.attachments/bicep-first-line.png)
 
 To get all available resources and it's paramenters along with API verions, keep this page at hand: https://docs.microsoft.com/en-us/azure/templates/
 
-`firewallRulesList` is an array with allowed IP (to fetch my ip I used `curl icanhazip.com`). "Allow access to Azure services" works unexpectedly, so I used 0.0.0.0/0 (literally all internet) for the workshop. See this [stackoverflow thread](https://stackoverflow.com/questions/72433407/is-there-a-way-to-set-allow-access-to-azure-services-in-microsoft-dbforpostgre).
+## Task 4.4: Deploy entire full stack
 
-```bash
+In this task we want to make sure we have all required parameters in `parameters.json` file in `./Labs/4-full-stack` folder. 
 
-../templates
-├── main.bicep <--- 
-├── main.rg.bicep
-├── modules
-│   ├── arc.bicep
-│   ├── keyvault.bicep <--- 
-│   └── postgres.bicep <--- 
-├── parameters.dev.json
-└── parameters.prod.json <---
+```json
+
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourcePrefix": {
+            "value": "abw"
+        },
+        "location": {
+            "value": "eastasia"
+        },
+        "tags": {
+            "value": {
+                "purpose": "Azure Bicep Workshop",
+                "environment": "dev"
+            }
+        },
+        "acrSku": {
+            "value": "Basic"
+        },
+        "firewallRulesList": {
+            "value": [{
+                "name": "myip",
+                "endIpAddress": "0.0.0.0",
+                "startIpAddress": "0.0.0.0"
+            },
+            {
+                "name": "azure_services",
+                "endIpAddress": "0.0.0.0",
+                "startIpAddress": "0.0.0.0"
+            }]
+        },
+        "capacity": {
+            "value": 1
+        },
+        "repositoryUrl": {
+            "value": "https://github.com/erudinsky/Azure-Bicep-Workshop"
+        },
+        "branch": {
+            "value": "main"
+        }
+    }
+}
 
 ```
 
-### Test deployed PSQL
+You'll need the name of the KeyVault (the one that you deployd in [Lab 3](3-Secrets.md)). It should be generated with uniqueString and it's value should be something like this `abwcrivf32izq2hekv`
+
+Feel free to change `location`, `acrSku`, add / change / remove `tags`. Once done, let's deploy entire application by doing the following: 
 
 ```bash
 
-psql sslmode=require -h <host> -U <user> --password <password> -d postgres
+# ‼️ Make sure you are in /Labs/4-full-stack folder
+
+# Validate the template and all references from it
+
+az deployment group validate -g azure-bicep-workshop -f main.bicep -p parameters.json keyVaultName=<replace-with-yours> -n ABWFullStackDeployment
+
+# Dry-run of the deployment with what-if
+
+az deployment group what-if -g azure-bicep-workshop -f main.bicep -p parameters.json keyVaultName=<replace-with-yours> -n ABWFullStackDeployment
+
+# Create the actual deployment
+
+az deployment group create -g azure-bicep-workshop -f main.bicep -p parameters.json keyVaultName=<replace-with-yours> -n ABWFullStackDeployment
+
+```
+
+Review result in Azure Portal: 
+
+![Full Stack Deployed](../.attachments/4-full-stack.png)
+
+### Task 4.4: Work with deployed database
+
+In this task we will connect to remote database server, create database and structure and seed some data.
+
+```bash
+
+psql sslmode=require -h <servername> -U <user@hostname> -d postgres
 
 \l
 create database abw_db;
@@ -502,6 +255,12 @@ create database abw_db;
 \q
 
 ```
+
+You can see `servername` and `user@hostname` in the portal like this: 
+
+![PSQL credentials](../.attachments/4-psql-credentials.png)
+
+Your password should be in the Key Vault (in case you forgot it).
 
 Now let's seed some data in it: 
 
@@ -551,7 +310,7 @@ abw_db=#
 
 PostgreSQL for production environment is complete.
 
-## Backup and Restore
+## Task 4.5: Backup and Restore (Optionally)
 
 While in Azure's environment you can configure automatic backup and restore your DB it worth to mention the following steps for manual backup / restore operations
 

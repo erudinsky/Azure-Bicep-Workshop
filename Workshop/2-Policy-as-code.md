@@ -47,8 +47,8 @@ az deployment sub create -f main.bicep -p parameters.json -n ABWPoliciesDeployme
 
 The result of the last command should provision the actual resources. Validate them via Azure Portal:
 
-![Policy Defintions](../.attachments/policy-definitions.png)
-![Policy Assignments](../.attachments/policy-assignments.png)
+![Policy Defintions](../.attachments/3-policy-definitions.png)
+![Policy Assignments](../.attachments/3-policy-assignments.png)
 
 Review bicep module `./modules/policies.bicep` to learn about policy definition and policy assignment resources. 
 
@@ -58,7 +58,7 @@ Learn about [subscription target scope](https://learn.microsoft.com/en-us/azure/
 
 Now you can check Compliance page to find incompliant resources in your environment. Find out all resources that are not compliant to the new policies (no single tag on resource, deployed not in `swedencentral`, `westeurope`, `eastasia` locations).
 
-![Policy Compliance](../.attachments/policy-compliance.png)
+![Policy Compliance](../.attachments/3-policy-compliance.png)
 
 ## Summary
 

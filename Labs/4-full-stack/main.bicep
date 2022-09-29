@@ -33,7 +33,7 @@ param staticSiteName string = '${resourcePrefix}${uniqueString(location)}swa'
 param repositoryUrl string
 param branch string
 
-module ACR 'modules/arc.bicep' = {
+module ACR '../modules/arc.bicep' = {
   name: 'acr'
   params: {
     location: location
@@ -48,7 +48,7 @@ resource kv 'Microsoft.KeyVault/vaults@2019-09-01' existing = {
   scope: resourceGroup()
 }
 
-module postgreSQL 'modules/postgres.bicep' = {
+module postgreSQL '../modules/postgres.bicep' = {
   name: 'postgreSQL'
   params: {
     location: location
@@ -61,7 +61,7 @@ module postgreSQL 'modules/postgres.bicep' = {
   }
 }
 
-module webApp 'modules/webapp.bicep' = {
+module webApp '../modules/webapp.bicep' = {
   name: 'webApp'
   params: {
     appServicePlanName: appServicePlanName
@@ -76,7 +76,7 @@ module webApp 'modules/webapp.bicep' = {
   }
 }
 
-module staticSite 'modules/staticsite.bicep' = {
+module staticSite '../modules/staticsite.bicep' = {
   name: 'staticSite'
   params: {
     staticSiteName: staticSiteName
