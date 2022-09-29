@@ -120,4 +120,4 @@ Try calling with postman (make sure bearerToken has been generated and passed al
 * [Bicep playground](https://aka.ms/bicepdemo)
 * Resource explorer in Azure Portal
 
-Move to the next [task - set Azure environment](2-Set-Azure-environment.md).
+Move to the next [step - RBAC as code](1-RBAC-as-code.md).
