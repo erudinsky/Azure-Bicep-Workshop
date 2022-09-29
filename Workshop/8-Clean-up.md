@@ -10,7 +10,7 @@ az group delete -g azure-bicep-workshop -y
 
 ```
 
-## Task 8.2: Deleted (purge) Key Vault:
+## Task 8.2: Delete (purge) Key Vault:
 
 ![Purge KV](../.attachments/8-purge-kv.png)
 
