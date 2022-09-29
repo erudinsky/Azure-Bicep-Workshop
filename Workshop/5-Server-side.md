@@ -2,6 +2,8 @@
 
 In this lab we will look into server side part.
 
+## Task 5.1: Work with application locally (optionally)
+
 Main dependencies:
 
 * Python 3.10.2
@@ -12,17 +14,7 @@ Virtual environments enable you to have an isolated space on your computer for P
 
 ```bash
 
-cd <server_direcrtory>
-python3 -m venv env
-source env/bin/activate
-
-```
-
-## Task 5.1: Work with application locally (optionally)
-
-```bash
-
-/server
+5-server
 ├── Dockerfile
 ├── app.py
 ├── requirements.txt
