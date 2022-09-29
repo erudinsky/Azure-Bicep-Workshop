@@ -328,4 +328,15 @@ psql sslmode=<mode> -h <host> -U <user> -f abw_db.sql postgres -d postgres
 
 ```
 
-Move to the next [task - server side](4-Server-side.md).
+## Summary
+
+In this lab we learnt how to create full stack application's infra 😀:
+
+* PostgreSQL
+* Web App and Service Plan
+* Static Site
+* Container Registry for Image
+* Managed Identity that is used by Web App for pulling image from ACR
+
+
+Move to the [Server side](5-Server-side.md).
