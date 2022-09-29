@@ -7,7 +7,7 @@
 <script>
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://abwheomgyk2kukrqwebapp.azurewebsites.net/';
+axios.defaults.baseURL = 'https://abwg2mnp5ebrtt4gwebapp.azurewebsites.net';
 
 export default {
   name: 'Ping',

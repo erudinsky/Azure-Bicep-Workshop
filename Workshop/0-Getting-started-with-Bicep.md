@@ -108,6 +108,17 @@ Try calling with postman (make sure bearerToken has been generated and passed al
 
 ## Application reference
 
+With the next chapter and further we will be doing labs and building infrastructure in Azure using templates. The following resources will be provisioned:
+
+- Roles and policies;
+- KeyVault for secrets;
+- Container registry for backend image;
+- PostgreSQL as database;
+- Web app and service plan for backend;
+- Static web site for vuejs (client).
+
+Check high-level reference architecture:
+  
 ![Full Stack Application in Azure with Bicep](/.attachments/full-stack-with-bicep.png)
 
 [![Deploy to Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/)
@@ -120,4 +131,4 @@ Try calling with postman (make sure bearerToken has been generated and passed al
 * [Bicep playground](https://aka.ms/bicepdemo)
 * Resource explorer in Azure Portal
 
-Move to the next [task - set Azure environment](2-Set-Azure-environment.md).
+Move to the next step - [RBAC as code](1-RBAC-as-code.md).

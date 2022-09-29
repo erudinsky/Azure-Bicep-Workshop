@@ -6,7 +6,7 @@
             "value": "abw"
         },
         "location": {
-            "value": "swedencentral"
+            "value": "eastasia"
         },
         "tags": {
             "value": {
@@ -20,8 +20,8 @@
         "firewallRulesList": {
             "value": [{
                 "name": "myip",
-                "endIpAddress": "myip",
-                "startIpAddress": "myip"
+                "endIpAddress": "0.0.0.0",
+                "startIpAddress": "0.0.0.0"
             },
             {
                 "name": "azure_services",
@@ -33,7 +33,7 @@
             "value": 1
         },
         "repositoryUrl": {
-            "value": "https://github.com/erudinsky/Azure-Bicep-Workshop"
+            "value": "https://github.com/<github_user>/Azure-Bicep-Workshop"
         },
         "branch": {
             "value": "main"

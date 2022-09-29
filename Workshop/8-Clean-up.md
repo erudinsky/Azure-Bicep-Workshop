@@ -12,7 +12,7 @@ az group delete -g azure-bicep-workshop -y
 
 2. Deleted (purge) Key Vault:
 
-![Purge KV](../.attachments/purge-kv.png)
+![Purge KV](../.attachments/8-purge-kv.png)
 
 3. Remove custom roles and role assignments
 4. Remove assignment of service principal (and service principal itself) that was used in DevOps part.
