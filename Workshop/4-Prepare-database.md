@@ -1,6 +1,6 @@
 ## Lab 4 - PSQL configuration and the rest of infra deployment
 
-This is the fourth hands-on lab of this workshop and in includes several modules. In this module we will look into database. 
+In this lab we will look into database. We will also deploy the rest of infra for our app since there are dependencies between resources and it's a great oportunity to learn how to work with outputs and references.
 
 ## Task 4.1: PosgreSQL for development (optionally)
 

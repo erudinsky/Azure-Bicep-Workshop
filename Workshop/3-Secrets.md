@@ -1,6 +1,6 @@
 ## Lab 3 - KeyVault and secrets
 
-This is the third hands-on lab of this workshop. In this lab we will do the following: 
+In this lab we will do the following: 
 
 * Create Azure Key Vault;
 * Create three secrets.

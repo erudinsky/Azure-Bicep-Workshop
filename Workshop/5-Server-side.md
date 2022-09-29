@@ -1,6 +1,6 @@
 ## Lab 5 - Server Side configuration
 
-This is the 5th hands-on lab of this workshop. In this module we will look into server side part.
+In this lab we will look into server side part.
 
 Main dependencies:
 
@@ -18,7 +18,7 @@ source env/bin/activate
 
 ```
 
-## Application 
+## Task 5.1: Work with application locally (optionally)
 
 ```bash
 
@@ -65,9 +65,21 @@ Validate if the application runs with `flask run`, type in browser the following
 
 Stop running application with `CTRL+C`.
 
-## Dockerize
+## Task 5.2: Dockerize
 
-Review Dockerfile, build, tag and push image to ACR.
+Work in the folder `./Labs/5-server` that has the following content:
+
+```bash 
+
+5-server
+├── Dockerfile
+├── app.py
+├── requirements.txt
+└── seed.py
+
+```
+
+Review `Dockerfile`, build, tag and push image to ACR.
 
 ```Dockerfile
 FROM python:latest
@@ -78,6 +90,10 @@ COPY app.py app.py
 COPY seed.py seed.py
 CMD [ "python", "app.py"]
 ```
+
+To get the name of your ACR:
+
+![ACR](../.attachments/5-acr-login.png)
 
 ```bash
 
@@ -101,116 +117,49 @@ docker run -p 5000:5000 <your_acr>.azurecr.io/server
 
 ```
 
-## Web App with Bicep
+> For Mac users with M1/M2 chipsets you'll need to use buildx for building image locally ([more information](https://docs.docker.com/build/building/multi-platform/)). Example of such build would be:
 
-To host our flask application in production let's use Web App (PaaS service that gives 99.99% SLA and is easy to scale and maintain). The Web App as well as it's App Service Plan, Managed Identiy and ACR have been provisioned as part of the main deployment, let's review it's template:
+```bash
 
-```bicep 
+# change directory to ./Labs/5-server
 
-// main.bicep
-
-// WebApp
-
-param appServicePlanName string = '${resourcePrefix}${uniqueString(location)}plan'
-param webApplicationName string = '${resourcePrefix}${uniqueString(location)}webapp'
-
-module webApp 'modules/webapp.bicep' = {
-  name: webApplicationName
-  params: {
-    appServicePlanName: appServicePlanName
-    webApplicationName: webApplicationName
-    location: location
-    tags: tags
-    acrLogin: ACR.outputs.acrLogin
-    managedIdentityName: managedIdentityName
-  }
-}
-
-// modules/webapp.bicep
-
-param appServicePlanName string
-param location string
-param webApplicationName string
-param tags object
-param acrLogin string
-param managedIdentityName string
-
-resource appServicePlan 'Microsoft.Web/serverfarms@2021-03-01' = {
-  name: appServicePlanName
-  location: location
-  kind: 'linux'
-  properties: {
-    reserved: true
-  }
-  sku: {
-    name: 'F1'
-  }
-}
-
-resource webApplication 'Microsoft.Web/sites@2021-03-01' = {
-  name: webApplicationName
-  location: location
-  tags: tags
-  properties: {
-    serverFarmId: appServicePlan.id
-    siteConfig: {
-      linuxFxVersion: 'DOCKER|${acrLogin}/server:latest'
-      appSettings: [
-        {
-          name: 'WEBSITES_PORT'
-          value: '5000'
-        }
-      ]
-      acrUseManagedIdentityCreds: true
-      acrUserManagedIdentityID: managedIdentity.properties.clientId
-    }
-  }
-  identity: {
-    type: 'UserAssigned'
-    userAssignedIdentities: {
-      '${managedIdentity.id}': {}
-    }
-  }
-}
-
-resource acrPullRoleDefinition 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
-  scope: subscription()
-  // This is the AcrPull role, which is used to pull images from ACR. See https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
-  name: '7f951dda-4ed3-4680-a7ca-43fe172d538d'
-}
-
-resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
-  name: managedIdentityName
-  location: location
-}
-
-resource roleAssignment 'Microsoft.Authorization/roleAssignments@2020-04-01-preview' = {
-  name: guid(managedIdentity.id, acrLogin, acrPullRoleDefinition.id)
-  properties: {
-    roleDefinitionId: acrPullRoleDefinition.id
-    principalId: managedIdentity.properties.principalId
-    principalType: 'ServicePrincipal'
-  }
-}
+docker buildx build --platform linux/amd64 -t <acrName>.azurecr.io/server .
+docker push <acrName>.azurecr.io/server
 
 ```
 
-### Managed identity
+Validate that your image has been pushed to ACR by going to Azure Portal > Azure Container Registry > Repositories:
 
-![](../.attachments/when-use-managed-identities.png)
+![ACR - repository](../.attachments/5-acr-images.png)
 
-There are two types of managed identities:
+## Task 5.3: Web App with Bicep
 
-* System-assigned. Some Azure services allow you to enable a managed identity directly on a service instance. When you enable a system-assigned managed identity, an identity is created in Azure AD. The identity is tied to the lifecycle of that service instance. When the resource is deleted, Azure automatically deletes the identity for you. By design, only that Azure resource can use this identity to request tokens from Azure AD.
-* User-assigned. You may also create a managed identity as a standalone Azure resource. You can create a user-assigned managed identity and assign it to one or more instances of an Azure service. For user-assigned managed identities, the identity is managed separately from the resources that use it.
+To host our flask application in production let's use Web App (PaaS service that gives 99.99% SLA and is easy to scale and maintain). The Web App as well as it's App Service Plan, Managed Identiy and ACR have been provisioned as part of the main deployment, let's review it's template:
 
-## Working with API
+In the [Lab 4](4-Prepare-database.md) we deployed several resources that we use for our backend:
+
+* Web App and Service Plan
+* Managed Identity
+* Container Registry
+
+We just used Container Registry in Task 5.2 for our backend application. Now review module `./Labs/modules/webapp.bicep` and pay attention to the following: 
+
+1. Web App has references to PSQL via outputs (most of the references are used for authentication with DB);
+2. Managed Identity is used for pull image from ACR (otherwise it won't authorize). Check attributes `acrUseManagedIdentityCreds` and `acrUserManagedIdentityID`.
+3. We also use roleAssignment resource to assign acrPull [builtin](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) role to ACR, so our Web App can pull succesfully.
+
+> There are two types of managed identities:
+>
+> * System-assigned. Some Azure services allow you to enable a managed identity directly on a service instance. When you enable a system-assigned managed identity, an identity is created in Azure AD. The identity is tied to the lifecycle of that service instance. When the resource is deleted. Azure automatically deletes the identity for you. By design, only that Azure resource can use this identity to request tokens from Azure AD.
+> * User-assigned. You may also create a managed identity as a standalone Azure resource. You can create a user-assigned managed identity and assign it to one or more instances of an Azure service. For user-assigned managed identities, the identity is managed separately from the resources that use it.
+
+## Task 5.4: Working with API
 
 Now that we have API deployed, let's play with it. Check `/postman` folder and get exported collection.
 
-![Postman collection](/.attachments/postman.png)
+![Postman collection](/.attachments/5-postman.png)
 
-Make sure to change baseURL in variables (this is FQDN of your App Service). 
+Make sure to change baseURL in variables (this is FQDN of your App Service). The endpoint (baseULR) is the url of your web app.
 
 ## Resources
 
@@ -218,4 +167,4 @@ Make sure to change baseURL in variables (this is FQDN of your App Service).
 * [Web App resource](https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=bicep)
 * [Managed Identity](https://docs.microsoft.com/en-us/azure/templates/microsoft.managedidentity/userassignedidentities?tabs=bicep)
 
-Move to the next [task - client with vuejs](5-Client-with-vuejs.md).
+Move to the next task [client with vuejs](6-Client-with-vuejs.md)

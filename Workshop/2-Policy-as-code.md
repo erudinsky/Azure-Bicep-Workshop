@@ -1,6 +1,6 @@
 ## Lab 2 - Policy as code (optionally)
 
-This is the second hands-on lab of this workshop. In this lab we will do the following: 
+In this lab we will do the following: 
 
 * Create two policy definitions;
 * Assign two policy definitions to subscription scope.
