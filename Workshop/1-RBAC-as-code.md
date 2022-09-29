@@ -5,8 +5,8 @@
 This is the first hands-on lab of this workshop. In this lab we will do the following: 
 
 * Create three security groups in Azure Active Directory. Members of these groups will get access to resources that they are entitled to see / manage;
-* Create [custom role](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles) definitions and store them under subscription scope;
-* Assign custom roles to relevant security groups.
+* Create [custom role](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles) definitions under subscription scope;
+* Assign custom roles to relevant security groups under subscription scope.
 
 In a large Azure environment such approach helps to keep properly control on custom role's permissions and manage them at-scale.
 
@@ -18,7 +18,7 @@ Using web browser, login to Azure Portal and find Azure Active Directory. Naviga
 
 ## Task 2: create and assign custom roles to security groups
 
-Switch to your terminal (PS, CMD, shell) and change your directory to `./templates/1-rbac`. This folder contains main template that has references to modules (modules are located in `modules` folder, in this lab we only use `roles.bicep` module) and custom role definitions `roles` folder that we need (like you can see below):
+Switch to your terminal (PS, CMD, shell) and change your directory to `./templates/1-rbac`. This folder contains main template that has references to module `roles.bicep` and custom role definitions `roles` with three json roles. There is also `parameters.json` file that should be use to specify all required parameters.
 
 ```bash
 
