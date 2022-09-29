@@ -109,7 +109,7 @@ Let's review deployed resources:
 ![KV - secrets](../.attachments/3-keyvault-secrets.png)
 ![KV - access policies](../.attachments/3-keyvault-access-policies.png)
 
-Learn about [secure parameters](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#secure-parameters) and parameters in general. We used secure parameters for dbuser, password and token. Learn how to deploy resources to [another target scope](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-resource-group?tabs=azure-cli#scope-to-different-resource-group) using modules.
+Learn about [secure parameters](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#secure-parameters) and parameters in general. We used secure parameters for dbuser, password and token. Learn how to deploy resources to [another target scope](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-resource-group?tabs=azure-cli#scope-to-different-resource-group) using modules. We used [uniqueString](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions-string#uniquestring) function as the name generator for KV.
 
 ## Summary
 
