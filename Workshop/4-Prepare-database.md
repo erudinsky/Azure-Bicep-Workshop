@@ -265,7 +265,7 @@ Your password should be in the Key Vault (in case you forgot it).
 Now let's seed some data in it: 
 
 ```sql
-DROP DATABASE abw_db;
+
 CREATE DATABASE abw_db;
 \c abw_db;
 
