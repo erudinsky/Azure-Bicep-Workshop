@@ -10,19 +10,18 @@ This is the first hands-on lab of this workshop. In this lab we will do the foll
 
 In a large Azure environment such approach helps to keep properly control on custom role's permissions and manage them at-scale.
 
-## Task 1.1: create security groups in Azure Active Directory
+## Task 1.1: Create security groups in Azure Active Directory
 
 Using web browser, login to Azure Portal and find Azure Active Directory. Navigate to Manage > Groups. Create three groups with the names: `ABWOwner`, `ABWContributor`, `ABWReader`. Copy object Id of each group, we will use them for assignment later in our template.
 
 ![Azure AD groups objectId](../.attachments/aad-groups-objectid.png)
 
-## Task 1.2: create and assign custom roles to security groups
+## Task 1.2: reate and assign custom roles to security groups
 
 Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/1-rbac`. This folder contains main template that has references to module `roles.bicep` and custom role definitions `roles` with three json roles. There is also `parameters.json` file that should be used to specify all required parameters.
 
 ```bash
 
-Labs
 .
 ├── 1-rbac
 │   ├── main.bicep

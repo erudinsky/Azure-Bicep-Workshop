@@ -7,28 +7,29 @@ This is the second hands-on lab of this workshop. In this lab we will do the fol
 
 In a large Azure environment such approach helps to keep properly control on policies and manage them at-scale.
 
-## Task 2.1: create and assign policies to subscription scope
+## Task 2.1: Create and assign policies to subscription scope
 
 Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/2-policies`. This folder contains main template that has references to module `policies.bicep` and custom policy definitions in folder `policies` as well as `parameters.json` files to define required parameters:
 
 ```bash
 
-Labs
 .
-├── main.bicep
-├── parameters.json
-└── policies
-    ├── a_tag_policy.json
-    └── allowed_location.json
+├── 2-policies
+│   ├── main.bicep
+│   ├── parameters.json
+│   └── policies
+│       ├── a_tag_policy.json
+│       └── allowed_location.json
 └── modules
     └── policies.bicep
+
 ```
 
 Files in `policies` folder are json policy definitions. Main templates is set to deploy to subscription scope using `targetScope`. Let's run the deployment using `az deployment` command in the following way:
 
 ```bash
 
-# ‼️ Make sure you are in /templates/1-policies folder
+# ‼️ Make sure you are in /Labs/1-policies folder
 
 # Validate the template and all references from it
 

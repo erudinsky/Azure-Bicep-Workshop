@@ -1,32 +1,44 @@
-## Azure CLI
+## Lab 3 - KeyVault and secrets
 
-Main dependencies:
+This is the third hands-on lab of this workshop. In this lab we will do the following: 
 
-* [Azure account](https://azure.microsoft.com/en-gb/free/)
-* azure-cli 2.35.0 (or above)
-* Bicep CLI version 0.5.6 (or above)
+* Create Azure Key Vault;
+* Create three secrets.
 
-Make sure to use proper subscription. Double check listing resource groups.
+[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts) is a cloud service for securely storing and accessing secrets. A secret is anything that you want to tightly control access to, such as API keys, passwords, certificates, or cryptographic keys. Key Vault service supports two types of containers: vaults and managed hardware security module(HSM) pools. Vaults support storing software and HSM-backed keys, secrets, and certificates. Managed HSM pools only support HSM-backed keys. See Azure Key Vault REST API overview for complete details.
 
-```bash 
+We will provision three secrets: `dbuser`, `dbpassword` for our future PostgreSQL DB and `token` that will be used by Static Site service to create workflow (GitHub actions) in order to deploy vuejs changes (this will be explained in [Lab 6](6-Client-with-vuejs.md), don't worry for now).
 
-# list logged in accounts
 
-az account list -o table
+## Task 3.1: Prepare secrets
 
-# set desired account
+The password of the administrator `dbpassword` - minimum 8 characters and maximum 128 characters. Password must contain characters from three of the following categories: English uppercase letters, English lowercase letters, numbers, and non-alphanumeric characters ([source](https://learn.microsoft.com/en-us/cli/azure/postgres/server?view=azure-cli-latest#az-postgres-server-create-optional-parameters)).
 
-az account set -s <`subscriptionId` or `subscriptionName`>
+`dbuser` can be any string
 
-# list resource groups
+`token` should be generated via GitHub, follow [this instruction](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). Make sure that you pick all permissions in `repo` and `workflow` like on the screenshot below:
 
-az group list -o table
+![GitHub token](./../.attachments/3-github-token.png)
+
+Store somewhere temporary the token.
+
+## Task 3.2: Deployment of resource group and Key Vault with secrets
+
+Let's deploy resource group and key vault with secrets. Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/3-secrets`. This folder contains main template that has references to module `keyvault.bicep`. There is also `parameters.json` file that should be used to specify all required parameters.
+
+```bash
+
+.
+├── 3-keyvault
+│   ├── main.bicep
+│   └── parameters.json
+└── modules
+    └── keyvault.bicep
 
 ```
 
-## Deploying custom roles, policies and key vault (with rg)
+Let's review parameters: 
 
-Let's deploy resource group and some init resources (KV, policies and custom roles) with Bicep to `subscription` targetScope. Review parameters for this deployment: 
 
 ```json
 
@@ -44,211 +56,63 @@ Let's deploy resource group and some init resources (KV, policies and custom rol
             }
         },
         "tenantId": {
-            "value": "<your-tenantId>"
+            "value": "00000000-0000-0000-0000-000000000000" 
         },
         "objectId": {
-            "value": "<your-objectId>"
-        },
-        "subscriptionId": {
-            "value": "<your-subscrptionId>"
+            "value": "00000000-0000-0000-0000-000000000000"
         },
         "location": {
-            "value": "<your-region>"
-        },
-        "groups": {
-            "value": {
-                "owner": "<objectId-of-owner-group>",
-                "contributor": "<objectId-of-contributor-group>",
-                "reader": "<objectId-of-reader-group>"
-            }
+            "value": "swedencentral"
         }
     }
 }
 
 ```
 
-You'll need: 
+Let's find out `objectId` and `tenantId`:
 
-1. `tenantId` - this is used for access policies in KV
-2. `objectId` - this is used for access policies in KV (use your personal identity's objectID to allow your-self manage KV via portal etc)
-3. `subscriptionId` - target subscription ID for deployment
-4. `location` - region for RG and other resources
-5. `groups` - create AAD groups manually and name them *owner*, *contributor* and *reader* and get the objectIds of the groups. Feel free to use portal or CLI.
+1. `az account list -o table` should output `tenantId`;
+2. You can find `objectId` of you user in the portal Azure Active Directory > Users > <find yourself> > Overview.
+
+Let's deploy it:
 
 ```bash
 
-tree templates # This is the folder with all templates used in with Workshop
+# ‼️ Make sure you are in /Labs/3-secrets folder
 
-templates
-├── main.bicep
-├── main.init.bicep
-├── modules
-│   ├── arc.bicep
-│   ├── keyvault.bicep
-│   ├── policies.bicep
-│   ├── postgres.bicep
-│   ├── roles.bicep
-│   ├── staticsite.bicep
-│   └── webapp.bicep
-├── parameters.example.json
-├── parameters.init.example.json
-├── policies
-│   ├── a_tag_policy.json
-│   └── allowed_location.json
-└── roles
-    ├── contributor.json
-    ├── owner.json
-    └── reader.json
+# Validate the template and all references from it
 
-# To deploy roles, policies, RG and KV use the following commands:
+az deployment sub validate -f main.bicep -p parameters.json -n ABWSecretsDeployment
 
-az deployment sub validate \
-    -f templates/main.init.bicep \
-    -p templates/parameters.init.example.json \
-    -l eastus2 \
-    -resourcePrefix abw
+# Dry-run of the deployment with what-if
 
-az deployment sub what-if \
-    -f templates/main.init.bicep \
-    -p templates/parameters.init.example.json \
-    -l eastus2 \
-    -resourcePrefix abw
+az deployment sub what-if -f main.bicep -p parameters.json -n ABWSecretsDeployment
 
-az deployment sub create \
-    -f templates/main.init.bicep \
-    -p templates/parameters.init.example.json \
-    -l eastus2 \
-    -resourcePrefix abw
+# Create the actual deployment
+
+az deployment sub create -f main.bicep -p parameters.json -n ABWSecretsDeployment
 
 ```
 
-NB! This step also uses module with Azure KeyVault and add a couple of secrets for communications between parts of our application (server <> db).
+> NB! This step also uses module with Azure KeyVault and add a couple of secrets for communications between parts of our application (server <> db).
 
-You'll be prompted to enter `dbuser` and `dbpassword` and `token` from GH account (for static app deployment) and they'll be stored in Azure KeyVault's secrets. We will consume them from our Server Side App.
+You'll be prompted to enter `dbuser` and `dbpassword` and `token` from GH account (for static app deployment) and they'll be stored in Azure KeyVault's secrets. We will consume them from our Server Side App and Static Site services.
 
 At the end of this step you should have the following:
 
-* Three custom role definitions and three role assignments of these roles to subscription scope
-* Two custom policies (audit on lacking a tag and audit on allowed locations for resources)
 * Resource Group 
 * KeyVault with 3 secrets (dbuser, dbpassword and token)
 
-This should be deployed:
+Let's review deployed resources: 
 
-![Init deploy visualization](../.attachments/bicep-init-visualization.png)
+![Resource group](../.attachments/3-resource-group.png)
+![KV - secrets](../.attachments/3-keyvault-secrets.png)
+![KV - access policies](../.attachments/3-keyvault-access-policies.png)
 
-Since we have deployed custom roles and assigned them we have Access control (IAM) section changed as well:
+Learn about [secure parameters](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#secure-parameters) and parameters in general. We used secure parameters for dbuser, password and token. Learn how to deploy resources to [another target scope](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-resource-group?tabs=azure-cli#scope-to-different-resource-group) using modules.
 
-![Custom roles](/.attachments/custom-roles.png)
-![Custom roles assignments](../.attachments/custom-roles-assignments.png)
+## Summary
 
-Review policies as well. We should now have two policy definitions and assignments created from custom json file. Based on the screenshot below I have everything compliant according to my *allowed_location.json* policy, but there are some incompliant resources according to *a_tag_policy.json* policy (it complains when there is no tag on resource). What is your situation? 
+In this lab we learnt how to create resource group and key vault with secrets.
 
-![Compliant resources](../.attachments/policy-compliance.png)
-
-Deployment of management groups, policies and RBAC is one of the fundamental part of Azure Landing Zones. You can learn more about it in this project exploring [high-level deployment flow](https://github.com/Azure/ALZ-Bicep/wiki/DeploymentFlow#high-level-deployment-flow). In this workshop we only cover a little bit of policies and RBAC.
-
-![High level deployment flow - Azure Landing Zones w/ Bicep](../.attachments/high-level-deployment-flow.png)
-
-## Deploy the rest of the resources
-
-First review parameters for this deployment: 
-
-```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "resourcePrefix": {
-            "value": "abw"
-        },
-        "location": {
-            "value": "westeurope"
-        },
-        "tags": {
-            "value": {
-                "purpose": "Azure Bicep Workshop",
-                "environment": "dev"
-            }
-        },
-        "acrSku": {
-            "value": "Basic"
-        },
-        "firewallRulesList": {
-            "value": [{
-                "name": "myip",
-                "endIpAddress": "<add_your_IP>",
-                "startIpAddress": "<add_your_IP>"
-            }]
-        },
-        "capacity": {
-            "value": 1
-        },
-        "repositoryUrl": {
-            "value": "https://github.com/erudinsky/Azure-Bicep-Workshop"
-        },
-        "branch": {
-            "value": "main"
-        }
-    }
-}
-```
-
-1. Set `endIpAddress` and `startIpAddress` in `firewallRulesList` with the values of your public IP. You can use any public service if your IP is dynamic and not known or you can also do `curl icanhazip.com` to return the IP via terminal.
-2. `repositoryUrl` and `branch` both will be used for static site later. 
-
-```bash 
-
-tree templates # This is the folder with all templates used in with Workshop
-templates
-├── main.bicep
-├── main.init.bicep
-├── modules
-│   ├── arc.bicep
-│   ├── keyvault.bicep
-│   ├── policies.bicep
-│   ├── postgres.bicep
-│   ├── roles.bicep
-│   ├── staticsite.bicep
-│   └── webapp.bicep
-├── parameters.example.json
-├── parameters.init.example.json
-├── policies
-│   ├── a_tag_policy.json
-│   └── allowed_location.json
-└── roles
-    ├── contributor.json
-    ├── owner.json
-    └── reader.json
-
-# To deploy the rest of the resources use the following command:
-
-az deployment group validate \
-    -f templates/main.bicep \
-    -p templates/parameters.example.json 
-
-az deployment group what-if \
-    -f templates/main.bicep \
-    -p templates/parameters.example.json 
-
-az deployment group create \
-    -f templates/main.bicep \
-    -p templates/parameters.example.json 
-
-```
-
-This step will deploy the following resources: 
-
-* PSQL (FlexibleServer)
-* Web App and Service Plan
-* Static site
-* Managed Identity
-* Azure Container Registry
-
-![Azure Bicep Resources](../.attachments/bicep-resources-visualization.png)
-
-And the view from the portal: 
-
-![Azure Portal - resources created](../.attachments/azure-portal-resources.png)
-
-Hope you can see the above then move to the next [task - prepare database](3-Prepare-database.md).
+Move to [Lab 4 - Prepare database](4-Prepare-database.md)
