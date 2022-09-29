@@ -330,13 +330,12 @@ psql sslmode=<mode> -h <host> -U <user> -f abw_db.sql postgres -d postgres
 
 ## Summary
 
-In this lab we learnt how to create full stack application's infra 😀:
+In this lab we learnt how to create full stack application's infra 😀 and configured SQL. In the nest modules we will explore the rest of templates that we used for the app.
 
 * PostgreSQL
 * Web App and Service Plan
 * Static Site
 * Container Registry for Image
 * Managed Identity that is used by Web App for pulling image from ACR
-
 
 Move to the [Server side](5-Server-side.md).
