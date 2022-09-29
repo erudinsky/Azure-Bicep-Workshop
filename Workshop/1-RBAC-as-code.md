@@ -18,14 +18,15 @@ Using web browser, login to Azure Portal and find Azure Active Directory. Naviga
 
 ## Task 2: create and assign custom roles to security groups
 
-Switch to your terminal (PS, CMD, shell) and change your directory to `./templates/1-rbac`. This folder contains main template that has references to module `roles.bicep` and custom role definitions `roles` with three json roles. There is also `parameters.json` file that should be use to specify all required parameters.
+Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/1-rbac`. This folder contains main template that has references to module `roles.bicep` and custom role definitions `roles` with three json roles. There is also `parameters.json` file that should be used to specify all required parameters.
 
 ```bash
 
-templates
+Labs
 .
 ├── 1-rbac
 │   ├── main.bicep
+│   ├── parameters.json
 │   └── roles
 │       ├── contributor.json
 │       ├── owner.json
@@ -35,9 +36,9 @@ templates
 
 ```
 
-Files in `roles` folder are json role definitions (copy of similar builtin role). Main templates is set to deploy to subscription scope using `targetScope` and it will pick subscription Id from deployment target (`az deployment sub` command will do the magic later). If you use multiple subscriptions make sure `az account list -o table` in your terminal shows `true` under `IsDefault` for the desired target to avoid surprizes (if not use `az account set -s subscriptionId` to set proper target). Save subscriptionId value as well, you'll need it soon for parameters. You'll also need security group object Ids that you got from Task 1.
+Files in `roles` folder are json role definitions (copy of similar builtin role). Main templates is set to deploy to subscription scope using `targetScope` and it will pick subscription Id from deployment target (`az deployment sub` command will do the magic later). If you use multiple subscriptions make sure `az account list -o table` in your terminal shows `true` under `IsDefault` for the desired target to avoid surprizes (if not, use `az account set -s subscriptionId` to set proper target). Save subscriptionId value as well, you'll need it soon for parameters. You'll also need security group object Ids that you got from Task 1.
 
-Parameters (make sure to use your owner, contributor and reader values from Task 1). Make sure to replace subscriptionId with your value. 
+Set parameters in `parameters.json` file (make sure to use your owner, contributor and reader values from Task 1). Make sure to replace subscriptionId with your value. 
 
 ```json
 
@@ -64,7 +65,7 @@ Let's run the deployment using `az deployment` command in the following way:
 
 ```bash
 
-# ‼️ Make sure you are in /templates/1-rbac folder
+# ‼️ Make sure you are in /Labs/1-rbac folder
 
 # First, let's use validate to check the template and modules:
 
@@ -85,6 +86,10 @@ The result of the last command should provision the actual resources. Validate t
 
 ![RBAC - IAM roles](../.attachments/rbac-iam-roles.png)
 ![RBAC - IAM role assignments](../.attachments/rbac-iam-role-assignment.png)
+
+Review bicep module `./modules/roles.bicep` to learn about role definition and role assignment resources. 
+
+Learn about [subscription target scope](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli), [loops](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/loops) and [modules](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules).
 
 ## Summary
 
