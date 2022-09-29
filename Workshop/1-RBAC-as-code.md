@@ -36,7 +36,7 @@ Labs
 
 ```
 
-Files in `roles` folder are json role definitions (copy of similar builtin role). Main templates is set to deploy to subscription scope using `targetScope` and it will pick subscription Id from deployment target (`az deployment sub` command will do the magic later). If you use multiple subscriptions make sure `az account list -o table` in your terminal shows `true` under `IsDefault` for the desired target to avoid surprizes (if not, use `az account set -s subscriptionId` to set proper target). Save subscriptionId value as well, you'll need it soon for parameters. You'll also need security group object Ids that you got from Task 1.
+Files in `roles` folder are json role definitions (copy of similar builtin role). Main template is set to deploy to subscription scope using `targetScope` and it will pick subscription Id from deployment target (`az deployment sub` command will do the magic later). If you use multiple subscriptions make sure `az account list -o table` in your terminal shows `true` under `IsDefault` for the desired target to avoid surprizes (if not, use `az account set -s subscriptionId` to set proper target). Save subscriptionId value as well, you'll need it soon for parameters. You'll also need security group object Ids that you got from Task 1.
 
 Set parameters in `parameters.json` file (make sure to use your owner, contributor and reader values from Task 1). Make sure to replace subscriptionId with your value. 
 
@@ -93,6 +93,6 @@ Learn about [subscription target scope](https://learn.microsoft.com/en-us/azure/
 
 ## Summary
 
-In chapter we learnt how to provision custom role and assign it to security group. In order to test you can create / invite user to one of the three groups, login with the new user and see what it is able to do and what not (based on membership in group).
+In lab we learnt how to provision custom role and assign it to security group under subscription scope. In order to test you can create / invite user to one of the three groups, login with the new user and see what it is able to do and what not (based on membership in group).
 
 Move to [Lab 2 - Policy as code](2-Policy-as-code.md)

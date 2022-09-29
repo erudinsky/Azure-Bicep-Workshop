@@ -1,4 +1,4 @@
-## Introduction 
+## Lab 2 - Policy as code (optionally)
 
 This is the second hands-on lab of this workshop. In this lab we will do the following: 
 
@@ -9,11 +9,11 @@ In a large Azure environment such approach helps to keep properly control on pol
 
 ## Task 1: create and assign policies to subscription scope
 
-Switch to your terminal (PS, CMD, shell) and change your directory to `./templates/2-policies`. This folder contains main template that has references to modules and custom policy definitions that we need (like you can see below):
+Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/2-policies`. This folder contains main template that has references to module `policies.bicep` and custom policy definitions in folder `policies` as well as `parameters.json` files to define required parameters:
 
 ```bash
 
-
+Labs
 .
 ├── main.bicep
 ├── parameters.json
@@ -49,6 +49,12 @@ The result of the last command should provision the actual resources. Validate t
 ![Policy Defintions](../.attachments/policy-definitions.png)
 ![Policy Assignments](../.attachments/policy-assignments.png)
 
+Review bicep module `./modules/policies.bicep` to learn about policy definition and policy assignment resources. 
+
+Learn about [subscription target scope](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli), [loops](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/loops), also expolore other target scope that might be possible to use for this type of resources (for example management group target scope).
+
 ## Summary
 
-In chapter we learnt how to provision custom role and assign it to security group. In order to test you can create / invite user to one of the four groups, login and see what they are able to do and what not.
+In this lab we learnt how to create policy and assign it to a specific scope. Now you can check Compliance page to find incompliant resources in your environment:
+
+![Policy Compliance](../.attachments/policy-compliance.png)
