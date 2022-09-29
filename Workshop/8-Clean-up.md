@@ -26,3 +26,5 @@ az group delete -g azure-bicep-workshop -y
 ## Congratulations
 
 Congratulations! You have completed this workshop. If you have a feedback please direct it via [@evgenyrudinsky](https://twitter.com/evgenyrudinsky) or contact via [my blog](https://erudinsky.com/). 
+
+![Congrats!](https://media.giphy.com/media/YRuFixSNWFVcXaxpmX/giphy.gif)
