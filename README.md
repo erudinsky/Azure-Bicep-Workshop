@@ -132,3 +132,4 @@ I’m Evgeny Rudinsky, an Cloud Architect based in The Netherlands and author of
 Follow me on [@evgenyrudinsky](https://twitter.com/evgenyrudinsky) and check [my blog](https://erudinsky.com/) if interested in DevOps, cloud native and application security.
 
 Good luck! 🍀
+
