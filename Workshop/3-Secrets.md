@@ -39,7 +39,6 @@ Let's deploy resource group and key vault with secrets. Switch to your terminal 
 
 Let's review parameters: 
 
-
 ```json
 
 {
