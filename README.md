@@ -123,6 +123,31 @@ You can also follow this workshop by watching two videos:
 * [Bicep Fundamentals](https://www.youtube.com/watch?v=KgUT1LoFZfk)
 * [Deploy a full stack application to Azure using Bicep templates](https://www.youtube.com/watch?v=uOLm15RP5P8)
 
+## Shortcut
+
+In case you can't wait and want to deploy everything in one go, proceed with [template](./templates/).
+
+```bash
+
+templates
+├── main.bicep
+├── main.init.bicep
+├── modules
+│   ├── acr.bicep
+│   ├── keyvault.bicep
+│   ├── postgres.bicep
+│   ├── staticsite.bicep
+│   └── webapp.bicep
+├── parameters.gh.json
+└── parameters.init.gh.json
+
+```
+
+1. Generate using az-cli Service Principal: `az ad sp create-for-rbac --name AzureBicepWorkshop --role Owner --scopes / ` and add `AZURE_CREDENTIALS` variable using [this doc](https://github.com/Azure/login?tab=readme-ov-file#login-with-a-service-principal-secret)
+2. Add remaining environment variables (secrets) in your project as described [here](https://github.com/erudinsky/Azure-Bicep-Workshop/blob/main/Workshop/7-DevOps.md)
+3. Make changes in `parameters.gh.json` and `parameters.init.gh.json`
+4. Commit and push changes, GH workload should pickup several pipelines!
+
 ## Author
 
 Hi there 👋
