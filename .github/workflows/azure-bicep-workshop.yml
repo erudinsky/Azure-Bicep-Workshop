@@ -25,7 +25,6 @@ jobs:
             -p ./templates/parameters.init.gh.json \
             -p tenantId=${{ secrets.TENANTID }} \
             objectId=${{ secrets.OBJECTID }} \
-            subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
             dbuser=${{ secrets.USER }} \
             dbpassword=${{ secrets.PASSWORD }} \
             token=${{ secrets.TOKEN }}
@@ -38,7 +37,6 @@ jobs:
               -p ./templates/parameters.init.gh.json \
               -p tenantId=${{ secrets.TENANTID }} \
               objectId=${{ secrets.OBJECTID }} \
-              subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
               dbuser=${{ secrets.USER }} \
               dbpassword=${{ secrets.PASSWORD }} \
               token=${{ secrets.TOKEN }} \
@@ -51,7 +49,6 @@ jobs:
               -p ./templates/parameters.init.gh.json \
               -p tenantId=${{ secrets.TENANTID }} \
               objectId=${{ secrets.OBJECTID }} \
-              subscriptionId=${{ secrets.SUBSCRIPTIONID }} \
               dbuser=${{ secrets.USER }} \
               dbpassword=${{ secrets.PASSWORD }} \
               token=${{ secrets.TOKEN }} \
