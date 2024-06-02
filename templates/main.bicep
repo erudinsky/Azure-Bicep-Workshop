@@ -33,7 +33,7 @@ param staticSiteName string = '${resourcePrefix}${uniqueString(location)}swa'
 param repositoryUrl string
 param branch string
 
-module ACR 'modules/arc.bicep' = {
+module ACR 'modules/acr.bicep' = {
   name: 'acr'
   params: {
     location: location
