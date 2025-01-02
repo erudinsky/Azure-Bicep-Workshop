@@ -73,7 +73,7 @@ resource webApplication 'Microsoft.Web/sites@2021-03-01' = {
 
 resource acrPullRoleDefinition 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
   scope: subscription()
-  // This is the AcrPull role, which is used to pull images from ACR. See https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
+  // This is the AcrPull role, which is used to pull images from ACR. See https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?wt.mc_id=MVP_387222
   name: '7f951dda-4ed3-4680-a7ca-43fe172d538d'
 }
 

@@ -2,7 +2,7 @@
 
 In this lab we will look into client side part.
 
-To host our client's part (vue.js) we want to use [Static Web Apps](https://azure.microsoft.com/en-us/services/app-service/static/#overview). Static Site Web Application resource has been provisioned as part of the main deployment, let's review it's template.
+To host our client's part (vue.js) we want to use [Static Web Apps](https://azure.microsoft.com/services/app-service/static/#overview). Static Site Web Application resource has been provisioned as part of the main deployment, let's review it's template.
 
 Review module `staticsite.bicep`:
 
@@ -43,7 +43,7 @@ resource staticSite 'Microsoft.Web/staticSites@2021-03-01' = {
 
 > NB! `appLocation` in the template above is the absolute path in the repo.
 
-`staticSites` is a special type of resource that provisions service to run [static site](https://erudinsky.com/2022/01/07/static-web-site-on-azure-with-azure-devops-and-bicep/). To learn more about Static Site resource and it's available parameters visit [template reference](https://docs.microsoft.com/en-us/azure/templates/microsoft.web/staticsites?tabs=bicep).
+`staticSites` is a special type of resource that provisions service to run [static site](https://erudinsky.com/2022/01/07/static-web-site-on-azure-with-azure-devops-and-bicep/). To learn more about Static Site resource and it's available parameters visit [template reference](https://learn.microsoft.com/azure/templates/microsoft.web/staticsites?tabs=bicep&wt.mc_id=MVP_387222).
 
 ## Task 6.1: Add changes to static site
 
@@ -94,7 +94,7 @@ In GitHub in [Lab 4](4-Prepare-database.md) we deployed Static App that created 
 ## Resources
 
 * [vuejs getting started](https://v1.vuejs.org/guide/)
-* [Template reference (Static Web)](https://docs.microsoft.com/en-us/azure/templates/microsoft.web/staticsites?tabs=bicep)
+* [Template reference (Static Web)](https://learn.microsoft.com/azure/templates/microsoft.web/staticsites?tabs=bicep&wt.mc_id=MVP_387222)
 * [Git howto](https://githowto.com/)
 
 ## Summary

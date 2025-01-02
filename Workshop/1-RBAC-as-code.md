@@ -1,11 +1,11 @@
 ## Lab 1 - RBAC as code (optionally)
 
-> NB! This lab requires your identity to have directory role assigned (to keep it simple you'd need [Global Administrator](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference#global-administrator) role) as you need to create AAD groups and add members to it. If you want to follow [least privileged](https://learn.microsoft.com/en-us/azure/active-directory/roles/delegate-by-task) principal then make sure you have at least [User Administrator](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference#user-administrator) and [Groups Administrator](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference#groups-administrator). If you use company's tenant with limited access (no roles) you can skip this lab. Alternatively you can create and use personal tenant for experiment with this lab.
+> NB! This lab requires your identity to have directory role assigned (to keep it simple you'd need [Global Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference?wt.mc_id=MVP_387222#global-administrator) role) as you need to create AAD groups and add members to it. If you want to follow [least privileged](https://learn.microsoft.com/azure/active-directory/roles/delegate-by-task?wt.mc_id=MVP_387222) principal then make sure you have at least [User Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference#user-administrator?wt.mc_id=MVP_387222) and [Groups Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference?wt.mc_id=MVP_387222#groups-administrator). If you use company's tenant with limited access (no roles) you can skip this lab. Alternatively you can create and use personal tenant for experiment with this lab.
 
 This is the first hands-on lab of this workshop. In this lab we will do the following: 
 
 * Create three security groups in Azure Active Directory. Members of these groups will get access to resources that they are entitled to see / manage;
-* Create [custom role](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles) definitions under subscription scope;
+* Create [custom role](https://learn.microsoft.com/azure/role-based-access-control/custom-roles?wt.mc_id=MVP_387222) definitions under subscription scope;
 * Assign custom roles to relevant security groups under subscription scope.
 
 In a large Azure environment such approach helps to keep properly control on custom role's permissions and manage them at-scale.
@@ -88,7 +88,7 @@ The result of the last command should provision the actual resources. Validate t
 
 Review bicep module `./modules/roles.bicep` to learn about role definition and role assignment resources. 
 
-Learn about [subscription target scope](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli), [loops](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/loops) and [modules](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules).
+Learn about [subscription target scope](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli?wt.mc_id=MVP_387222), [loops](https://learn.microsoft.com/azure/azure-resource-manager/bicep/loops?wt.mc_id=MVP_387222) and [modules](https://learn.microsoft.com/azure/azure-resource-manager/bicep/modules?wt.mc_id=MVP_387222).
 
 ## Summary
 

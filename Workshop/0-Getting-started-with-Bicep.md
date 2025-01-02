@@ -1,17 +1,17 @@
 ## Getting started with Bicep
 
-[Bicep](https://github.com/Azure/bicep) is an open source (MIT) domain-specific language to define [Infrastructure as Code (IaC) ](https://docs.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code)in **Azure**.
+[Bicep](https://github.com/Azure/bicep) is an open source (MIT) domain-specific language to define [Infrastructure as Code (IaC) ](https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code?wt.mc_id=MVP_387222)in **Azure**.
 
 ![](/.attachments/arm.png)
 
 Advantages of Bicep:
 
 * Immediately supports all resources types and API versions (both GA and preview);
-* Simple syntax (comparing to ARM templates), [think of Bicep as a revision to the existing Azure Resource Manager template (ARM template) language](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/frequently-asked-questions#why-create-a-new-language-instead-of-using-an-existing-one); 
+* Simple syntax (comparing to ARM templates), [think of Bicep as a revision to the existing Azure Resource Manager template (ARM template) language](https://learn.microsoft.com/azure/azure-resource-manager/bicep/frequently-asked-questions?wt.mc_id=MVP_387222#why-create-a-new-language-instead-of-using-an-existing-one); 
 * Awesome first-class authing experience with [Bicep Extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep);
 * Repeatable results as bicep files are [idempotent](https://en.wikipedia.org/wiki/Idempotence) (meaning that you can deploy the same files many times and consistently getting the same results);
 * Orchestration. Order of resources does not matter as Resource Manager orchestrates the deployment of interdependent resources so they're created in the correct order;
-* Modularity - break down your bicep code into [modules](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules);
+* Modularity - break down your bicep code into [modules](https://learn.microsoft.com/azure/azure-resource-manager/bicep/modules?wt.mc_id=MVP_387222);
 * Integration with Azure services such as Azure Policy, template specs and blueprints;
 * Preview changes with `what-if` operation;
 * No state or state files to manage (stated is stored in Azure);
@@ -19,7 +19,7 @@ Advantages of Bicep:
 
 ## Bicep & ARM
 
-[Decompile](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile?tabs=azure-cli) from JSON to Bicep
+[Decompile](https://learn.microsoft.com/azure/azure-resource-manager/bicep/decompile?tabs=azure-cli&wt.mc_id=MVP_387222) from JSON to Bicep
 
 Using the following bicep resource definition let's explore Azure Resource Manager.
 
@@ -90,18 +90,18 @@ module <module-symbolic-name> '<path-to-file>' = {
 output <output-name> <output-data-type> = <output-value>
 ```
 
-Use [bicep linter](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/linter) in IDE and CICD. [Default](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/linter#default-rules) set of linter rules are taken from [arm-ttk test cases](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-test-cases).
+Use [bicep linter](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter?wt.mc_id=MVP_387222?) in IDE and CICD. [Default](hlearn.microsoftcrosoft.com/azure/azure-resource-manager/bicep/linter#default-rules) set of linter rules are taken from [arm-ttk test clearn.microsoftdocs.microsoft.com/azure/azure-resource-manager/templates/template-test-cases).
 
 ## Rest API exercise
 
-https://docs.microsoft.com/en-us/rest/api/azure/
+https://learn.microsoft.com/rest/api/azure/?wt.mc_id=MVP_387222?
 
-* [How to call Azure REST APIs with Postman](https://docs.microsoft.com/en-us/rest/api/azure/#how-to-call-azure-rest-apis-with-postman)
-* [How to call Azure REST APIs with curl](https://docs.microsoft.com/en-us/rest/api/azure/#how-to-call-azure-rest-apis-with-curl)
+* [How to call Azure REST APIs with Postman](https://learn.microsoft.com/rest/api/azure/?wt.mc_id=MVP_387222#how-to-call-azure-rest-apis-with-postman)
+* [How to call Azure REST APIs with curl](https://learn.microsoft.com/rest/api/azure/?wt.mc_id=MVP_387222#how-to-call-azure-rest-apis-with-curl)
 
 In the latest azure-cli you can also use `az rest` method to work with REST API
 
-Try calling with postman (make sure bearerToken has been generated and passed along with the request). Also for the second request add location variable with [region](https://docs.microsoft.com/en-us/azure/availability-zones/cross-region-replication-azure#azure-cross-region-replication-pairings-for-all-geographies) for the resource group.
+Try calling with postman (make sure bearerToken has been generated and passed along with the request). Also for the second request add location variable with [region](https://learn.microsoft.com/azure/availability-zones/cross-region-replication-azure?wt.mc_id=MVP_387222#azure-cross-region-replication-pairings-for-all-geographies) for the resource group.
 
 * `GET https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups?api-version=2020-09-01`
 * `POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/azure-bicep-workshop?api-version=2020-09-01`

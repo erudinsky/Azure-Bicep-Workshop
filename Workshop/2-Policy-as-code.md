@@ -52,7 +52,7 @@ The result of the last command should provision the actual resources. Validate t
 
 Review bicep module `./modules/policies.bicep` to learn about policy definition and policy assignment resources. 
 
-Learn about [subscription target scope](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli), [loops](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/loops), also expolore other target scope that might be possible to use for this type of resources (for example management group target scope).
+Learn about [subscription target scope](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli&wt.mc_id=MVP_387222?), [loops](https://learn.microsoft.com/azure/azure-resource-manager/bicep/loops?wt.mc_id=MVP_387222?), also expolore other target scope that might be possible to use for this type of resources (for example management group target scope).
 
 ## Task 2.2: Find incompliant resources
 

@@ -19,14 +19,14 @@ We are going to deploy a full stack application to Azure in multiple environment
 **Prerequisites:**
 
 * Fundamental cloud computing knowledge about Microsoft Azure
-* Azure subscription (if you don't have, check how to [get started](https://azure.microsoft.com/en-us/free/))
+* Azure subscription (if you don't have, check how to [get started](https://azure.microsoft.com/free/))
 * [Visual Studio Code (VSC)](https://code.visualstudio.com/) with [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
-* Azure CLI version 2.35 (or above), [check how install ](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-* You can also install Bicep CLI manually as described [here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#azure-cli), but Azure CLI should be able to do this once you execute command that needs Bicep transpiler
+* Azure CLI version 2.35 (or above), [check how install ](https://learn.microsoft.com/cli/azure/install-azure-cli?wt.mc_id=MVP_387222?)
+* You can also install Bicep CLI manually as described [here](https://learn.microsoft.com/azure/azure-resource-manager/bicep/install?wt.mc_id=MVP_387222#azure-cli), but Azure CLI should be able to do this once you execute command that needs Bicep transpiler
 
 **Prerequisites checks:** 
 
-We recommend to follow this workshop using Linux or MacOS terminal, for Windows users it's best to install [WSL](https://docs.microsoft.com/en-us/windows/wsl/install). Open up your VSC and using terminal window check the following:
+We recommend to follow this workshop using Linux or MacOS terminal, for Windows users it's best to install [WSL](https://learn.microsoft.com/windows/wsl/install?wt.mc_id=MVP_387222?). Open up your VSC and using terminal window check the following:
 
 ```bash
 
@@ -47,7 +47,7 @@ az delete group -g azure-bicep-worshop-rg
 
 ```
 
-> Selecting location for the resources you need to keep in mind two things: latency ([this](https://www.azurespeed.com/Azure/Latency) website helps to measure it) and [products available by region](https://azure.microsoft.com/en-us/global-infrastructure/services/).
+> Selecting location for the resources you need to keep in mind two things: latency ([this](https://www.azurespeed.com/Azure/Latency) website helps to measure it) and [products available by region](https://azure.microsoft.com/global-infrastructure/services/).
 
 Make sure all 5 steps from the above give no errors. If you have access to multiple Azure tenants and subscriptions, double check your workspace and set proper subscription so you won't get any surprises: 
 

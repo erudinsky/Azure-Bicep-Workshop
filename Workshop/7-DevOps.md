@@ -8,7 +8,7 @@ In this lab we will look into DevOps.
 
 ## Task 7.1: Create service principal
 
-Up until now we were using personal account for deployment. Let's first generate [Service Principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object) and build our automation.
+Up until now we were using personal account for deployment. Let's first generate [Service Principal](https://learn.microsoft.com/azure/active-directory/develop/app-objects-and-service-principals?wt.mc_id=MVP_387222#service-principal-object) and build our automation.
 
 You can use portal and follow this tutorial, otherwise just drop the following into your CLI in order to generate SPN and assign contributor on Subscription.
 
@@ -71,7 +71,7 @@ Also navigate to GitHub > Settings > Secrets and add new secret `AZURE_CREDENTIA
 
 A typical cycle for IAC templates would be the following:
 
-- [ARMTTK](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/test-toolkit) or [checkov](https://www.checkov.io/) checks
+- [ARMTTK](https://learn.microsoft.com/azure/azure-resource-manager/templates/test-toolkit?wt.mc_id=MVP_387222) or [checkov](https://www.checkov.io/) checks
 - Then generate immutable artifact
 - Deploy to different environment (either automatically or with some additional chesk, quality gates and manual approvals)
 

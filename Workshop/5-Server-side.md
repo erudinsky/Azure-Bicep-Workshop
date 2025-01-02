@@ -138,7 +138,7 @@ We just used Container Registry in Task 5.2 for our backend application. Now rev
 
 1. Web App has references to PSQL via outputs (most of the references are used for authentication with DB);
 2. Managed Identity is used for pull image from ACR (otherwise it won't authorize). Check attributes `acrUseManagedIdentityCreds` and `acrUserManagedIdentityID`.
-3. We also use roleAssignment resource to assign acrPull [builtin](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) role to ACR, so our Web App can pull succesfully.
+3. We also use roleAssignment resource to assign acrPull [builtin](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?wt.mc_id=MVP_387222) role to ACR, so our Web App can pull succesfully.
 
 > There are two types of managed identities:
 >
@@ -155,8 +155,8 @@ Make sure to change baseURL in variables (this is FQDN of your App Service). The
 
 ## Resources
 
-* [Builtin roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles)
-* [Web App resource](https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=bicep)
-* [Managed Identity](https://docs.microsoft.com/en-us/azure/templates/microsoft.managedidentity/userassignedidentities?tabs=bicep)
+* [Builtin roles](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?wt.mc_id=MVP_387222)
+* [Web App resource](https://learn.microsoft.com/azure/templates/microsoft.web/sites?tabs=bicep&wt.mc_id=MVP_387222)
+* [Managed Identity](https://learn.microsoft.com/azure/templates/microsoft.managedidentity/userassignedidentities?tabs=bicep&wt.mc_id=MVP_387222)
 
 Move to the next task [client with vuejs](6-Client-with-vuejs.md)

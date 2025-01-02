@@ -5,14 +5,14 @@ In this lab we will do the following:
 * Create Azure Key Vault;
 * Create three secrets.
 
-[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts) is a cloud service for securely storing and accessing secrets. A secret is anything that you want to tightly control access to, such as API keys, passwords, certificates, or cryptographic keys. Key Vault service supports two types of containers: vaults and managed hardware security module(HSM) pools. Vaults support storing software and HSM-backed keys, secrets, and certificates. Managed HSM pools only support HSM-backed keys. See Azure Key Vault REST API overview for complete details.
+[Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts?wt.mc_id=MVP_387222?) is a cloud service for securely storing and accessing secrets. A secret is anything that you want to tightly control access to, such as API keys, passwords, certificates, or cryptographic keys. Key Vault service supports two types of containers: vaults and managed hardware security module(HSM) pools. Vaults support storing software and HSM-backed keys, secrets, and certificates. Managed HSM pools only support HSM-backed keys. See Azure Key Vault REST API overview for complete details.
 
 We will provision three secrets: `dbuser`, `dbpassword` for our future PostgreSQL DB and `token` that will be used by Static Site service to create workflow (GitHub actions) in order to deploy vuejs changes (this will be explained in [Lab 6](6-Client-with-vuejs.md), don't worry for now).
 
 
 ## Task 3.1: Prepare secrets
 
-The password of the administrator `dbpassword` - minimum 8 characters and maximum 128 characters. Password must contain characters from three of the following categories: English uppercase letters, English lowercase letters, numbers, and non-alphanumeric characters ([source](https://learn.microsoft.com/en-us/cli/azure/postgres/server?view=azure-cli-latest#az-postgres-server-create-optional-parameters)).
+The password of the administrator `dbpassword` - minimum 8 characters and maximum 128 characters. Password must contain characters from three of the following categories: English uppercase letters, English lowercase letters, numbers, and non-alphanumeric characters ([source](https://learn.microsoft.com/cli/azure/postgres/server?view=azure-cli-latest&wt.mc_id=MVP_387222#az-postgres-server-create-optional-parameters)).
 
 `dbuser` can be any string
 
@@ -108,7 +108,7 @@ Let's review deployed resources:
 ![KV - secrets](../.attachments/3-keyvault-secrets.png)
 ![KV - access policies](../.attachments/3-keyvault-access-policies.png)
 
-Learn about [secure parameters](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters#secure-parameters) and parameters in general. We used secure parameters for dbuser, password and token. Learn how to deploy resources to [another target scope](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-resource-group?tabs=azure-cli#scope-to-different-resource-group) using modules. We used [uniqueString](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions-string#uniquestring) function as the name generator for KV.
+Learn about [secure parameters](https://learn.microsoft.com/azure/azure-resource-manager/bicep/parameters?wt.mc_id=MVP_387222#secure-parameters) and parameters in general. We used secure parameters for dbuser, password and token. Learn how to deploy resources to [another target scope](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-to-resource-group?tabs=azure-cli?wt.mc_id=MVP_387222#scope-to-different-resource-group) using modules. We used [uniqueString](https://learn.microsoft.com/azure/azure-resource-manager/bicep/bicep-functions-string?wt.mc_id=MVP_387222#uniquestring) function as the name generator for KV.
 
 ## Summary
 

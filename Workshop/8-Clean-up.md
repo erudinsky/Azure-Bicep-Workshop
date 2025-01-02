@@ -21,7 +21,7 @@ az group delete -g azure-bicep-workshop -y
 
 ## Resources
 
-[az cli](https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-lates)
+[az cli](https://learn.microsoft.com/cli/azure/group?view=azure-cli-lates&wt.mc_id=MVP_387222)
 
 ## Congratulations
 
