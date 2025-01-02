@@ -2,7 +2,7 @@
 
 In this lab we will look into client side part.
 
-To host our client's part (vue.js) we want to use [Static Web Apps](https://azure.microsoft.com/services/app-service/static/#overview). Static Site Web Application resource has been provisioned as part of the main deployment, let's review it's template.
+To host our client's part (vue.js) we want to use [Static Web Apps](https://azure.microsoft.com/services/app-service/static/?wt.mc_id=MVP_387222#overview). Static Site Web Application resource has been provisioned as part of the main deployment, let's review it's template.
 
 Review module `staticsite.bicep`:
 

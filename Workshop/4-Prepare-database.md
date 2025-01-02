@@ -149,11 +149,11 @@ The intention of this task is to provision infrastructure for PostgreSQL using B
 
 Main dependencies:
 
-* [Azure account](https://azure.microsoft.com/en-gb/free/)
+* [Azure account](https://azure.microsoft.comfree/?wt.mc_id=MVP_387222?)
 * azure-cli 2.35.0 (or above)
 * Bicep CLI version 0.5.6 (or above)
 
-For production environment we want to use [Azure Database for PostgreSQL](https://azure.microsoft.com/services/postgresql/), it's fully managed and scalable PostgreSQL.
+For production environment we want to use [Azure Database for PostgreSQL](https://azure.microsoft.com/services/postgresql/?wt.mc_id=MVP_387222?), it's fully managed and scalable PostgreSQL.
 
 Let's review the module `postgres.bicep` in modules folder. In contains `Microsoft.DBforPostgreSQL/servers` and `Microsoft.DBforPostgreSQL/servers/firewallRules` as it's [child](https://learn.microsoft.com/azure/azure-resource-manager/bicep/child-resource-name-type?wt.mc_id=MVP_387222). We also use [getSecret](https://learn.microsoft.com/azure/azure-resource-manager/bicep/bicep-functions-resource?wt.mc_id=MVP_387222#getsecret) function to query Key Vault directly from bicep to get values of our dbuser and password.
 

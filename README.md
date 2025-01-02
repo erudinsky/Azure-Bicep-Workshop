@@ -19,8 +19,8 @@ We are going to deploy a full stack application to Azure in multiple environment
 **Prerequisites:**
 
 * Fundamental cloud computing knowledge about Microsoft Azure
-* Azure subscription (if you don't have, check how to [get started](https://azure.microsoft.com/free/))
-* [Visual Studio Code (VSC)](https://code.visualstudio.com/) with [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
+* Azure subscription (if you don't have, check how to [get started](https://azure.microsoft.com/free/?wt.mc_id=MVP_387222?))
+* [Visual Studio Code (VSC)](https://code.visualstudio.com/?wt.mc_id=MVP_387222?) with [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
 * Azure CLI version 2.35 (or above), [check how install ](https://learn.microsoft.com/cli/azure/install-azure-cli?wt.mc_id=MVP_387222?)
 * You can also install Bicep CLI manually as described [here](https://learn.microsoft.com/azure/azure-resource-manager/bicep/install?wt.mc_id=MVP_387222#azure-cli), but Azure CLI should be able to do this once you execute command that needs Bicep transpiler
 
@@ -47,7 +47,7 @@ az delete group -g azure-bicep-worshop-rg
 
 ```
 
-> Selecting location for the resources you need to keep in mind two things: latency ([this](https://www.azurespeed.com/Azure/Latency) website helps to measure it) and [products available by region](https://azure.microsoft.com/global-infrastructure/services/).
+> Selecting location for the resources you need to keep in mind two things: latency ([this](https://www.azurespeed.com/Azure/Latency) website helps to measure it) and [products available by region](https://azure.microsoft.com/global-infrastructure/services/?wt.mc_id=MVP_387222?).
 
 Make sure all 5 steps from the above give no errors. If you have access to multiple Azure tenants and subscriptions, double check your workspace and set proper subscription so you won't get any surprises: 
 
