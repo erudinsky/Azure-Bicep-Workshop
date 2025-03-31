@@ -1,4 +1,4 @@
-## Getting started with Bicep
+# Getting started with Bicep
 
 [Bicep](https://github.com/Azure/bicep) is an open source (MIT) domain-specific language to define [Infrastructure as Code (IaC) ](https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code?wt.mc_id=MVP_387222)in **Azure**.
 
@@ -93,8 +93,6 @@ output <output-name> <output-data-type> = <output-value>
 Use [bicep linter](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter?wt.mc_id=MVP_387222?) in IDE and CICD. [Default](hlearn.microsoftcrosoft.com/azure/azure-resource-manager/bicep/linter#default-rules) set of linter rules are taken from [arm-ttk test clearn.microsoftdocs.microsoft.com/azure/azure-resource-manager/templates/template-test-cases).
 
 ## Rest API exercise
-
-https://learn.microsoft.com/rest/api/azure/?wt.mc_id=MVP_387222?
 
 * [How to call Azure REST APIs with Postman](https://learn.microsoft.com/rest/api/azure/?wt.mc_id=MVP_387222#how-to-call-azure-rest-apis-with-postman)
 * [How to call Azure REST APIs with curl](https://learn.microsoft.com/rest/api/azure/?wt.mc_id=MVP_387222#how-to-call-azure-rest-apis-with-curl)
