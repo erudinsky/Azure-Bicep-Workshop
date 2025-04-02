@@ -1,4 +1,4 @@
-[[TOC]]
+[[_TOC_]]
 
 # Getting started with Bicep
 
