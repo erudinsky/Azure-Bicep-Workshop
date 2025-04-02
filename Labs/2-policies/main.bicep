@@ -4,7 +4,7 @@ param location string
 
 // Policy as code
 
-param policies array =  [
+param policies array = [
   // 1
   {
     name: 'a_tag_policy.json'
@@ -19,11 +19,12 @@ param policies array =  [
   }
 ]
 
-module policyDefinition '../modules/policies.bicep' = [for policy in policies: {
-  name: '${policy.name}_deployment'
-  params: {
-    location: location
-    policy: policy
+module policyDefinition '../modules/policies.bicep' = [
+  for policy in policies: {
+    name: '${policy.name}_deployment'
+    params: {
+      location: location
+      policy: policy
+    }
   }
-}]
-
+]

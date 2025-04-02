@@ -1,8 +1,10 @@
+[[TOC]]
+
 # Getting started with Bicep
 
 [Bicep](https://github.com/Azure/bicep) is an open source (MIT) domain-specific language to define [Infrastructure as Code (IaC) ](https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code?wt.mc_id=MVP_387222)in **Azure**.
 
-![](/.attachments/arm.png)
+![Azure Bicep processing](/.attachments/bicep-processing.png)
 
 Advantages of Bicep:
 
@@ -19,22 +21,31 @@ Advantages of Bicep:
 
 ## Bicep & ARM
 
-[Decompile](https://learn.microsoft.com/azure/azure-resource-manager/bicep/decompile?tabs=azure-cli&wt.mc_id=MVP_387222) from JSON to Bicep
+⚠️ Make sure your computer has the following:
+
+* [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli?wt.mc_id=MVP_387222)
+* [Bicep extension for VS code](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio-code?tabs=azure-cli&wt.mc_id=MVP_387222)
+* You have subscription in Azure
 
 Using the following bicep resource definition let's explore Azure Resource Manager.
 
 ```bicep
 targetScope = 'resourceGroup' // this can be removed as default targetScope is resourceGroup
-param location string = 'westeurope'
 @description('Storage Account name')
-var name = '${uniqueString(location)}rg'
+param name string = uniqueString(resourceGroup().id)
+@description('Storage Account location')
+param location string = resourceGroup().location
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2024-01-01' = {
   name: name
   location: location
-  kind: 'StorageV2'
   sku: {
-    name: 'Premium_LRS'
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    accessTier: 'Hot'
+    supportsHttpsTrafficOnly: true
   }
 }
 
@@ -46,25 +57,36 @@ output storageAccount string = storageAccount.name
 # NB! Check target tenant/subscription
 
 az group create -g abw -l westeurope
-az deployment group validate -f sandbox/main.bicep -g abw
-az deployment group what-if -f sandbox/main.bicep -g abw
-az deployment group create -f sandbox/main.bicep -g abw
+az deployment group validate -f Labs/0-getting-started-with-bicep/main.bicep -g abw
+az deployment group what-if -f Labs/0-getting-started-with-bicep/main.bicep -g abw
+az deployment group create -f Labs/0-getting-started-with-bicep/main.bicep -g abw
 
 # Export: RG > JSON
 
-az group export --name abw > sandbox/main-exported.json
+az group export --name abw > Labs/0-getting-started-with-bicep/main-exported.json
 
 # Decompile: JSON > Bicep
 
-az bicep decompile --file main-exported.json
+az bicep decompile --file Labs/0-getting-started-with-bicep/main-exported.json
 
 ```
 
-### Target scope
+[Export template and convert](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile?tabs=azure-cli&wt.mc_id=MVP_387222#export-template-and-convert)
 
-By default, the target scope is set to resourceGroup. If you're deploying at the resource group level, you don't need to set the target scope in your Bicep file.
+## Target scopes
+
+By default, the target scope is set to [resourceGroup](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-resource-group?tabs=azure-cli&wt.mc_id=MVP_387222). If you're deploying at the resource group level, you don't need to set the target scope in your Bicep file.
+
+The following target scopes are supported:
+
+* [Resource group](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-resource-group?tabs=azure-cli&wt.mc_id=MVP_387222)
+* [Subscription](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli&wt.mc_id=MVP_387222)
+* [Management group](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-management-group?tabs=azure-cli&wt.mc_id=MVP_387222)
+* [Tenant](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-tenant?tabs=azure-cli&wt.mc_id=MVP_387222)
 
 ![Azure Scope](/.attachments/az-target-scopes.png)
+
+### Bicep file structure
 
 Typical Bicep template file structure:
 
@@ -108,12 +130,12 @@ Try calling with postman (make sure bearerToken has been generated and passed al
 
 With the next chapter and further we will be doing labs and building infrastructure in Azure using templates. The following resources will be provisioned:
 
-- Roles and policies;
-- KeyVault for secrets;
-- Container registry for backend image;
-- PostgreSQL as database;
-- Web app and service plan for backend;
-- Static web site for vuejs (client).
+* Roles and policies;
+* KeyVault for secrets;
+* Container registry for backend image;
+* PostgreSQL as database;
+* Web app and service plan for backend;
+* Static web site for vuejs (client).
 
 Check high-level reference architecture:
   
@@ -122,7 +144,7 @@ Check high-level reference architecture:
 [![Deploy to Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/)
 [![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg)](http://armviz.io/#/?load=)
 
-## Resources 
+## Resources
 
 * [What is IaC?](https://www.youtube.com/watch?v=uETq8KKVUFY)
 * [Infrastructure as Code (IaC): Comparing the Tools](https://techcommunity.microsoft.com/t5/itops-talk-blog/infrastructure-as-code-iac-comparing-the-tools/ba-p/3205045?wt.mc_id=MVP_387222?)
