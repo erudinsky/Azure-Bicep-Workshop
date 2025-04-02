@@ -17,7 +17,7 @@ Advantages of Bicep:
 * No state or state files to manage (stated is stored in Azure);
 * No cost and open source! Contributions are welcome, see [issues](https://github.com/Azure/bicep/contribute) and [guide](https://github.com/Azure/bicep/blob/985abdb65cb5407bebd6ce74319a113907a9a9f3/CONTRIBUTING.md) how to contribute.
 
-## Bicep & ARM
+## Azure Resource Manager (ARM) and Bicep
 
 ⚠️ Make sure your computer has the following:
 
@@ -84,7 +84,7 @@ The following target scopes are supported:
 
 ![Azure Scope](/.attachments/az-target-scopes.png)
 
-### Bicep file structure
+## Bicep file structure
 
 Typical Bicep template file structure:
 
@@ -110,12 +110,11 @@ module <module-symbolic-name> '<path-to-file>' = {
 output <output-name> <output-data-type> = <output-value>
 ```
 
-Use [bicep linter](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter?wt.mc_id=MVP_387222?) in IDE and CICD. [Default](hlearn.microsoftcrosoft.com/azure/azure-resource-manager/bicep/linter#default-rules) set of linter rules are taken from [arm-ttk test clearn.microsoftdocs.microsoft.com/azure/azure-resource-manager/templates/template-test-cases).
+Use [bicep linter](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter?wt.mc_id=MVP_387222?) in IDE and CICD. [Default](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter#default-rules?wt.mc_id=MVP_387222) set of linter rules are taken from [arm-ttk test cases](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-test-cases?wt.mc_id=MVP_387222).
 
 ## Rest API exercise
 
-* [How to call Azure REST APIs with Postman](https://learn.microsoft.com/rest/api/azure/?wt.mc_id=MVP_387222#how-to-call-azure-rest-apis-with-postman)
-* [How to call Azure REST APIs with curl](https://learn.microsoft.com/rest/api/azure/?wt.mc_id=MVP_387222#how-to-call-azure-rest-apis-with-curl)
+* [How to call Azure REST APIs with curl](https://learn.microsoft.com/en-us/rest/api/azure/?wt.mc_id=MVP_387222#how-to-call-azure-rest-apis-with-curl)
 
 In the latest azure-cli you can also use `az rest` method to work with REST API
 
