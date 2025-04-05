@@ -116,4 +116,4 @@ These skills are essential for managing governance and compliance in Azure envir
 
 ---
 
-Move to [Lab 3 - Secrets](3-Secret-management.md)
+Move to [Lab 3 - Secret management](3-Secret-management.md)
