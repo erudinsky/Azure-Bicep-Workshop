@@ -106,7 +106,7 @@ By the end of this lab, you will be able to:
 
 ## Summary
 
-In this lab, you:
+In this lab, you learned how to:
 
 - Created and assigned Azure policies using Bicep.
 - Validated and deployed policies at the subscription scope.

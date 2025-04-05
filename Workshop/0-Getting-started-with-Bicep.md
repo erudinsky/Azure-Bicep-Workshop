@@ -193,7 +193,7 @@ Check high-level reference architecture:
 
 ## Summary
 
-By completing this module, you will:
+In this lab, you learned how to:
 
 * Understand the purpose and benefits of Azure Bicep.
 * Set up your environment for Bicep development.
