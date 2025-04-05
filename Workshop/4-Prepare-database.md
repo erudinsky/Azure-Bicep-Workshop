@@ -214,7 +214,7 @@ In this task we want to make sure we have all required parameters in `parameters
 
 ```
 
-You'll need the name of the KeyVault (the one that you deployd in [Lab 3](3-Secrets.md)). It should be generated with uniqueString and it's value should be something like this `abwcrivf32izq2hekv`
+You'll need the name of the KeyVault (the one that you deployd in [Lab 3](./3-Secret-management.md)). It should be generated with uniqueString and it's value should be something like this `abwcrivf32izq2hekv`
 
 Feel free to change `location`, `acrSku`, add / change / remove `tags`. Once done, let's deploy entire application by doing the following: 
 

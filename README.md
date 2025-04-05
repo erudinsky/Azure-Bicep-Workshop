@@ -82,7 +82,7 @@ You can follow the workshop by checking the following links:
 0. [Getting started with Bicep](Workshop/0-Getting-started-with-Bicep.md)
 1. [RBAC as code](Workshop/1-RBAC-as-code.md)
 2. [Policy as code](Workshop/2-Policy-as-code.md)
-3. [Secrets](Workshop/3-Secrets.md)
+3. [Secrets](Workshop/3-Secret-management.md)
 4. [Prepare database](Workshop/4-Prepare-database.md)
 5. [Server side](Workshop/5-Server-side.md)
 6. [Client with vue.js](Workshop/6-Client-with-vuejs.md)
@@ -109,7 +109,7 @@ Repo structure (pretty much self-explanatory)
     ├── 0-Getting-started-with-Bicep.md
     ├── 1-RBAC-as-code.md
     ├── 2-Policy-as-code.md
-    ├── 3-Secrets.md
+    ├── 3-Secret-management.md
     ├── 4-Prepare-database.md
     ├── 5-Server-side.md
     ├── 6-Client-with-vuejs.md

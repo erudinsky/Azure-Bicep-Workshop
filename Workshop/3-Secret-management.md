@@ -1,9 +1,19 @@
-## Lab 3 - KeyVault and secrets
+# Lab 3 - Secret management
 
-In this lab we will do the following: 
+## Objective
 
-* Create Azure Key Vault;
-* Create three secrets.
+Learn how to provision and configure Azure Key Vault to securely store secrets such as database credentials and tokens. This lab will guide you through creating a resource group, deploying a Key Vault, and adding secrets to it.
+
+## Key Learnings
+
+By the end of this lab, you will:
+
+- Understand the purpose and capabilities of Azure Key Vault.
+- Learn how to define and deploy Azure resources using Bicep templates.
+- Generate and securely store secrets in Azure Key Vault.
+- Use secure parameters in Bicep for sensitive data.
+
+---
 
 [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts?wt.mc_id=MVP_387222?) is a cloud service for securely storing and accessing secrets. A secret is anything that you want to tightly control access to, such as API keys, passwords, certificates, or cryptographic keys. Key Vault service supports two types of containers: vaults and managed hardware security module(HSM) pools. Vaults support storing software and HSM-backed keys, secrets, and certificates. Managed HSM pools only support HSM-backed keys. See Azure Key Vault REST API overview for complete details.
 
@@ -24,7 +34,7 @@ Store somewhere temporary the token.
 
 ## Task 3.2: Deployment of resource group and Key Vault with secrets
 
-Let's deploy resource group and key vault with secrets. Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/3-secrets`. This folder contains main template that has references to module `keyvault.bicep`. There is also `parameters.json` file that should be used to specify all required parameters.
+Let's deploy resource group and key vault with secrets. Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/3-Secret-management`. This folder contains main template that has references to module `keyvault.bicep`. There is also `parameters.json` file that should be used to specify all required parameters.
 
 ```bash
 
@@ -77,7 +87,7 @@ Let's deploy it:
 
 ```bash
 
-# ‼️ Make sure you are in /Labs/3-secrets folder
+# ‼️ Make sure you are in /Labs/3-Secret-management folder
 
 # Validate the template and all references from it
 
