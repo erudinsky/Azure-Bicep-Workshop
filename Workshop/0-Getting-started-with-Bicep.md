@@ -191,4 +191,14 @@ Check high-level reference architecture:
 * [Bicep playground](https://aka.ms/bicepdemo)
 * Resource explorer in Azure Portal
 
+## Summary
+
+By completing this module, you will:
+
+* Understand the purpose and benefits of Azure Bicep.
+* Set up your environment for Bicep development.
+* Explore the structure of a typical Bicep file.
+* Deploy resources using Bicep and Azure CLI.
+* Understand target scopes and modularity in Bicep.
+
 Move to the next step - [RBAC as code](1-RBAC-as-code.md)
