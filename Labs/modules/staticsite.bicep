@@ -6,7 +6,7 @@ param repositoryToken string
 param repositoryUrl string
 param branch string
 
-resource staticSite 'Microsoft.Web/staticSites@2021-03-01' = {
+resource staticSite 'Microsoft.Web/staticSites@2024-04-01' = {
   name: staticSiteName
   location: location
   tags: tags

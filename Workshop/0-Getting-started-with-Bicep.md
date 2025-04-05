@@ -68,7 +68,7 @@ output storageAccount string = storageAccount.name
 
 ```bash
 
-# NB! Check target tenant/subscription
+# ⚠️ Check target tenant/subscription
 
 az group create -g abw -l westeurope
 az deployment group validate -f Labs/0-getting-started-with-bicep/main.bicep -g abw

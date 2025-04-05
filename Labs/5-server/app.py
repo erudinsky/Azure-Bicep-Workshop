@@ -54,8 +54,9 @@ def single_book(book_id):
     if request.method == 'PUT':
         conn = get_db_connection()
         cur = conn.cursor()
+        data = request.get_json() 
         cur.execute('UPDATE books SET title = %s, author = %s, pages_num = %s, read = %s WHERE id=%s',
-                    (request.form.get('title'), request.form.get('author'), request.form.get('pages_num'), request.form.get('read'), book_id))
+                    (data.get('title'), data.get('author'), data.get('pages_num'), data.get('read'), book_id))
         conn.commit()
         cur.close()
         conn.close()
@@ -71,5 +72,5 @@ def single_book(book_id):
     return jsonify(response_object)
 
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0')
+    app.run(debug=True,host='0.0.0.0',port=5001)
     

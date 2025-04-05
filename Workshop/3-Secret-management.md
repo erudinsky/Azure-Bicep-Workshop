@@ -102,16 +102,16 @@ az deployment sub create -f main.bicep -p parameters.json -n ABWSecretsDeploymen
 
 ```
 
-> NB! This step also uses module with Azure KeyVault and add a couple of secrets for communications between parts of our application (server <> db).
+> ⚠️ This step also uses module with Azure KeyVault and add a couple of secrets for communications between parts of our application (server <> db).
 
 You'll be prompted to enter `dbuser` and `dbpassword` and `token` from GH account (for static app deployment) and they'll be stored in Azure KeyVault's secrets. We will consume them from our Server Side App and Static Site services.
 
 At the end of this step you should have the following:
 
-* Resource Group 
-* KeyVault with 3 secrets (dbuser, dbpassword and token)
+- Resource Group
+- KeyVault with 3 secrets (dbuser, dbpassword and token)
 
-Let's review deployed resources: 
+Let's review deployed resources:
 
 ![Resource group](../.attachments/3-resource-group.png)
 ![KV - secrets](../.attachments/3-keyvault-secrets.png)

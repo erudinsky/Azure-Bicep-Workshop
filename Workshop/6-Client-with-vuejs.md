@@ -1,4 +1,4 @@
-## Lab 6 - Client with vuejs
+# Lab 6 - Client with vuejs
 
 In this lab we will look into client side part.
 
@@ -41,7 +41,7 @@ resource staticSite 'Microsoft.Web/staticSites@2021-03-01' = {
 
 ```
 
-> NB! `appLocation` in the template above is the absolute path in the repo.
+> ⚠️ `appLocation` in the template above is the absolute path in the repo.
 
 `staticSites` is a special type of resource that provisions service to run [static site](https://erudinsky.com/2022/01/07/static-web-site-on-azure-with-azure-devops-and-bicep/). To learn more about Static Site resource and it's available parameters visit [template reference](https://learn.microsoft.com/azure/templates/microsoft.web/staticsites?tabs=bicep&wt.mc_id=MVP_387222).
 

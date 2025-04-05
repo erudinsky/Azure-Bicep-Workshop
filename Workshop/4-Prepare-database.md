@@ -30,9 +30,9 @@ The intention of this task is to learn how to work with SQL (postgres) running i
 
 Main dependencies:
 
-* Docker runtime (for development environment), [howto install](https://docs.docker.com/desktop/mac/install/)
-* PostgreSQL 11
-* [PostgreSQL Manamgenet Tool](https://marketplace.visualstudio.com/items?itemName=ckolkman.vscode-postgres)
+- Docker runtime (for development environment), [howto install](https://docs.docker.com/desktop/mac/install/)
+- PostgreSQL 11
+- [PostgreSQL Manamgenet Tool](https://marketplace.visualstudio.com/items?itemName=ckolkman.vscode-postgres)
 
 For development purposes use [PostgreSQL](https://hub.docker.com/_/postgres/). There are multiple ways to run it. 
 
@@ -171,9 +171,9 @@ The intention of this task is to provision infrastructure for PostgreSQL using B
 
 Main dependencies:
 
-* [Azure account](https://azure.microsoft.comfree/?wt.mc_id=MVP_387222?)
-* azure-cli 2.35.0 (or above)
-* Bicep CLI version 0.5.6 (or above)
+- [Azure account](https://azure.microsoft.comfree/?wt.mc_id=MVP_387222?)
+- azure-cli 2.71.0 (or above)
+- Bicep CLI version 0.34.44 (or above)
 
 For production environment we want to use [Azure Database for PostgreSQL](https://azure.microsoft.com/services/postgresql/?wt.mc_id=MVP_387222?), it's fully managed and scalable PostgreSQL.
 

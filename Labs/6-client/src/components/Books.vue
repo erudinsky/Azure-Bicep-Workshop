@@ -32,7 +32,7 @@
                           type="button"
                           class="btn btn-warning btn-sm"
                           v-b-modal.book-update-modal
-                          @click="editBook(book[0])">
+                          @click="editBook(book)">
                       Update
                   </button>
                   <button
@@ -147,7 +147,7 @@
 import axios from 'axios';
 import Alert from './Alert.vue';
 
-axios.defaults.baseURL = 'https://abwg2mnp5ebrtt4gwebapp.azurewebsites.net';
+axios.defaults.baseURL = 'http://localhost:5001';
 
 export default {
   data() {
@@ -230,7 +230,22 @@ export default {
       this.initForm();
     },
     editBook(book) {
-      this.editForm = book;
+      if (Array.isArray(book)) {
+        const [id, title, author, pagesNum, read] = book; // Destructure the book array
+        this.editForm.id = id;
+        this.editForm.title = title;
+        this.editForm.author = author;
+        this.editForm.pagesNum = pagesNum;
+        this.editForm.read = read ? [true] : [];
+      } else if (typeof book === 'object' && book !== null) {
+        this.editForm.id = book.id;
+        this.editForm.title = book.title;
+        this.editForm.author = book.author;
+        this.editForm.pagesNum = book.pages_num;
+        this.editForm.read = book.read ? [true] : [];
+      } else {
+        console.error('Invalid book format:', book);
+      }
     },
     onSubmitUpdate(evt) {
       evt.preventDefault();
@@ -279,8 +294,8 @@ export default {
           this.getBooks();
         });
     },
-    onDeleteBook(book) {
-      this.removeBook(book[0]);
+    onDeleteBook(bookID) {
+      this.removeBook(bookID);
     },
   },
   created() {
