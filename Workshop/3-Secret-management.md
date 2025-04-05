@@ -19,7 +19,6 @@ By the end of this lab, you will:
 
 We will provision three secrets: `dbuser`, `dbpassword` for our future PostgreSQL DB and `token` that will be used by Static Site service to create workflow (GitHub actions) in order to deploy vuejs changes (this will be explained in [Lab 6](6-Client-with-vuejs.md), don't worry for now).
 
-
 ## Task 3.1: Prepare secrets
 
 The password of the administrator `dbpassword` - minimum 8 characters and maximum 128 characters. Password must contain characters from three of the following categories: English uppercase letters, English lowercase letters, numbers, and non-alphanumeric characters ([source](https://learn.microsoft.com/cli/azure/postgres/server?view=azure-cli-latest&wt.mc_id=MVP_387222#az-postgres-server-create-optional-parameters)).
@@ -122,6 +121,10 @@ Learn about [secure parameters](https://learn.microsoft.com/azure/azure-resource
 
 ## Summary
 
-In this lab we learnt how to create resource group and key vault with secrets.
+In this lab, you learned how to:
+
+- Create a resource group.
+- Deploy an Azure Key Vault.
+- Add and securely store secrets in the Key Vault.
 
 Move to [Lab 4 - Prepare database](4-Prepare-database.md)

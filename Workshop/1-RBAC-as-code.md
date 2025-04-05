@@ -119,9 +119,9 @@ Learn about [subscription target scope](https://learn.microsoft.com/azure/azure-
 
 In this lab, you learned how to:
 
-* Create security groups in Azure Active Directory.
-* Define custom roles using JSON templates.
-* Assign custom roles to security groups using Bicep templates.
-* Deploy resources at the subscription scope using Azure CLI.
+- Create security groups in Azure Active Directory.
+- Define custom roles using JSON templates.
+- Assign custom roles to security groups using Bicep templates.
+- Deploy resources at the subscription scope using Azure CLI.
 
 Move to [Lab 2 - Policy as code](2-Policy-as-code.md)
