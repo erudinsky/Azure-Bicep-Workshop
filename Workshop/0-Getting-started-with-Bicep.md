@@ -1,5 +1,21 @@
 # Lab 0 - Getting started with Bicep
 
+## Objective
+
+Learn the basics of Azure Bicep, its advantages, and how to use it to define Infrastructure as Code (IaC) in Azure.
+
+## Key Learnings
+
+By the end of this module, you will:
+
+- Understand the purpose and benefits of Azure Bicep.
+- Learn how to set up your environment for Bicep development.
+- Explore the structure of a typical Bicep file.
+- Deploy resources using Bicep and Azure CLI.
+- Understand target scopes and modularity in Bicep.
+
+---
+
 [Bicep](https://github.com/Azure/bicep) is an open source (MIT) domain-specific language to define [Infrastructure as Code (IaC)](https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code?wt.mc_id=MVP_387222)in **Azure**.
 
 ![Azure Bicep processing](/.attachments/bicep-processing.png)

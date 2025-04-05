@@ -2,6 +2,21 @@
 
 > ⚠️ This lab requires your identity to have directory role assigned (to keep it simple you'd need [Global Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference?wt.mc_id=MVP_387222#global-administrator) role) as you need to create AAD groups and add members to it. If you want to follow [least privileged](https://learn.microsoft.com/azure/active-directory/roles/delegate-by-task?wt.mc_id=MVP_387222) principal then make sure you have at least [User Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference#user-administrator?wt.mc_id=MVP_387222) and [Groups Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference?wt.mc_id=MVP_387222#groups-administrator). If you use company's tenant with limited access (no roles) you can skip this lab. Alternatively you can create and use personal tenant for experiment with this lab.
 
+## Objective
+
+Learn how to manage Role-Based Access Control (RBAC) in Azure using Infrastructure as Code (IaC) with Bicep. This lab focuses on creating security groups, defining custom roles, and assigning these roles to groups under a subscription scope.
+
+## Key Learnings
+
+By the end of this lab, you will:
+
+1. Understand how to create and manage Azure Active Directory (AAD) security groups.
+2. Learn to define custom roles in Azure using JSON templates.
+3. Assign custom roles to security groups using Bicep templates.
+4. Gain hands-on experience with deploying resources at the subscription scope using Azure CLI.
+
+---
+
 This is the first hands-on lab of this workshop. In this lab we will do the following:
 
 * Create three security groups in Azure Active Directory. Members of these groups will get access to resources that they are entitled to see / manage;
@@ -102,6 +117,11 @@ Learn about [subscription target scope](https://learn.microsoft.com/azure/azure-
 
 ## Summary
 
-In lab we learnt how to provision custom role and assign it to security group under subscription scope. In order to test you can create / invite user to one of the three groups, login with the new user and see what it is able to do and what not (based on membership in group).
+In this lab, you learned how to:
+
+* Create security groups in Azure Active Directory.
+* Define custom roles using JSON templates.
+* Assign custom roles to security groups using Bicep templates.
+* Deploy resources at the subscription scope using Azure CLI.
 
 Move to [Lab 2 - Policy as code](2-Policy-as-code.md)
