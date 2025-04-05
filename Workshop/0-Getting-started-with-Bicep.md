@@ -1,4 +1,4 @@
-# Getting started with Bicep
+# Lab 0 - Getting started with Bicep
 
 [Bicep](https://github.com/Azure/bicep) is an open source (MIT) domain-specific language to define [Infrastructure as Code (IaC)](https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code?wt.mc_id=MVP_387222)in **Azure**.
 
@@ -127,6 +127,29 @@ Try calling with postman (make sure bearerToken has been generated and passed al
 * `GET https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups?api-version=2020-09-01`
 * `POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/azure-bicep-workshop?api-version=2020-09-01`
 
+Or:
+
+```bash
+az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/<GroupID>/subscriptions?api-version=2020-05-01"
+{
+  "value": [
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/<GroupID>/subscriptions/<SubscriptionID>",
+      "name": "<SubscriptionID>",
+      "properties": {
+        "displayName": "Visual Studio Enterprise Subscription",
+        "parent": {
+          "id": "/providers/Microsoft.Management/managementGroups/<GroupID>"
+        },
+        "state": "Active",
+        "tenant": "<GroupID>"
+      },
+      "type": "Microsoft.Management/managementGroups/subscriptions"
+    }
+  ]
+}
+```
+
 ## Application reference
 
 With the next chapter and further we will be doing labs and building infrastructure in Azure using templates. The following resources will be provisioned:
@@ -152,4 +175,4 @@ Check high-level reference architecture:
 * [Bicep playground](https://aka.ms/bicepdemo)
 * Resource explorer in Azure Portal
 
-Move to the next step - [RBAC as code](1-RBAC-as-code.md).
+Move to the next step - [RBAC as code](1-RBAC-as-code.md)

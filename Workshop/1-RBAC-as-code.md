@@ -1,8 +1,8 @@
-## Lab 1 - RBAC as code (optionally)
+# Lab 1 - RBAC as code (optionally)
 
-> NB! This lab requires your identity to have directory role assigned (to keep it simple you'd need [Global Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference?wt.mc_id=MVP_387222#global-administrator) role) as you need to create AAD groups and add members to it. If you want to follow [least privileged](https://learn.microsoft.com/azure/active-directory/roles/delegate-by-task?wt.mc_id=MVP_387222) principal then make sure you have at least [User Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference#user-administrator?wt.mc_id=MVP_387222) and [Groups Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference?wt.mc_id=MVP_387222#groups-administrator). If you use company's tenant with limited access (no roles) you can skip this lab. Alternatively you can create and use personal tenant for experiment with this lab.
+> ⚠️ This lab requires your identity to have directory role assigned (to keep it simple you'd need [Global Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference?wt.mc_id=MVP_387222#global-administrator) role) as you need to create AAD groups and add members to it. If you want to follow [least privileged](https://learn.microsoft.com/azure/active-directory/roles/delegate-by-task?wt.mc_id=MVP_387222) principal then make sure you have at least [User Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference#user-administrator?wt.mc_id=MVP_387222) and [Groups Administrator](https://learn.microsoft.com/azure/active-directory/roles/permissions-reference?wt.mc_id=MVP_387222#groups-administrator). If you use company's tenant with limited access (no roles) you can skip this lab. Alternatively you can create and use personal tenant for experiment with this lab.
 
-This is the first hands-on lab of this workshop. In this lab we will do the following: 
+This is the first hands-on lab of this workshop. In this lab we will do the following:
 
 * Create three security groups in Azure Active Directory. Members of these groups will get access to resources that they are entitled to see / manage;
 * Create [custom role](https://learn.microsoft.com/azure/role-based-access-control/custom-roles?wt.mc_id=MVP_387222) definitions under subscription scope;
@@ -15,6 +15,16 @@ In a large Azure environment such approach helps to keep properly control on cus
 Using web browser, login to Azure Portal and find Azure Active Directory. Navigate to Manage > Groups. Create three groups with the names: `ABWOwner`, `ABWContributor`, `ABWReader`. Copy object Id of each group, we will use them for assignment later in our template.
 
 ![Azure AD groups objectId](../.attachments/1-aad-groups-objectid.png)
+
+Alternatively, we can use [Bicep templates for Microsoft Graph](https://learn.microsoft.com/en-us/graph/templates?wt.mc_id=MVP_387222) to create groups.
+
+For this to work we need:
+
+* [Image with extension](https://mcr.microsoft.com/en-us/catalog?search=microsoftgraph&type=partial)
+* Config file `bicepconfig.json` should have extension enabled, check [example](/Labs/modules/bicepconfig.json)
+* [Module](/Labs/modules/graph.bicep) and it's [deployment part](/Labs/1-rbac/graph/main.bicep)
+
+⚠️ WARNING: The following experimental Bicep features have been enabled: Extensibility. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.
 
 ## Task 1.2: reate and assign custom roles to security groups
 
@@ -88,7 +98,7 @@ The result of the last command should provision the actual resources. Validate t
 
 Review bicep module `./modules/roles.bicep` to learn about role definition and role assignment resources. 
 
-Learn about [subscription target scope](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli?wt.mc_id=MVP_387222), [loops](https://learn.microsoft.com/azure/azure-resource-manager/bicep/loops?wt.mc_id=MVP_387222) and [modules](https://learn.microsoft.com/azure/azure-resource-manager/bicep/modules?wt.mc_id=MVP_387222).
+Learn about [subscription target scope](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli?wt.mc_id=MVP_387222), [loops](https://learn.microsoft.com/azure/azure-resource-manager/bicep/loops?wt.mc_id=MVP_387222), [modules](https://learn.microsoft.com/azure/azure-resource-manager/bicep/modules?wt.mc_id=MVP_387222) and [Bicep templates for Microsoft Graph](https://learn.microsoft.com/en-us/graph/templates/)
 
 ## Summary
 
