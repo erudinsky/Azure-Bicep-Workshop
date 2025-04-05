@@ -1,6 +1,6 @@
 # Getting started with Bicep
 
-[Bicep](https://github.com/Azure/bicep) is an open source (MIT) domain-specific language to define [Infrastructure as Code (IaC) ](https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code?wt.mc_id=MVP_387222)in **Azure**.
+[Bicep](https://github.com/Azure/bicep) is an open source (MIT) domain-specific language to define [Infrastructure as Code (IaC)](https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code?wt.mc_id=MVP_387222)in **Azure**.
 
 ![Azure Bicep processing](/.attachments/bicep-processing.png)
 
@@ -23,7 +23,7 @@ Advantages of Bicep:
 
 * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli?wt.mc_id=MVP_387222)
 * [Bicep extension for VS code](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio-code?tabs=azure-cli&wt.mc_id=MVP_387222)
-* You have subscription in Azure
+* You have subscription in Azure (if not, go ahead, and [try it for free](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account))
 
 Using the following bicep resource definition let's explore Azure Resource Manager.
 
@@ -112,7 +112,11 @@ output <output-name> <output-data-type> = <output-value>
 
 Use [bicep linter](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter?wt.mc_id=MVP_387222?) in IDE and CICD. [Default](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter#default-rules?wt.mc_id=MVP_387222) set of linter rules are taken from [arm-ttk test cases](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-test-cases?wt.mc_id=MVP_387222).
 
-## Rest API exercise
+## Azure REST<sup>1</sup> API
+
+1. Representational State Transfer (REST)
+
+![Azure Resource Manager](/.attachments/arm.png)
 
 * [How to call Azure REST APIs with curl](https://learn.microsoft.com/en-us/rest/api/azure/?wt.mc_id=MVP_387222#how-to-call-azure-rest-apis-with-curl)
 
