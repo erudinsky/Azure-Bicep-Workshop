@@ -156,7 +156,7 @@ I’m Evgeny Rudinsky, a consultant based in The Netherlands and the creator of 
 
 I'm a Microsoft MVP program in 2024 in **Azure Infrastructure as Code** area.
 
-[![MVP Badge](/.attachments/MVP_Badge_Horizontal_Preferred_Blue3005_RGB.png[250])](https://mvp.microsoft.com/mvp/profile/33cf4dc8-f650-4422-a834-48c08ac92c58)
+<img src="/.attachments/MVP_Badge_Horizontal_Preferred_Blue3005_RGB.png" alt="MVP Badge" width="300">
 
 Feel free to follow me on [Twitter @evgenyrudinsky](https://twitter.com/evgenyrudinsky) and explore [my blog](https://erudinsky.com/) for insights on DevOps, cloud-native technologies, and application security.
 
