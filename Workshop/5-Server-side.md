@@ -1,14 +1,36 @@
-## Lab 5 - Server Side configuration
+# Lab 5 - Server Side configuration
 
-In this lab we will look into server side part.
+In this lab, we will focus on configuring and deploying the server-side application. The lab is divided into multiple tasks to guide you through local development, containerization, and deployment using Azure services.
+
+---
+
+## Objectives
+
+By the end of this lab, you will:
+
+1. Set up and run the server-side application locally.
+2. Containerize the application using Docker and push it to Azure Container Registry (ACR).
+3. Deploy the application to Azure Web App using Bicep templates.
+4. Interact with the deployed API using Postman.
+
+---
+
+## Key Learnings
+
+- Understand how to set up a Python Flask application locally with virtual environments.
+- Learn how to create and push Docker images to Azure Container Registry.
+- Explore Azure Web App deployment using Bicep templates and managed identities.
+- Test and validate API endpoints using Postman.
+
+---
 
 ## Task 5.1: Work with application locally (optionally)
 
 Main dependencies:
 
-* Python 3.10.2
-* [flask](https://flask.palletsprojects.com/en/2.1.x/)
-* pip for package management
+- Python 3.9 and newer (per [flask req](https://flask.palletsprojects.com/en/stable/installation/)), note that `psycopg2` is supported by `Python versions from 3.8 to 3.13` (per [req](https://www.psycopg.org/docs/install.html))
+- [flask](https://flask.palletsprojects.com/en/stable/)
+- pip for package management
 
 Virtual environments enable you to have an isolated space on your computer for Python projects, ensuring that each of your projects can have its own set of dependencies that won’t disrupt any of your other projects.
 
@@ -20,14 +42,14 @@ Virtual environments enable you to have an isolated space on your computer for P
 ├── requirements.txt
 └── seed.py
 
-python3 -m venv env
-source env/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 python3 app.py
 
 ```
 
-Application uses 
+Application uses
 
 `flask_cors` for CORS support (allows call application's routes from another domain since vuejs will live in a separate server).
 `psycopg2` - postgreSQL client
@@ -49,11 +71,10 @@ env | grep POSTGRES # to make sure they've set up succesfully
 
 > For Production `POSTGRES_SSLMODE` should be set to `require`. Read about SSL Mode Descriptions [here](https://www.postgresql.org/docs/9.1/libpq-ssl.html)
 
+Validate if the application runs with `flask run`, type in browser the following:
 
-Validate if the application runs with `flask run`, type in browser the following: 
-
-* http://localhost:5000/health <--- should respond with `"I am fine!"`
-* http://localhost:5000/books <--- should return json with several boosk (we've added as seeds earlier)
+- <http://localhost:5000/health> <--- should respond with `"I am fine!"`
+- <http://localhost:5000/books> <--- should return json with several boosk (we've added as seeds earlier)
 
 Stop running application with `CTRL+C`.
 
@@ -61,7 +82,7 @@ Stop running application with `CTRL+C`.
 
 Work in the folder `./Labs/5-server` that has the following content:
 
-```bash 
+```bash
 
 5-server
 ├── Dockerfile
@@ -103,9 +124,9 @@ Login Succeeded
 docker build -t <your_acr>.azurecr.io/server .
 docker push <your_acr>.azurecr.io/server
 
-# Run dockerized application (-p 5000:5000 maps container's port to host's port so I can access)
+# Run dockerized application (-p 5001:5001 maps container's port to host's port so I can access)
 
-docker run -p 5000:5000 <your_acr>.azurecr.io/server
+docker run -p 5001:5001 <your_acr>.azurecr.io/server
 
 ```
 
@@ -130,11 +151,11 @@ To host our flask application in production let's use Web App (PaaS service that
 
 In the [Lab 4](4-Prepare-database.md) we deployed several resources that we use for our backend:
 
-* Web App and Service Plan
-* Managed Identity
-* Container Registry
+- Web App and Service Plan
+- Managed Identity
+- Container Registry
 
-We just used Container Registry in Task 5.2 for our backend application. Now review module `./Labs/modules/webapp.bicep` and pay attention to the following: 
+We just used Container Registry in Task 5.2 for our backend application. Now review module `./Labs/modules/webapp.bicep` and pay attention to the following:
 
 1. Web App has references to PSQL via outputs (most of the references are used for authentication with DB);
 2. Managed Identity is used for pull image from ACR (otherwise it won't authorize). Check attributes `acrUseManagedIdentityCreds` and `acrUserManagedIdentityID`.

@@ -1,16 +1,16 @@
-## Lab 8 - Clean up
+# Lab 8 - Clean up
 
-To avoid Azure charges let's clean up. 
+To avoid Azure charges let's clean up.
 
 ## Task 8.1: Remove resource group
-   
+
 ```bash
 
 az group delete -g azure-bicep-workshop -y
 
 ```
 
-## Task 8.2: Delete (purge) Key Vault:
+## Task 8.2: Delete (purge) Key Vault
 
 ![Purge KV](../.attachments/8-purge-kv.png)
 
@@ -25,6 +25,6 @@ az group delete -g azure-bicep-workshop -y
 
 ## Congratulations
 
-Congratulations! You have completed this workshop. If you have a feedback please direct it via [@evgenyrudinsky](https://twitter.com/evgenyrudinsky) or contact via [my blog](https://erudinsky.com/). 
+Congratulations! You have completed this workshop. If you have a feedback please direct it via [@evgenyrudinsky](https://twitter.com/evgenyrudinsky) or contact via [my blog](https://erudinsky.com/).
 
 ![Congrats!](https://media.giphy.com/media/YRuFixSNWFVcXaxpmX/giphy.gif)

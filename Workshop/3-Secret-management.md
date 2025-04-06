@@ -1,14 +1,23 @@
-## Lab 3 - KeyVault and secrets
+# Lab 3 - Secret management
 
-In this lab we will do the following: 
+## Objective
 
-* Create Azure Key Vault;
-* Create three secrets.
+Learn how to provision and configure Azure Key Vault to securely store secrets such as database credentials and tokens. This lab will guide you through creating a resource group, deploying a Key Vault, and adding secrets to it.
+
+## Key Learnings
+
+By the end of this lab, you will:
+
+- Understand the purpose and capabilities of Azure Key Vault.
+- Learn how to define and deploy Azure resources using Bicep templates.
+- Generate and securely store secrets in Azure Key Vault.
+- Use secure parameters in Bicep for sensitive data.
+
+---
 
 [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts?wt.mc_id=MVP_387222?) is a cloud service for securely storing and accessing secrets. A secret is anything that you want to tightly control access to, such as API keys, passwords, certificates, or cryptographic keys. Key Vault service supports two types of containers: vaults and managed hardware security module(HSM) pools. Vaults support storing software and HSM-backed keys, secrets, and certificates. Managed HSM pools only support HSM-backed keys. See Azure Key Vault REST API overview for complete details.
 
 We will provision three secrets: `dbuser`, `dbpassword` for our future PostgreSQL DB and `token` that will be used by Static Site service to create workflow (GitHub actions) in order to deploy vuejs changes (this will be explained in [Lab 6](6-Client-with-vuejs.md), don't worry for now).
-
 
 ## Task 3.1: Prepare secrets
 
@@ -24,7 +33,7 @@ Store somewhere temporary the token.
 
 ## Task 3.2: Deployment of resource group and Key Vault with secrets
 
-Let's deploy resource group and key vault with secrets. Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/3-secrets`. This folder contains main template that has references to module `keyvault.bicep`. There is also `parameters.json` file that should be used to specify all required parameters.
+Let's deploy resource group and key vault with secrets. Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/3-Secret-management`. This folder contains main template that has references to module `keyvault.bicep`. There is also `parameters.json` file that should be used to specify all required parameters.
 
 ```bash
 
@@ -77,7 +86,7 @@ Let's deploy it:
 
 ```bash
 
-# ‼️ Make sure you are in /Labs/3-secrets folder
+# ‼️ Make sure you are in /Labs/3-Secret-management folder
 
 # Validate the template and all references from it
 
@@ -93,16 +102,16 @@ az deployment sub create -f main.bicep -p parameters.json -n ABWSecretsDeploymen
 
 ```
 
-> NB! This step also uses module with Azure KeyVault and add a couple of secrets for communications between parts of our application (server <> db).
+> ⚠️ This step also uses module with Azure KeyVault and add a couple of secrets for communications between parts of our application (server <> db).
 
 You'll be prompted to enter `dbuser` and `dbpassword` and `token` from GH account (for static app deployment) and they'll be stored in Azure KeyVault's secrets. We will consume them from our Server Side App and Static Site services.
 
 At the end of this step you should have the following:
 
-* Resource Group 
-* KeyVault with 3 secrets (dbuser, dbpassword and token)
+- Resource Group
+- KeyVault with 3 secrets (dbuser, dbpassword and token)
 
-Let's review deployed resources: 
+Let's review deployed resources:
 
 ![Resource group](../.attachments/3-resource-group.png)
 ![KV - secrets](../.attachments/3-keyvault-secrets.png)
@@ -112,6 +121,10 @@ Learn about [secure parameters](https://learn.microsoft.com/azure/azure-resource
 
 ## Summary
 
-In this lab we learnt how to create resource group and key vault with secrets.
+In this lab, you learned how to:
+
+- Create a resource group.
+- Deploy an Azure Key Vault.
+- Add and securely store secrets in the Key Vault.
 
 Move to [Lab 4 - Prepare database](4-Prepare-database.md)

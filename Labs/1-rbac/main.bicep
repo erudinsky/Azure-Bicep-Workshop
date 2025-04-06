@@ -20,11 +20,13 @@ var roles = [
   }
 ]
 
-module roleDefinition './../modules/roles.bicep' = [for role in roles: {
-  name: '${role.roleDefinition.name}_deployment'
-  params: {
-    assignableScopes: 'subscriptions/${subscriptionId}'
-    roleDefinition: role.roleDefinition
-    assigneeObjectId: role.assigneeObjectId
+module roleDefinition './../modules/roles.bicep' = [
+  for role in roles: {
+    name: '${role.roleDefinition.name}_deployment'
+    params: {
+      assignableScopes: 'subscriptions/${subscriptionId}'
+      roleDefinition: role.roleDefinition
+      assigneeObjectId: role.assigneeObjectId
+    }
   }
-}]
+]

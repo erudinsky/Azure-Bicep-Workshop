@@ -1,6 +1,28 @@
-## Lab 4 - PSQL configuration and the rest of infra deployment
+# Lab 4 - PSQL configuration and the rest of infra deployment
 
 In this lab we will look into database. We will also deploy the rest of infra for our app since there are dependencies between resources and it's a great oportunity to learn how to work with outputs and references.
+
+---
+
+## Objectives
+
+1. Learn how to set up PostgreSQL for development and production environments.
+2. Understand how to use Docker to run PostgreSQL locally.
+3. Deploy full stack infrastructure using Azure Bicep templates.
+4. Seed and validate data in the database.
+5. Explore backup and restore operations for PostgreSQL.
+
+---
+
+## Key Learnings
+
+- Running PostgreSQL locally using Docker.
+- Creating and managing databases and tables using SQL commands.
+- Deploying Azure resources using Bicep templates.
+- Configuring database parameters and firewall rules.
+- Performing backup and restore operations for PostgreSQL.
+
+---
 
 ## Task 4.1: PosgreSQL for development (optionally)
 
@@ -8,9 +30,9 @@ The intention of this task is to learn how to work with SQL (postgres) running i
 
 Main dependencies:
 
-* Docker runtime (for development environment), [howto install](https://docs.docker.com/desktop/mac/install/)
-* PostgreSQL 11
-* [PostgreSQL Manamgenet Tool](https://marketplace.visualstudio.com/items?itemName=ckolkman.vscode-postgres)
+- Docker runtime (for development environment), [howto install](https://docs.docker.com/desktop/mac/install/)
+- PostgreSQL 11
+- [PostgreSQL Manamgenet Tool](https://marketplace.visualstudio.com/items?itemName=ckolkman.vscode-postgres)
 
 For development purposes use [PostgreSQL](https://hub.docker.com/_/postgres/). There are multiple ways to run it. 
 
@@ -28,7 +50,7 @@ CREATE DATABASE
 
 ```
 
-Now let's seed some data in it: 
+Now let's seed some data in it:
 
 ```sql
 DROP DATABASE abw_db;
@@ -41,18 +63,18 @@ CREATE TABLE public.books (
     id serial PRIMARY KEY,
     title character varying(150) NOT NULL,
     author character varying(50) NOT NULL,
-    pages_num integer NOT NULL,
+    pagesNum integer NOT NULL,
     read boolean NOT NULL,
     date_added date DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO books (title, author, pages_num, read)
+INSERT INTO books (title, author, pagesNum, read)
             VALUES ('The Phoenix Projecy','Gene Kim, Kevin Behr and George Spafford',431,True);
 
-INSERT INTO books (title, author, pages_num, read)
+INSERT INTO books (title, author, pagesNum, read)
             VALUES ('Coders','Clive Thompson',436,False);
 
-INSERT INTO books (title, author, pages_num, read)
+INSERT INTO books (title, author, pagesNum, read)
             VALUES ('Mindware: Tools for Smart Thinking','Richard E. Nisbett',336,False);
 ```
 
@@ -63,7 +85,7 @@ Validate either everything has been created succesfully:
 abw_db=# \c abw_db;
 You are now connected to database "abw_db" as user "postgres".
 abw_db=# SELECT * FROM books;
- id |               title                |                  author                  | pages_num | read | date_added 
+ id |               title                |                  author                  | pagesNum | read | date_added 
 ----+------------------------------------+------------------------------------------+-----------+------+------------
   1 | The Phoenix Projecy                | Gene Kim, Kevin Behr and George Spafford |       431 | t    | 2022-04-28
   2 | Coders                             | Clive Thompson                           |       436 | f    | 2022-04-28
@@ -149,9 +171,9 @@ The intention of this task is to provision infrastructure for PostgreSQL using B
 
 Main dependencies:
 
-* [Azure account](https://azure.microsoft.comfree/?wt.mc_id=MVP_387222?)
-* azure-cli 2.35.0 (or above)
-* Bicep CLI version 0.5.6 (or above)
+- [Azure account](https://azure.microsoft.comfree/?wt.mc_id=MVP_387222?)
+- azure-cli 2.71.0 (or above)
+- Bicep CLI version 0.34.44 (or above)
 
 For production environment we want to use [Azure Database for PostgreSQL](https://azure.microsoft.com/services/postgresql/?wt.mc_id=MVP_387222?), it's fully managed and scalable PostgreSQL.
 
@@ -214,7 +236,7 @@ In this task we want to make sure we have all required parameters in `parameters
 
 ```
 
-You'll need the name of the KeyVault (the one that you deployd in [Lab 3](3-Secrets.md)). It should be generated with uniqueString and it's value should be something like this `abwcrivf32izq2hekv`
+You'll need the name of the KeyVault (the one that you deployd in [Lab 3](./3-Secret-management.md)). It should be generated with uniqueString and it's value should be something like this `abwcrivf32izq2hekv`
 
 Feel free to change `location`, `acrSku`, add / change / remove `tags`. Once done, let's deploy entire application by doing the following: 
 
@@ -275,18 +297,18 @@ CREATE TABLE public.books (
     id serial PRIMARY KEY,
     title character varying(150) NOT NULL,
     author character varying(50) NOT NULL,
-    pages_num integer NOT NULL,
+    pagesNum integer NOT NULL,
     read boolean NOT NULL,
     date_added date DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO books (title, author, pages_num, read)
+INSERT INTO books (title, author, pagesNum, read)
             VALUES ('The Phoenix Projecy','Gene Kim, Kevin Behr and George Spafford',431,True);
 
-INSERT INTO books (title, author, pages_num, read)
+INSERT INTO books (title, author, pagesNum, read)
             VALUES ('Coders','Clive Thompson',436,False);
 
-INSERT INTO books (title, author, pages_num, read)
+INSERT INTO books (title, author, pagesNum, read)
             VALUES ('Mindware: Tools for Smart Thinking','Richard E. Nisbett',336,False);
 ```
 
@@ -297,7 +319,7 @@ Validate either everything has been created succesfully:
 abw_db=# \c abw_db;
 You are now connected to database "abw_db" as user "postgres".
 abw_db=# SELECT * FROM books;
- id |               title                |                  author                  | pages_num | read | date_added 
+ id |               title                |                  author                  | pagesNum | read | date_added 
 ----+------------------------------------+------------------------------------------+-----------+------+------------
   1 | The Phoenix Projecy                | Gene Kim, Kevin Behr and George Spafford |       431 | t    | 2022-04-28
   2 | Coders                             | Clive Thompson                           |       436 | f    | 2022-04-28
@@ -328,14 +350,15 @@ psql sslmode=<mode> -h <host> -U <user> -f abw_db.sql postgres -d postgres
 
 ```
 
+---
+
 ## Summary
 
-In this lab we learnt how to create full stack application's infra 😀 and configured SQL. In the nest modules we will explore the rest of templates that we used for the app.
+In this lab, you learned how to:
 
-* PostgreSQL
-* Web App and Service Plan
-* Static Site
-* Container Registry for Image
-* Managed Identity that is used by Web App for pulling image from ACR
+- Configured PostgreSQL for development and production environments.
+- Deployed full stack infrastructure using Azure Bicep templates.
+- Seeded and validated data in the database.
+- Explored backup and restore operations.
 
-Move to the [Server side](5-Server-side.md).
+Move to the [Server side](5-Server-side.md)

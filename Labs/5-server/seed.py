@@ -15,12 +15,12 @@ cur.execute('DROP TABLE IF EXISTS books;')
 cur.execute('CREATE TABLE books (id serial PRIMARY KEY,'
                                  'title varchar (150) NOT NULL,'
                                  'author varchar (50) NOT NULL,'
-                                 'pages_num integer NOT NULL,'
+                                 'pagesNum integer NOT NULL,'
                                  'read bool NOT NULL,'
                                  'date_added date DEFAULT CURRENT_TIMESTAMP);'
                                  )
 
-cur.execute('INSERT INTO books (title, author, pages_num, read)'
+cur.execute('INSERT INTO books (title, author, pagesNum, read)'
             'VALUES (%s, %s, %s, %s)',
             ('The Phoenix Projecy',
              'Gene Kim, Kevin Behr and George Spafford',
@@ -29,7 +29,7 @@ cur.execute('INSERT INTO books (title, author, pages_num, read)'
             )
 
 
-cur.execute('INSERT INTO books (title, author, pages_num, read)'
+cur.execute('INSERT INTO books (title, author, pagesNum, read)'
             'VALUES (%s, %s, %s, %s)',
             ('Coders',
              'Clive Thompson',

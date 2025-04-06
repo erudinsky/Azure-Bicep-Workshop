@@ -1,8 +1,24 @@
-## Getting started with Bicep
+# Lab 0 - Getting started with Bicep
 
-[Bicep](https://github.com/Azure/bicep) is an open source (MIT) domain-specific language to define [Infrastructure as Code (IaC) ](https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code?wt.mc_id=MVP_387222)in **Azure**.
+## Objective
 
-![](/.attachments/arm.png)
+Learn the basics of Azure Bicep, its advantages, and how to use it to define Infrastructure as Code (IaC) in Azure.
+
+## Key Learnings
+
+By the end of this module, you will:
+
+- Understand the purpose and benefits of Azure Bicep.
+- Learn how to set up your environment for Bicep development.
+- Explore the structure of a typical Bicep file.
+- Deploy resources using Bicep and Azure CLI.
+- Understand target scopes and modularity in Bicep.
+
+---
+
+[Bicep](https://github.com/Azure/bicep) is an open source (MIT) domain-specific language to define [Infrastructure as Code (IaC)](https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code?wt.mc_id=MVP_387222)in **Azure**.
+
+![Azure Bicep processing](/.attachments/bicep-processing.png)
 
 Advantages of Bicep:
 
@@ -17,24 +33,33 @@ Advantages of Bicep:
 * No state or state files to manage (stated is stored in Azure);
 * No cost and open source! Contributions are welcome, see [issues](https://github.com/Azure/bicep/contribute) and [guide](https://github.com/Azure/bicep/blob/985abdb65cb5407bebd6ce74319a113907a9a9f3/CONTRIBUTING.md) how to contribute.
 
-## Bicep & ARM
+## Azure Resource Manager (ARM) and Bicep
 
-[Decompile](https://learn.microsoft.com/azure/azure-resource-manager/bicep/decompile?tabs=azure-cli&wt.mc_id=MVP_387222) from JSON to Bicep
+⚠️ Make sure your computer has the following:
+
+* [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli?wt.mc_id=MVP_387222)
+* [Bicep extension for VS code](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio-code?tabs=azure-cli&wt.mc_id=MVP_387222)
+* You have subscription in Azure (if not, go ahead, and [try it for free](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account))
 
 Using the following bicep resource definition let's explore Azure Resource Manager.
 
 ```bicep
 targetScope = 'resourceGroup' // this can be removed as default targetScope is resourceGroup
-param location string = 'westeurope'
 @description('Storage Account name')
-var name = '${uniqueString(location)}rg'
+param name string = uniqueString(resourceGroup().id)
+@description('Storage Account location')
+param location string = resourceGroup().location
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2024-01-01' = {
   name: name
   location: location
-  kind: 'StorageV2'
   sku: {
-    name: 'Premium_LRS'
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    accessTier: 'Hot'
+    supportsHttpsTrafficOnly: true
   }
 }
 
@@ -43,28 +68,39 @@ output storageAccount string = storageAccount.name
 
 ```bash
 
-# NB! Check target tenant/subscription
+# ⚠️ Check target tenant/subscription
 
 az group create -g abw -l westeurope
-az deployment group validate -f sandbox/main.bicep -g abw
-az deployment group what-if -f sandbox/main.bicep -g abw
-az deployment group create -f sandbox/main.bicep -g abw
+az deployment group validate -f Labs/0-getting-started-with-bicep/main.bicep -g abw
+az deployment group what-if -f Labs/0-getting-started-with-bicep/main.bicep -g abw
+az deployment group create -f Labs/0-getting-started-with-bicep/main.bicep -g abw
 
 # Export: RG > JSON
 
-az group export --name abw > sandbox/main-exported.json
+az group export --name abw > Labs/0-getting-started-with-bicep/main-exported.json
 
 # Decompile: JSON > Bicep
 
-az bicep decompile --file main-exported.json
+az bicep decompile --file Labs/0-getting-started-with-bicep/main-exported.json
 
 ```
 
-### Target scope
+[Export template and convert](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/decompile?tabs=azure-cli&wt.mc_id=MVP_387222#export-template-and-convert)
 
-By default, the target scope is set to resourceGroup. If you're deploying at the resource group level, you don't need to set the target scope in your Bicep file.
+## Target scopes
+
+By default, the target scope is set to [resourceGroup](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-resource-group?tabs=azure-cli&wt.mc_id=MVP_387222). If you're deploying at the resource group level, you don't need to set the target scope in your Bicep file.
+
+The following target scopes are supported:
+
+* [Resource group](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-resource-group?tabs=azure-cli&wt.mc_id=MVP_387222)
+* [Subscription](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli&wt.mc_id=MVP_387222)
+* [Management group](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-management-group?tabs=azure-cli&wt.mc_id=MVP_387222)
+* [Tenant](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-to-tenant?tabs=azure-cli&wt.mc_id=MVP_387222)
 
 ![Azure Scope](/.attachments/az-target-scopes.png)
+
+## Bicep file structure
 
 Typical Bicep template file structure:
 
@@ -90,14 +126,15 @@ module <module-symbolic-name> '<path-to-file>' = {
 output <output-name> <output-data-type> = <output-value>
 ```
 
-Use [bicep linter](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter?wt.mc_id=MVP_387222?) in IDE and CICD. [Default](hlearn.microsoftcrosoft.com/azure/azure-resource-manager/bicep/linter#default-rules) set of linter rules are taken from [arm-ttk test clearn.microsoftdocs.microsoft.com/azure/azure-resource-manager/templates/template-test-cases).
+Use [bicep linter](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter?wt.mc_id=MVP_387222?) in IDE and CICD. [Default](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter#default-rules?wt.mc_id=MVP_387222) set of linter rules are taken from [arm-ttk test cases](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-test-cases?wt.mc_id=MVP_387222).
 
-## Rest API exercise
+## Azure REST<sup>1</sup> API
 
-https://learn.microsoft.com/rest/api/azure/?wt.mc_id=MVP_387222?
+1. Representational State Transfer (REST)
 
-* [How to call Azure REST APIs with Postman](https://learn.microsoft.com/rest/api/azure/?wt.mc_id=MVP_387222#how-to-call-azure-rest-apis-with-postman)
-* [How to call Azure REST APIs with curl](https://learn.microsoft.com/rest/api/azure/?wt.mc_id=MVP_387222#how-to-call-azure-rest-apis-with-curl)
+![Azure Resource Manager](/.attachments/arm.png)
+
+* [How to call Azure REST APIs with curl](https://learn.microsoft.com/en-us/rest/api/azure/?wt.mc_id=MVP_387222#how-to-call-azure-rest-apis-with-curl)
 
 In the latest azure-cli you can also use `az rest` method to work with REST API
 
@@ -106,16 +143,39 @@ Try calling with postman (make sure bearerToken has been generated and passed al
 * `GET https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups?api-version=2020-09-01`
 * `POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/azure-bicep-workshop?api-version=2020-09-01`
 
+Or:
+
+```bash
+az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/<GroupID>/subscriptions?api-version=2020-05-01"
+{
+  "value": [
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/<GroupID>/subscriptions/<SubscriptionID>",
+      "name": "<SubscriptionID>",
+      "properties": {
+        "displayName": "Visual Studio Enterprise Subscription",
+        "parent": {
+          "id": "/providers/Microsoft.Management/managementGroups/<GroupID>"
+        },
+        "state": "Active",
+        "tenant": "<GroupID>"
+      },
+      "type": "Microsoft.Management/managementGroups/subscriptions"
+    }
+  ]
+}
+```
+
 ## Application reference
 
 With the next chapter and further we will be doing labs and building infrastructure in Azure using templates. The following resources will be provisioned:
 
-- Roles and policies;
-- KeyVault for secrets;
-- Container registry for backend image;
-- PostgreSQL as database;
-- Web app and service plan for backend;
-- Static web site for vuejs (client).
+* Roles and policies;
+* KeyVault for secrets;
+* Container registry for backend image;
+* PostgreSQL as database;
+* Web app and service plan for backend;
+* Static web site for vuejs (client).
 
 Check high-level reference architecture:
   
@@ -124,11 +184,21 @@ Check high-level reference architecture:
 [![Deploy to Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/)
 [![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg)](http://armviz.io/#/?load=)
 
-## Resources 
+## Resources
 
 * [What is IaC?](https://www.youtube.com/watch?v=uETq8KKVUFY)
 * [Infrastructure as Code (IaC): Comparing the Tools](https://techcommunity.microsoft.com/t5/itops-talk-blog/infrastructure-as-code-iac-comparing-the-tools/ba-p/3205045?wt.mc_id=MVP_387222?)
 * [Bicep playground](https://aka.ms/bicepdemo)
 * Resource explorer in Azure Portal
 
-Move to the next step - [RBAC as code](1-RBAC-as-code.md).
+## Summary
+
+In this lab, you learned how to:
+
+* Understand the purpose and benefits of Azure Bicep.
+* Set up your environment for Bicep development.
+* Explore the structure of a typical Bicep file.
+* Deploy resources using Bicep and Azure CLI.
+* Understand target scopes and modularity in Bicep.
+
+Move to the next step - [RBAC as code](1-RBAC-as-code.md)

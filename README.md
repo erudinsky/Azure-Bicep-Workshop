@@ -21,10 +21,10 @@ We are going to deploy a full stack application to Azure in multiple environment
 * Fundamental cloud computing knowledge about Microsoft Azure
 * Azure subscription (if you don't have, check how to [get started](https://azure.microsoft.com/free/?wt.mc_id=MVP_387222?))
 * [Visual Studio Code (VSC)](https://code.visualstudio.com/?wt.mc_id=MVP_387222?) with [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
-* Azure CLI version 2.35 (or above), [check how install ](https://learn.microsoft.com/cli/azure/install-azure-cli?wt.mc_id=MVP_387222?)
+* Azure CLI version 2.71 (or above), [check how install](https://learn.microsoft.com/cli/azure/install-azure-cli?wt.mc_id=MVP_387222?)
 * You can also install Bicep CLI manually as described [here](https://learn.microsoft.com/azure/azure-resource-manager/bicep/install?wt.mc_id=MVP_387222#azure-cli), but Azure CLI should be able to do this once you execute command that needs Bicep transpiler
 
-**Prerequisites checks:** 
+**Prerequisites checks:**
 
 We recommend to follow this workshop using Linux or MacOS terminal, for Windows users it's best to install [WSL](https://learn.microsoft.com/windows/wsl/install?wt.mc_id=MVP_387222?). Open up your VSC and using terminal window check the following:
 
@@ -82,7 +82,7 @@ You can follow the workshop by checking the following links:
 0. [Getting started with Bicep](Workshop/0-Getting-started-with-Bicep.md)
 1. [RBAC as code](Workshop/1-RBAC-as-code.md)
 2. [Policy as code](Workshop/2-Policy-as-code.md)
-3. [Secrets](Workshop/3-Secrets.md)
+3. [Secrets](Workshop/3-Secret-management.md)
 4. [Prepare database](Workshop/4-Prepare-database.md)
 5. [Server side](Workshop/5-Server-side.md)
 6. [Client with vue.js](Workshop/6-Client-with-vuejs.md)
@@ -109,7 +109,7 @@ Repo structure (pretty much self-explanatory)
     ├── 0-Getting-started-with-Bicep.md
     ├── 1-RBAC-as-code.md
     ├── 2-Policy-as-code.md
-    ├── 3-Secrets.md
+    ├── 3-Secret-management.md
     ├── 4-Prepare-database.md
     ├── 5-Server-side.md
     ├── 6-Client-with-vuejs.md
@@ -152,8 +152,26 @@ templates
 
 Hi there 👋
 
-I’m Evgeny Rudinsky, an Cloud Architect based in The Netherlands and author of this workshop. These days most of my work I do with Microsoft Azure and I’m certified Azure Solution Architect Expert, DevOps Engineer Expert, Azure Security Engineer, Azure Administrator Associate, Azure Developer Associate and Identity and Access Administrator Associate.
+I’m Evgeny Rudinsky, a consultant based in The Netherlands and the creator of this workshop. My expertise lies in DevOps, cloud-native technologies, and application security, with a strong focus on Microsoft Azure. I specialize in designing and implementing robust cloud solutions and hold several Azure certifications, including Azure Solution Architect Expert, DevOps Engineer Expert, Azure Security Engineer, Azure Administrator Associate, Azure Developer Associate, and Identity and Access Administrator Associate.
 
-Follow me on [@evgenyrudinsky](https://twitter.com/evgenyrudinsky) and check [my blog](https://erudinsky.com/) if interested in DevOps, cloud native and application security.
+I'm a [Microsoft MVP](https://mvp.microsoft.com/mvp/profile/33cf4dc8-f650-4422-a834-48c08ac92c58) program in 2024 in **Azure Infrastructure as Code** area.
 
-Good luck! 🍀
+<a href="https://mvp.microsoft.com/mvp/profile/33cf4dc8-f650-4422-a834-48c08ac92c58"><img src="/.attachments/MVP_Badge_Horizontal_Preferred_Blue3005_RGB.png" alt="MVP Badge" width="300"></a>
+
+Feel free to follow me on [X (Twitter) @evgenyrudinsky](https://twitter.com/evgenyrudinsky), [LinkedIn](https://www.linkedin.com/in/evgenyrudinsky/) and explore [my blog](https://erudinsky.com/) for insights on DevOps, cloud-native technologies, and application security.
+
+Good luck with the workshop! 🍀
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to this workshop, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with clear and concise messages.
+4. Push your changes to your forked repository.
+5. Open a pull request to the main repository.
+
+For more details, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
+We appreciate your contributions! 🙏

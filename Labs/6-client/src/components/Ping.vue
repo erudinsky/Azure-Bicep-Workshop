@@ -5,9 +5,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://abwg2mnp5ebrtt4gwebapp.azurewebsites.net';
+import axios from '@/axiosConfig';
 
 export default {
   name: 'Ping',

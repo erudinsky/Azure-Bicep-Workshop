@@ -1,67 +1,119 @@
-## Lab 2 - Policy as code (optionally)
+# Lab 2 - Policy as Code
 
-In this lab we will do the following: 
+In this lab, you will learn how to define and assign Azure policies using Infrastructure as Code (IaC) with Bicep. This approach helps enforce governance at scale in large Azure environments.
 
-* Create two policy definitions;
-* Assign two policy definitions to subscription scope.
+---
 
-In a large Azure environment such approach helps to keep properly control on policies and manage them at-scale.
+## Objectives
 
-## Task 2.1: Create and assign policies to subscription scope
+By the end of this lab, you will be able to:
 
-Switch to your terminal (PS, CMD, shell) and change your directory to `./Labs/2-policies`. This folder contains main template that has references to module `policies.bicep` and custom policy definitions in folder `policies` as well as `parameters.json` files to define required parameters:
+- Create Azure policy definitions using Bicep.
+- Assign policy definitions to a subscription scope.
+- Validate and deploy policies using the Azure CLI.
+- Identify non-compliant resources using Azure Policy.
 
-```bash
+---
 
-.
-├── 2-policies
-│   ├── main.bicep
-│   ├── parameters.json
-│   └── policies
-│       ├── a_tag_policy.json
-│       └── allowed_location.json
-└── modules
-    └── policies.bicep
+## Key Learnings
 
-```
+- Understand how to use Bicep to define and assign Azure policies.
+- Learn how to validate and deploy policies using the Azure CLI.
+- Explore the concept of compliance and how to identify non-compliant resources.
+- Gain insights into subscription-level deployments and target scopes in Bicep.
 
-Files in `policies` folder are json policy definitions. Main templates is set to deploy to subscription scope using `targetScope`. Let's run the deployment using `az deployment` command in the following way:
+---
 
-```bash
+## Workshop Modules
 
-# ‼️ Make sure you are in /Labs/1-policies folder
+### Module 2.1: Create and Assign Policies to Subscription Scope
 
-# Validate the template and all references from it
+#### Steps:
 
-az deployment sub validate -f main.bicep -p parameters.json -n ABWPoliciesDeployment
+1. **Navigate to the Lab Directory**  
+   Switch to your terminal (PowerShell, CMD, or shell) and navigate to the `./Labs/2-policies` folder. This folder contains:
+   - `main.bicep`: The main template.
+   - `parameters.json`: Parameters for the deployment.
+   - `policies`: A folder with custom policy definitions in JSON format.
 
-# Dry-run of the deployment with what-if
+   Folder structure:
 
-az deployment sub what-if -f main.bicep -p parameters.json -n ABWPoliciesDeployment
+   ```bash
+   .
+   ├── 2-policies
+   │   ├── main.bicep
+   │   ├── parameters.json
+   │   └── policies
+   │       ├── a_tag_policy.json
+   │       └── allowed_location.json
+   └── modules
+       └── policies.bicep
+   ```
 
-# Create the actual deployment
+2. **Understand the Deployment Scope**  
+   The `main.bicep` template is set to deploy at the subscription scope using the `targetScope` property.
 
-az deployment sub create -f main.bicep -p parameters.json -n ABWPoliciesDeployment
+3. **Run the Deployment**  
+   Use the Azure CLI to validate, preview, and deploy the policies:
 
-```
+   ```bash
+   # ‼️ Ensure you are in the /Labs/2-policies folder
 
-The result of the last command should provision the actual resources. Validate them via Azure Portal:
+   # Validate the template and its references
+   az deployment sub validate -l westeurope -f main.bicep -p parameters.json -n ABWPoliciesDeployment
 
-![Policy Defintions](../.attachments/3-policy-definitions.png)
-![Policy Assignments](../.attachments/3-policy-assignments.png)
+   # Dry-run the deployment with what-if
+   az deployment sub what-if -l westeurope -f main.bicep -p parameters.json -n ABWPoliciesDeployment
 
-Review bicep module `./modules/policies.bicep` to learn about policy definition and policy assignment resources. 
+   # Create the actual deployment
+   az deployment sub create -l westeurope -f main.bicep -p parameters.json -n ABWPoliciesDeployment
+   ```
 
-Learn about [subscription target scope](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli&wt.mc_id=MVP_387222?), [loops](https://learn.microsoft.com/azure/azure-resource-manager/bicep/loops?wt.mc_id=MVP_387222?), also expolore other target scope that might be possible to use for this type of resources (for example management group target scope).
+4. **Validate the Deployment**  
+   After running the deployment, validate the results in the Azure Portal:
+   - Check the **Policy Definitions**.
+   - Verify the **Policy Assignments**.
 
-## Task 2.2: Find incompliant resources
+   ![Policy Definitions](../.attachments/3-policy-definitions.png)
+   ![Policy Assignments](../.attachments/3-policy-assignments.png)
 
-Now you can check Compliance page to find incompliant resources in your environment. Find out all resources that are not compliant to the new policies (no single tag on resource, deployed not in `swedencentral`, `westeurope`, `eastasia` locations).
+5. **Review the Bicep Module**  
+   Open `./modules/policies.bicep` to understand how policy definitions and assignments are implemented.
 
-![Policy Compliance](../.attachments/3-policy-compliance.png)
+6. **Learn More**  
+   Explore the following concepts:
+   - [Subscription Target Scope](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-to-subscription?tabs=azure-cli&wt.mc_id=MVP_387222?)
+   - [Loops in Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/loops?wt.mc_id=MVP_387222?)
+   - Other target scopes, such as management group scope.
+
+---
+
+### Module 2.2: Find Non-Compliant Resources
+
+#### Steps:
+
+1. **Check Compliance**  
+   Navigate to the **Compliance** page in the Azure Portal to identify non-compliant resources. Look for:
+   - Resources missing required tags.
+   - Resources deployed outside the allowed locations (`swedencentral`, `westeurope`, `eastasia`).
+
+   ![Policy Compliance](../.attachments/3-policy-compliance.png)
+
+2. **Analyze Results**  
+   Use the compliance results to understand how policies enforce governance and identify areas for improvement.
+
+---
 
 ## Summary
 
-In this lab we learnt how to create policy and assign it to a specific scope. You also learnt how to use policies for audit.
+In this lab, you learned how to:
 
-Move to [Lab 3 - Secrets](3-Secrets.md)
+- Created and assigned Azure policies using Bicep.
+- Validated and deployed policies at the subscription scope.
+- Learned how to identify non-compliant resources using Azure Policy.
+
+These skills are essential for managing governance and compliance in Azure environments.
+
+---
+
+Move to [Lab 3 - Secret management](3-Secret-management.md)
