@@ -21,10 +21,10 @@ We are going to deploy a full stack application to Azure in multiple environment
 * Fundamental cloud computing knowledge about Microsoft Azure
 * Azure subscription (if you don't have, check how to [get started](https://azure.microsoft.com/free/?wt.mc_id=MVP_387222?))
 * [Visual Studio Code (VSC)](https://code.visualstudio.com/?wt.mc_id=MVP_387222?) with [Bicep extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
-* Azure CLI version 2.35 (or above), [check how install ](https://learn.microsoft.com/cli/azure/install-azure-cli?wt.mc_id=MVP_387222?)
+* Azure CLI version 2.71 (or above), [check how install](https://learn.microsoft.com/cli/azure/install-azure-cli?wt.mc_id=MVP_387222?)
 * You can also install Bicep CLI manually as described [here](https://learn.microsoft.com/azure/azure-resource-manager/bicep/install?wt.mc_id=MVP_387222#azure-cli), but Azure CLI should be able to do this once you execute command that needs Bicep transpiler
 
-**Prerequisites checks:** 
+**Prerequisites checks:**
 
 We recommend to follow this workshop using Linux or MacOS terminal, for Windows users it's best to install [WSL](https://learn.microsoft.com/windows/wsl/install?wt.mc_id=MVP_387222?). Open up your VSC and using terminal window check the following:
 
