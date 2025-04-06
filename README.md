@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to Azure Bicep workshop. 
+Welcome to Azure Bicep workshop.
 
 Bicep is a domain-specific language (DSL) that uses declarative syntax to deploy Azure resources. In a Bicep file, you define the infrastructure you want to deploy to Azure, and then use that file throughout the development lifecycle to repeatedly deploy your infrastructure. Your resources are deployed in a consistent manner.
 
@@ -143,7 +143,7 @@ templates
 
 ```
 
-1. Generate using az-cli Service Principal: `az ad sp create-for-rbac --name AzureBicepWorkshop --role Owner --scopes / ` and add `AZURE_CREDENTIALS` variable using [this doc](https://github.com/Azure/login?tab=readme-ov-file#login-with-a-service-principal-secret)
+1. Generate using az-cli Service Principal: `az ad sp create-for-rbac --name AzureBicepWorkshop --role Owner --scopes /` and add `AZURE_CREDENTIALS` variable using [this doc](https://github.com/Azure/login?tab=readme-ov-file#login-with-a-service-principal-secret)
 2. Add remaining environment variables (secrets) in your project as described [here](https://github.com/erudinsky/Azure-Bicep-Workshop/blob/main/Workshop/7-DevOps.md)
 3. Make changes in `parameters.gh.json` and `parameters.init.gh.json`
 4. Commit and push changes, GH workload should pickup several pipelines!
@@ -154,7 +154,7 @@ Hi there 👋
 
 I’m Evgeny Rudinsky, a consultant based in The Netherlands and the creator of this workshop. My expertise lies in DevOps, cloud-native technologies, and application security, with a strong focus on Microsoft Azure. I specialize in designing and implementing robust cloud solutions and hold several Azure certifications, including Azure Solution Architect Expert, DevOps Engineer Expert, Azure Security Engineer, Azure Administrator Associate, Azure Developer Associate, and Identity and Access Administrator Associate.
 
-I'm a [Microsoft MVP](https://mvp.microsoft.com/mvp/profile/33cf4dc8-f650-4422-a834-48c08ac92c58) program in 2024 in **Azure Infrastructure as Code** area.
+I'm a [Microsoft MVP](https://mvp.microsoft.com/mvp/profile/33cf4dc8-f650-4422-a834-48c08ac92c58) in **Azure Infrastructure as Code** area.
 
 <a href="https://mvp.microsoft.com/mvp/profile/33cf4dc8-f650-4422-a834-48c08ac92c58"><img src="/.attachments/MVP_Badge_Horizontal_Preferred_Blue3005_RGB.png" alt="MVP Badge" width="300"></a>
 
