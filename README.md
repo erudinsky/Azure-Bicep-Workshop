@@ -160,4 +160,26 @@ I'm a [Microsoft MVP](https://mvp.microsoft.com/mvp/profile/33cf4dc8-f650-4422-a
 
 Feel free to follow me on [X (Twitter) @evgenyrudinsky](https://twitter.com/evgenyrudinsky), [LinkedIn](https://www.linkedin.com/in/evgenyrudinsky/) and explore [my blog](https://erudinsky.com/) for insights on DevOps, cloud-native technologies, and application security.
 
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to this workshop, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with clear and concise messages.
+4. Push your changes to your forked repository.
+5. Open a pull request to the main repository.
+
+For more details, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
+We appreciate your contributions! 🙏
+
+## Support
+
+If you find this workshop helpful and would like to support my work, consider buying me a coffee. ☕️
+
+Your support is greatly appreciated! 🙏
+
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="erudinsky" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+
 Good luck with the workshop! 🍀
