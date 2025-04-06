@@ -152,8 +152,12 @@ templates
 
 Hi there 👋
 
-I’m Evgeny Rudinsky, an Cloud Architect based in The Netherlands and author of this workshop. These days most of my work I do with Microsoft Azure and I’m certified Azure Solution Architect Expert, DevOps Engineer Expert, Azure Security Engineer, Azure Administrator Associate, Azure Developer Associate and Identity and Access Administrator Associate.
+I’m Evgeny Rudinsky, a consultant based in The Netherlands and the creator of this workshop. My expertise lies in DevOps, cloud-native technologies, and application security, with a strong focus on Microsoft Azure. I specialize in designing and implementing robust cloud solutions and hold several Azure certifications, including Azure Solution Architect Expert, DevOps Engineer Expert, Azure Security Engineer, Azure Administrator Associate, Azure Developer Associate, and Identity and Access Administrator Associate.
 
-Follow me on [@evgenyrudinsky](https://twitter.com/evgenyrudinsky) and check [my blog](https://erudinsky.com/) if interested in DevOps, cloud native and application security.
+I'm a Microsoft MVP program in 2024 in **Azure Infrastructure as Code** area.
 
-Good luck! 🍀
+[![MVP Badge](/.attachments/MVP_Badge_Horizontal_Preferred_Blue3005_RGB.png)](https://mvp.microsoft.com/mvp/profile/33cf4dc8-f650-4422-a834-48c08ac92c58)
+
+Feel free to follow me on [Twitter @evgenyrudinsky](https://twitter.com/evgenyrudinsky) and explore [my blog](https://erudinsky.com/) for insights on DevOps, cloud-native technologies, and application security.
+
+Good luck with the workshop! 🍀
