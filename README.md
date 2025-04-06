@@ -154,9 +154,9 @@ Hi there 👋
 
 I’m Evgeny Rudinsky, a consultant based in The Netherlands and the creator of this workshop. My expertise lies in DevOps, cloud-native technologies, and application security, with a strong focus on Microsoft Azure. I specialize in designing and implementing robust cloud solutions and hold several Azure certifications, including Azure Solution Architect Expert, DevOps Engineer Expert, Azure Security Engineer, Azure Administrator Associate, Azure Developer Associate, and Identity and Access Administrator Associate.
 
-I'm a Microsoft MVP program in 2024 in **Azure Infrastructure as Code** area.
+I'm a [Microsoft MVP](https://mvp.microsoft.com/mvp/profile/33cf4dc8-f650-4422-a834-48c08ac92c58) program in 2024 in **Azure Infrastructure as Code** area.
 
-<img src="/.attachments/MVP_Badge_Horizontal_Preferred_Blue3005_RGB.png" alt="MVP Badge" width="300">
+<a href="https://mvp.microsoft.com/mvp/profile/33cf4dc8-f650-4422-a834-48c08ac92c58"><img src="/.attachments/MVP_Badge_Horizontal_Preferred_Blue3005_RGB.png" alt="MVP Badge" width="300"></a>
 
 Feel free to follow me on [Twitter @evgenyrudinsky](https://twitter.com/evgenyrudinsky) and explore [my blog](https://erudinsky.com/) for insights on DevOps, cloud-native technologies, and application security.
 
