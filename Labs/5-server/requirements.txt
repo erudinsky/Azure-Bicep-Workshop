@@ -2,3 +2,5 @@ Flask
 Flask-Cors
 psycopg2
 werkzeug
+marshmallow
+inflection

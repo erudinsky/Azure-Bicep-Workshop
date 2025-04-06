@@ -58,7 +58,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Who Moved My Cheese\",\n    \"author\": \"Spencer Johnson Tony Roberts\",\n    \"read\": false,\n    \"pages_num\": 95\n}"
+					"raw": "{\n    \"title\": \"Who Moved My Cheese\",\n    \"author\": \"Spencer Johnson Tony Roberts\",\n    \"read\": false,\n    \"pagesNum\": 95\n}"
 				},
 				"url": {
 					"raw": "{{baseURL}}/books",
@@ -91,7 +91,7 @@
 							"type": "text"
 						},
 						{
-							"key": "pages_num",
+							"key": "pagesNum",
 							"value": "400",
 							"type": "text"
 						},

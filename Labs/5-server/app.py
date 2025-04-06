@@ -1,6 +1,6 @@
 from cmath import log
 from urllib import response
-from flask import Flask, render_template, request, url_for, redirect, jsonify, request
+from flask import Flask, request, url_for, redirect, jsonify, request
 from flask_cors import CORS
 import psycopg2
 import os
@@ -29,9 +29,9 @@ def books():
     if request.method == 'POST':
         conn = get_db_connection()
         cur = conn.cursor()
-        cur.execute('INSERT INTO books (title, author, pages_num, read)'
+        cur.execute('INSERT INTO books (title, author, pagesNum, read)'
                     'VALUES (%s, %s, %s, %s)',
-                    (request.get_json().get('title'), request.get_json().get('author'), request.get_json().get('pages_num'), request.get_json().get('read')))
+                    (request.get_json().get('title'), request.get_json().get('author'), request.get_json().get('pagesNum'), request.get_json().get('read')))
         conn.commit()
         cur.close()
         conn.close()
@@ -55,8 +55,8 @@ def single_book(book_id):
         conn = get_db_connection()
         cur = conn.cursor()
         data = request.get_json() 
-        cur.execute('UPDATE books SET title = %s, author = %s, pages_num = %s, read = %s WHERE id=%s',
-                    (data.get('title'), data.get('author'), data.get('pages_num'), data.get('read'), book_id))
+        cur.execute('UPDATE books SET title = %s, author = %s, pagesNum = %s, read = %s WHERE id=%s',
+                    (data.get('title'), data.get('author'), data.get('pagesNum'), data.get('read'), book_id))
         conn.commit()
         cur.close()
         conn.close()
