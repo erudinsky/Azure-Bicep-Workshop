@@ -1,4 +1,4 @@
-## Lab 7 - DevOps
+# Lab 7 - DevOps
 
 In this lab we will look into DevOps.
 
@@ -12,7 +12,7 @@ Up until now we were using personal account for deployment. Let's first generate
 
 You can use portal and follow this tutorial, otherwise just drop the following into your CLI in order to generate SPN and assign contributor on Subscription.
 
-```bash 
+```bash
 
 # Generate SPN using az cli (replace subscriptionId with your value)
 # We decided to use `owner` role since we need role assignment permissions for managed identity
@@ -178,6 +178,7 @@ jobs:
 
 Also make sure to add the following secrets to your repo:
 
-![](../.attachments/7-secrets.png)
+![Secrets](../.attachments/7-secrets.png)
 
-Next lab - [clean up](8-Clean-up.md).
+Next lab - [clean up](8-Clean-up.md)
+

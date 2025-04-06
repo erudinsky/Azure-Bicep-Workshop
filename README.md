@@ -160,6 +160,8 @@ I'm a [Microsoft MVP](https://mvp.microsoft.com/mvp/profile/33cf4dc8-f650-4422-a
 
 Feel free to follow me on [X (Twitter) @evgenyrudinsky](https://twitter.com/evgenyrudinsky), [LinkedIn](https://www.linkedin.com/in/evgenyrudinsky/) and explore [my blog](https://erudinsky.com/) for insights on DevOps, cloud-native technologies, and application security.
 
+Good luck with the workshop! 🍀
+
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this workshop, please follow these steps:
@@ -173,11 +175,3 @@ Contributions are welcome! If you'd like to contribute to this workshop, please 
 For more details, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 We appreciate your contributions! 🙏
-
-## Support
-
-If you find this workshop helpful and would like to support my work, consider [buying me a coffee](http://buymeacoffee.com/erudinsky). ☕️
-
-Your support is greatly appreciated! 🙏
-
-Good luck with the workshop! 🍀
