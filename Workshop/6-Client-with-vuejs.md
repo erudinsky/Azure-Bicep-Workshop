@@ -2,8 +2,6 @@
 
 In this lab we will look into client side part.
 
-To host our client's part (vue.js) we want to use [Static Web Apps](https://azure.microsoft.com/services/app-service/static/?wt.mc_id=MVP_387222#overview). Static Site Web Application resource has been provisioned as part of the main deployment, let's review it's template.
-
 ## Objectives
 
 By the end of this lab, you will be able to:
@@ -20,6 +18,8 @@ By the end of this lab, you will be able to:
 4. Explore the automated deployment process using GitHub workflows for Azure Static Web Apps.
 
 ---
+
+To host our client's part (vue.js) we want to use [Static Web Apps](https://azure.microsoft.com/services/app-service/static/?wt.mc_id=MVP_387222#overview). Static Site Web Application resource has been provisioned as part of the main deployment, let's review it's template.
 
 Review module `staticsite.bicep`:
 
