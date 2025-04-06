@@ -5,9 +5,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-
-axios.defaults.baseURL = 'http://localhost:5001';
+import axios from '@/axiosConfig';
 
 export default {
   name: 'Ping',

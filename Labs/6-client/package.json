@@ -8,8 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
+    "axios": "^1.8.4",
+    "bootstrap": "^5.3.5",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "semantic-ui-css": "^2.4.1",

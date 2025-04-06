@@ -73,12 +73,12 @@
                           placeholder="Enter author">
             </b-form-input>
           </b-form-group>
-        <b-form-group id="form-pages_num-group"
+        <b-form-group id="form-pagesNum-group"
                       label="Pages:"
-                      label-for="form-pages_num-input">
-            <b-form-input id="form-pages_num-input"
+                      label-for="form-pagesNum-input">
+            <b-form-input id="form-pagesNum-input"
                           type="text"
-                          v-model="addBookForm.pages_num"
+                          v-model="addBookForm.pagesNum"
                           required
                           placeholder="Enter number of pages">
             </b-form-input>
@@ -119,12 +119,12 @@
                           placeholder="Enter author">
             </b-form-input>
           </b-form-group>
-        <b-form-group id="form-pages_num-edit-group"
+        <b-form-group id="form-pagesNum-edit-group"
                       label="Pages:"
-                      label-for="form-pages_num-edit-input">
-            <b-form-input id="form-pages_num-edit-input"
+                      label-for="form-pagesNum-edit-input">
+            <b-form-input id="form-pagesNum-edit-input"
                           type="text"
-                          v-model="editForm.pages_num"
+                          v-model="editForm.pagesNum"
                           required
                           placeholder="Enter number of pages">
             </b-form-input>
@@ -144,10 +144,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/axiosConfig';
 import Alert from './Alert.vue';
-
-axios.defaults.baseURL = 'http://localhost:5001';
 
 export default {
   data() {
@@ -156,7 +154,7 @@ export default {
       addBookForm: {
         title: '',
         author: '',
-        pages_num: '',
+        pagesNum: '',
         read: [],
       },
       message: '',
@@ -165,7 +163,7 @@ export default {
         id: '',
         title: '',
         author: '',
-        pages_num: '',
+        pagesNum: '',
         read: [],
       },
     };
@@ -202,12 +200,12 @@ export default {
     initForm() {
       this.addBookForm.title = '';
       this.addBookForm.author = '';
-      this.addBookForm.pages_num = '';
+      this.addBookForm.pagesNum = '';
       this.addBookForm.read = [];
       this.editForm.id = '';
       this.editForm.title = '';
       this.editForm.author = '';
-      this.editForm.pages_num = '';
+      this.editForm.pagesNum = '';
       this.editForm.read = [];
     },
     onSubmit(evt) {
@@ -218,7 +216,7 @@ export default {
       const payload = {
         title: this.addBookForm.title,
         author: this.addBookForm.author,
-        pages_num: this.addBookForm.pages_num,
+        pagesNum: this.addBookForm.pagesNum,
         read, // property shorthand
       };
       this.addBook(payload);
@@ -241,7 +239,7 @@ export default {
         this.editForm.id = book.id;
         this.editForm.title = book.title;
         this.editForm.author = book.author;
-        this.editForm.pagesNum = book.pages_num;
+        this.editForm.pagesNum = book.pagesNum;
         this.editForm.read = book.read ? [true] : [];
       } else {
         console.error('Invalid book format:', book);
@@ -255,7 +253,7 @@ export default {
       const payload = {
         title: this.editForm.title,
         author: this.editForm.author,
-        pages_num: this.editForm.pages_num,
+        pagesNum: this.editForm.pagesNum,
         read,
       };
       this.updateBook(payload, this.editForm.id);
