@@ -176,10 +176,8 @@ We appreciate your contributions! 🙏
 
 ## Support
 
-If you find this workshop helpful and would like to support my work, consider buying me a coffee. ☕️
+If you find this workshop helpful and would like to support my work, consider [buying me a coffee](http://buymeacoffee.com/erudinsky). ☕️
 
 Your support is greatly appreciated! 🙏
-
-<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="erudinsky" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
 
 Good luck with the workshop! 🍀
