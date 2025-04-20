@@ -37,13 +37,13 @@ az --version
 az login
 
 # 3. Create a resource group
-az create group -g azure-bicep-worshop-rg -l westeurope
+az group create -g azure-bicep-worshop-rg -l westeurope
 
 # 4. List resource groups (table output)
 az group list -o table
 
 # 5. Delete a resource group
-az delete group -g azure-bicep-worshop-rg
+az group delete -g azure-bicep-worshop-rg
 
 ```
 
@@ -57,13 +57,13 @@ Make sure all 5 steps from the above give no errors. If you have access to multi
 az account list -o table
 
 # 2. Set an account (should be marked "True" in "IsDefault")
-az account set -is <SubscriptionId>
+az account set -s <SubscriptionId>
 
 ```
 
 ## Repository
 
-Make sure that you have GitHub account! If you don't please follow [this link](https://github.com/join) to create one. It should take less than a minutes to register. 
+Make sure that you have GitHub account! If you don't please follow [this link](https://github.com/join) to create one. It should take less than a minutes to register.
 
 Once you have account you need this content. The easiest way to work with it is to fork [this repo](https://github.com/erudinsky/Azure-Bicep-Workshop).
 
