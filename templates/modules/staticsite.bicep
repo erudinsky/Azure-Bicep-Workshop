@@ -15,7 +15,7 @@ resource staticSite 'Microsoft.Web/staticSites@2024-04-01' = {
   properties: {
     allowConfigFileUpdates: true
     buildProperties: {
-      appLocation: 'Labs/6-client'
+      appLocation: '/Labs/6-client'
       appArtifactLocation: 'dist'
     }
   }
