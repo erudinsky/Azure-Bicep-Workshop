@@ -1,12 +1,11 @@
 # Lab 7 - DevOps
 
-In this lab we will look into DevOps.
-
-![GitHub DevOps](../.attachments/7-lifecycle.png)
-
 > [What is DevOps?](https://resources.github.com/devops/)
 
 ## Task 7.1: Create service principal
+
+The [Azure Login action supports different ways of authenticating](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?wt.mc_id=MVP_387222?) with Azure:
+
 
 Up until now we were using personal account for deployment. Let's first generate [Service Principal](https://learn.microsoft.com/azure/active-directory/develop/app-objects-and-service-principals?wt.mc_id=MVP_387222#service-principal-object) and build our automation.
 
