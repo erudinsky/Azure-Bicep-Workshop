@@ -14,8 +14,10 @@ resource staticSite 'Microsoft.Web/staticSites@2024-04-01' = {
   sku: sku
   properties: {
     allowConfigFileUpdates: true
+    repositoryUrl: 'https://github.com/erudinsky/Azure-Bicep-Workshop'
+    branch: 'main'
     buildProperties: {
-      appLocation: '/Labs/6-client'
+      appLocation: 'Labs/6-client'
       appArtifactLocation: 'dist'
     }
   }
