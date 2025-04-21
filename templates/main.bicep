@@ -30,6 +30,8 @@ param managedIdentityName string = '${resourcePrefix}${uniqueString(location)}mi
 // 7. StaticSite
 
 param staticSiteName string = '${resourcePrefix}${uniqueString(location)}swa'
+param repositoryUrl string
+param branch string
 
 module ACR 'modules/acr.bicep' = {
   name: 'acr'
@@ -79,6 +81,9 @@ module staticSite 'modules/staticsite.bicep' = {
   params: {
     staticSiteName: staticSiteName
     location: location
+    repositoryToken: kv.getSecret('token')
+    repositoryUrl: repositoryUrl
+    branch: branch
     tags: tags
   }
 }

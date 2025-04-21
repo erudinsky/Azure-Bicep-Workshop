@@ -31,6 +31,12 @@
         },
         "capacity": {
             "value": 1
+        },
+        "repositoryUrl": {
+            "value": "https://github.com/erudinsky/Azure-Bicep-Workshop"
+        },
+        "branch": {
+            "value": "main"
         }
     }
 }
