@@ -3,6 +3,8 @@ param staticSiteName string
 param location string
 param repositoryUrl string
 param branch string
+@secure()
+param repositoryToken string
 param tags object = {}
 param sku object = {
   name: 'Standard'
@@ -19,6 +21,7 @@ resource staticSite 'Microsoft.Web/staticSites@2024-04-01' = {
     provider: 'GitHub'
     enterpriseGradeCdnStatus: 'Disabled'
     repositoryUrl: repositoryUrl
+    repositoryToken: repositoryToken
     branch: branch
     buildProperties: {
       appLocation: 'Labs/6-client'
