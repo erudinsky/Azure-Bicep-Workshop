@@ -175,3 +175,4 @@ Contributions are welcome! If you'd like to contribute to this workshop, please 
 For more details, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 We appreciate your contributions! 🙏
+
