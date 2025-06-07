@@ -128,6 +128,27 @@ output <output-name> <output-data-type> = <output-value>
 
 Use [bicep linter](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter?wt.mc_id=MVP_387222?) in IDE and CICD. [Default](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter#default-rules?wt.mc_id=MVP_387222) set of linter rules are taken from [arm-ttk test cases](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-test-cases?wt.mc_id=MVP_387222).
 
+In Azure Bicep:
+
+**param (parameter):**
+
+- Used to accept values from outside the template (e.g., from users, pipelines, or parameter files).
+- Allows customization of deployments without changing the template code.
+
+Example: `param location string = 'eastus'`
+
+**var (variable):**
+
+- Used to store values calculated or derived within the template.
+- Cannot be set from outside; only used internally.
+
+Example: `var storageAccountName = 'st${uniqueString(resourceGroup().id)}'`
+
+**Summary:**
+
+- Use **param** for external input.
+- Use var for internal calculations or derived values.
+
 ## Azure REST<sup>1</sup> API
 
 1. Representational State Transfer (REST)
