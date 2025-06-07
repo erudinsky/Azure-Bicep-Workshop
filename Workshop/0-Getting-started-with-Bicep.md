@@ -166,6 +166,61 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
 }
 ```
 
+For the API experiments, you can:
+
+```bash
+
+# create SPN
+az ad sp create-for-rbac --name abw-workshop-spn
+
+# assign `Contributor` on sub level to this SPN (alternatively you can do this in Azure Portal via UI)
+
+az role assignment create \
+  --assignee <appId-or-objectId-of-spn> \
+  --role Contributor \
+  --scope /subscriptions/<subscriptionId>
+
+# Generate token
+
+curl -X POST "https://login.microsoftonline.com/<tenant_id>/oauth2/token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=client_credentials" \
+  -d "client_id=<client_id>" \
+  -d "client_secret=<client_secret>" \
+  -d "resource=https://management.azure.com/"
+
+# Alternatively you can use Azure CLI for currently logged in user
+az account get-access-token --resource https://management.azure.com/
+
+# for the SPN above
+az account get-access-token --service-principal --username <appId>
+\ 
+    --password <clientSecret> --tenant <tenantId> --resource https://management.azure.com/
+
+```
+
+Try to create storage account using Rest API:
+
+```
+// This is a REST API call to create a Storage Account
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}?api-version=2024-01-01
+Content-Type: application/json
+Authorization: Bearer {access_token}
+
+{
+  "location": "{location}",
+  "sku": {
+    "name": "Standard_LRS"
+  },
+  "kind": "StorageV2",
+  "properties": {
+    "accessTier": "Hot",
+    "supportsHttpsTrafficOnly": true
+  }
+}
+
+```
+
 ## Application reference
 
 With the next chapter and further we will be doing labs and building infrastructure in Azure using templates. The following resources will be provisioned:
