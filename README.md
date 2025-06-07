@@ -95,9 +95,10 @@ Repo structure (pretty much self-explanatory)
 
 .
 ├── Labs
+│   ├── 0-getting-started-with-bicep
 │   ├── 1-rbac
 │   ├── 2-policies
-│   ├── 3-keyvault
+│   ├── 3-secret-management
 │   ├── 4-full-stack
 │   ├── 5-server
 │   ├── 6-client
